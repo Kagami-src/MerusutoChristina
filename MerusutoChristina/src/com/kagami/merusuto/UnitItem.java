@@ -13,10 +13,12 @@ public class UnitItem {
 	public float quick;
 	public int tough;
 	public int rare;
+	
+	//1:"斩击";2:"突击";3"打击"; 4:"弓箭"; 5:"魔法";6:"铳弹"; 7:"回复";
 	public int weapon;
 	public int reach;
 	public int num;
-	public int type;
+	public int type;//1早熟 2平均 3晚成
 
 	public float fire;
 	public float aqua;
@@ -72,6 +74,14 @@ public class UnitItem {
 	}
 	
 	public int getMaxLvDPS(){
+		return (int)(getMaxLvAtk()/5.0f/quick);
+	}
+	public int getMaxDPS(){
+		//+（HP&ATK*早熟0.9/（20+星级*10））*75
+		return (int)(getMaxAtk()/5.0f/quick);
+	}
+	
+	public int getMaxAtk(){
 		float f=0;
 		switch (type) {
         case 1:
@@ -86,7 +96,24 @@ public class UnitItem {
         default:
             break;
 		}
-		return (int)(atk*f/5.0f/quick);
+		return (int)(atk*f+atk*(f-1)/(20+10*rare)*75);
+	}
+	public int getMaxLvAtk(){
+		float f=0;
+		switch (type) {
+        case 1:
+            f=1.9f;
+            break;
+        case 2:
+        	f=2.0f;
+            break;
+        case 3:
+        	f=2.1f;
+            break;
+        default:
+            break;
+		}
+		return (int)(atk*f);
 	}
 	
 	public int getMaxLvLife(){
@@ -106,9 +133,29 @@ public class UnitItem {
 		}
 		return (int)(life*f);
 	}
+	public int getMaxLife(){
+		float f=0;
+		switch (type) {
+        case 1:
+            f=1.9f;
+            break;
+        case 2:
+        	f=2.0f;
+            break;
+        case 3:
+        	f=2.1f;
+            break;
+        default:
+            break;
+		}
+		return (int)(life*f+life*(f-1)/(20+10*rare)*75);
+	}
 	
 	public int getMultMaxLvDPS(){
 		return getMaxLvDPS()*num;
+	}
+	public int getMultMaxDPS(){
+		return getMaxDPS()*num;
 	}
 
 }

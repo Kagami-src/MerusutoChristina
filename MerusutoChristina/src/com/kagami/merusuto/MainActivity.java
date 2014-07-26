@@ -83,14 +83,26 @@ public class MainActivity extends Activity {
 			mContentFragment.setElement(5);
 			mContentFragment.search();
 			break;
+		case R.id.menu_sort_rare:
+			mContentFragment.sort(ListContentFragment.SORT_RARE);
+			break;
 		case R.id.menu_sort_maxlvdps:
-			mContentFragment.sortByMaxLvDPS();
+			mContentFragment.sort(ListContentFragment.SORT_MAXLVDPS);
 			break;
 		case R.id.menu_sort_multmaxlvdps:
-			mContentFragment.sortByMultMaxLvDPS();
+			mContentFragment.sort(ListContentFragment.SORT_MULT_MAXLVDPS);
+			break;
+		case R.id.menu_sort_maxdps:
+			mContentFragment.sort(ListContentFragment.SORT_MAXDPS);
+			break;
+		case R.id.menu_sort_multmaxdps:
+			mContentFragment.sort(ListContentFragment.SORT_MULT_MAXDPS);
 			break;
 		case R.id.menu_sort_maxlvlife:
-			mContentFragment.sortByMaxLvLife();
+			mContentFragment.sort(ListContentFragment.SORT_MAXLVLIFE);
+			break;
+		case R.id.menu_sort_maxlife:
+			mContentFragment.sort(ListContentFragment.SORT_MAXLIFE);
 			break;
 		default:
 			break;

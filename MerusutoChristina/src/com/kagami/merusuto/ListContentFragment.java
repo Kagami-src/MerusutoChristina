@@ -28,6 +28,14 @@ import android.widget.TextView;
 public class ListContentFragment extends Fragment {
 	private ContentAdapter mAdapter;
 	private int mRare=0,mElement=0;
+	public final static int SORT_RARE=1;
+	public final static int SORT_MAXDPS=2;
+	public final static int SORT_MAXLVDPS=3;
+	public final static int SORT_MAXLIFE=4;
+	public final static int SORT_MAXLVLIFE=5;
+	public final static int SORT_MULT_MAXDPS=6;
+	public final static int SORT_MULT_MAXLVDPS=7;
+	private int mSortMode=SORT_RARE;
 	public ListContentFragment(){
 		super();
 	}
@@ -39,17 +47,37 @@ public class ListContentFragment extends Fragment {
 	}
 	public void search(){
 		mAdapter.search(mRare, mElement);
-		mAdapter.notifyDataSetChanged();
+		sort(mSortMode);
 	}
-	public void sortByMaxLvDPS(){
-		mAdapter.sortByMaxLvDPS();
+	public void sort(int mode){
+		mSortMode=mode;
+		switch (mode) {
+		case SORT_RARE:
+			mAdapter.sortByRare();
+			break;
+		case SORT_MAXLIFE:
+			mAdapter.sortByMaxLife();
+			break;
+		case SORT_MAXLVLIFE:
+			mAdapter.sortByMaxLvLife();
+			break;
+		case SORT_MAXDPS:
+			mAdapter.sortByMaxDPS();
+			break;
+		case SORT_MAXLVDPS:
+			mAdapter.sortByMaxLvDPS();
+			break;
+		case SORT_MULT_MAXDPS:
+			mAdapter.sortByMultMaxDPS();
+			break;
+		case SORT_MULT_MAXLVDPS:
+			mAdapter.sortByMultMaxLvDPS();
+			break;
+		default:
+			break;
+		}
 	}
-	public void sortByMaxLvLife(){
-		mAdapter.sortByMaxLvLife();
-	}
-	public void sortByMultMaxLvDPS(){
-		mAdapter.sortByMultMaxLvDPS();
-	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -114,8 +142,27 @@ public class ListContentFragment extends Fragment {
 
 				@Override
 				public int compare(UnitItem lhs, UnitItem rhs) {
-					if(lhs.getMaxLvDPS()<rhs.getMaxLvDPS())
+					int a=lhs.getMaxLvDPS(),b=rhs.getMaxLvDPS();
+					if(a<b)
 						return 1;
+					else if(a==b)
+						return 0;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByMaxDPS(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					int a=lhs.getMaxDPS(),b=rhs.getMaxDPS();
+					if(a<b)
+						return 1;
+					else if(a==b)
+						return 0;
 					else
 						return -1;
 				}
@@ -127,8 +174,27 @@ public class ListContentFragment extends Fragment {
 
 				@Override
 				public int compare(UnitItem lhs, UnitItem rhs) {
-					if(lhs.getMultMaxLvDPS()<rhs.getMultMaxLvDPS())
+					int a=lhs.getMultMaxLvDPS(),b=rhs.getMultMaxLvDPS();
+					if(a<b)
 						return 1;
+					else if(a==b)
+						return 0;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByMultMaxDPS(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					int a=lhs.getMultMaxDPS(),b=rhs.getMultMaxDPS();
+					if(a<b)
+						return 1;
+					else if(a==b)
+						return 0;
 					else
 						return -1;
 				}
@@ -140,8 +206,43 @@ public class ListContentFragment extends Fragment {
 
 				@Override
 				public int compare(UnitItem lhs, UnitItem rhs) {
-					if(lhs.getMaxLvLife()<rhs.getMaxLvLife())
+					int a=lhs.getMaxLvLife(),b=rhs.getMaxLvLife();
+					if(a<b)
 						return 1;
+					else if(a==b)
+						return 0;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByMaxLife(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					int a=lhs.getMaxLife(),b=rhs.getMaxLife();
+					if(a<b)
+						return 1;
+					else if(a==b)
+						return 0;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByRare(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					int a=lhs.rare,b=rhs.rare;
+					if(a<b)
+						return 1;
+					else if(a==b)
+						return 0;
 					else
 						return -1;
 				}
@@ -187,8 +288,6 @@ public class ListContentFragment extends Fragment {
 				holder.pic.setImageBitmap(pic);
 			UnitItem item=(UnitItem)getItem(position);
 			holder.name.setText(item.name1+item.name2);
-			holder.life.setText("生命:"+item.life);
-			holder.atk.setText("攻击:"+item.atk);
 			holder.reach.setText("射程:"+item.reach);
 			holder.num.setText("攻数:"+item.num);
 			holder.tough.setText("韧性:"+item.tough);
@@ -197,6 +296,29 @@ public class ListContentFragment extends Fragment {
 			holder.type.setText(item.getTypeString());
 			holder.rare.setText(item.getRareString());
 			holder.elementView.setElement(item.fire, item.aqua, item.wind, item.light, item.dark);
+			//life and atk text
+			String life,atk;
+			switch (mSortMode) {
+			case SORT_MAXDPS:
+			case SORT_MAXLIFE:
+			case SORT_MULT_MAXDPS:
+				life=item.getMaxLife()+"(MAX)";
+				atk=item.getMaxAtk()+"(MAX)";
+				break;
+			case SORT_MAXLVDPS:
+			case SORT_MAXLVLIFE:
+			case SORT_MULT_MAXLVDPS:
+				life=item.getMaxLvLife()+"(MAXLV)";
+				atk=item.getMaxLvAtk()+"(MAXLV)";
+				break;
+
+			default:
+				life=""+item.life;
+				atk=""+item.atk;
+				break;
+			}
+			holder.life.setText("生命:"+life);
+			holder.atk.setText("攻击:"+atk);
 			return convertView;
 			
 		}
