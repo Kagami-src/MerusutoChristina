@@ -1,7 +1,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.kagami.merusuto.MainActivity" >
-
+<item
+        android:showAsAction="always|withText"
+        android:title="排序">
+        <menu>
+            <item
+                android:id="@+id/menu_sort_maxlvdps"
+                android:title="0觉满级单体DPS"/>
+             <item
+                android:id="@+id/menu_sort_multmaxlvdps"
+                android:title="0觉满级多体DPS"/>
+            <item
+                android:id="@+id/menu_sort_maxlvlife"
+                android:title="0觉满级生命"/>
+           
+        </menu>
+    </item>
     <item
         android:showAsAction="always|withText"
         android:title="稀有度">

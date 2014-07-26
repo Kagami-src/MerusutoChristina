@@ -28,10 +28,11 @@
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/name"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_m"
+            android:scaleType="fitStart"
             android:src="@drawable/p0" />
 
         <LinearLayout

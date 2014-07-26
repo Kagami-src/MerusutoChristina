@@ -70,5 +70,45 @@ public class UnitItem {
     }
 		return "成长:"+text;
 	}
+	
+	public int getMaxLvDPS(){
+		float f=0;
+		switch (type) {
+        case 1:
+            f=1.9f;
+            break;
+        case 2:
+        	f=2.0f;
+            break;
+        case 3:
+        	f=2.1f;
+            break;
+        default:
+            break;
+		}
+		return (int)(atk*f/5.0f/quick);
+	}
+	
+	public int getMaxLvLife(){
+		float f=0;
+		switch (type) {
+        case 1:
+            f=1.9f;
+            break;
+        case 2:
+        	f=2.0f;
+            break;
+        case 3:
+        	f=2.1f;
+            break;
+        default:
+            break;
+		}
+		return (int)(life*f);
+	}
+	
+	public int getMultMaxLvDPS(){
+		return getMaxLvDPS()*num;
+	}
 
 }

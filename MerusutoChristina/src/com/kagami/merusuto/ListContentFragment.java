@@ -2,6 +2,8 @@ package com.kagami.merusuto;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,6 +40,15 @@ public class ListContentFragment extends Fragment {
 	public void search(){
 		mAdapter.search(mRare, mElement);
 		mAdapter.notifyDataSetChanged();
+	}
+	public void sortByMaxLvDPS(){
+		mAdapter.sortByMaxLvDPS();
+	}
+	public void sortByMaxLvLife(){
+		mAdapter.sortByMaxLvLife();
+	}
+	public void sortByMultMaxLvDPS(){
+		mAdapter.sortByMultMaxLvDPS();
 	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,6 +109,45 @@ public class ListContentFragment extends Fragment {
 						&&(element==0||item.element==element))
 					mDisplayData.add(item);
 		}
+		public void sortByMaxLvDPS(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					if(lhs.getMaxLvDPS()<rhs.getMaxLvDPS())
+						return 1;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByMultMaxLvDPS(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					if(lhs.getMultMaxLvDPS()<rhs.getMultMaxLvDPS())
+						return 1;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
+		public void sortByMaxLvLife(){
+			Collections.sort(mDisplayData, new Comparator<UnitItem>() {
+
+				@Override
+				public int compare(UnitItem lhs, UnitItem rhs) {
+					if(lhs.getMaxLvLife()<rhs.getMaxLvLife())
+						return 1;
+					else
+						return -1;
+				}
+			});
+			notifyDataSetChanged();
+		}
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
@@ -128,8 +178,8 @@ public class ListContentFragment extends Fragment {
 				pic=BitmapFactory.decodeStream(getResources().getAssets().open("icon/"+getItemId(position)+".png"));
 			
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// do nothing
+				//e.printStackTrace();
 			}
 			if(pic==null)
 				holder.pic.setImageResource(R.drawable.p0);
