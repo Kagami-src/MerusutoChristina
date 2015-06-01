@@ -1,0 +1,262 @@
+<div class="editor">
+  <ul class="list-inline pull-right links">
+    <li><a href="#monsters/<%= @model.id %>">返回详情页</a></li>
+    <li><a href="#monsters">返回列表页</a></li>
+  </ul>
+
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h2>
+        <%= @model.getTitleString() %>
+        <small><%= @model.getRareString() %></small>
+        <small>ID: <%= @model.get("id") %></small>
+        <small class="text-danger" id="editing-warning">已有其他人提交了相关数据，管理员正在审核中</small>
+      </h2>
+    </div>
+
+    <form class="form-horizontal">
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="name" class="col-sm-4 control-label"><%= App.KeyMap["name"] %></label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="name" id="name" value="<%= @model.get("name") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="rare" class="col-sm-4 control-label"><%= App.KeyMap["rare"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="rare" id="rare" value="<%= @model.get("rare") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="element" class="col-sm-4 control-label"><%= App.KeyMap["element"] %></label>
+        <div class="col-sm-8">
+          <select class="form-control" name="element" id="element">
+            <option <%= "selected" if @model.get("element") == null %>></option>
+            <option value="1" <%= "selected" if @model.get("element") == 1 %>>火</option>
+            <option value="2" <%= "selected" if @model.get("element") == 2 %>>水</option>
+            <option value="3" <%= "selected" if @model.get("element") == 3 %>>风</option>
+            <option value="4" <%= "selected" if @model.get("element") == 4 %>>光</option>
+            <option value="5" <%= "selected" if @model.get("element") == 5 %>>暗</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="skin" class="col-sm-4 control-label"><%= App.KeyMap["skin"] %></label>
+        <div class="col-sm-8">
+          <select class="form-control" name="skin" id="skin">
+            <option <%= "selected" if @model.get("skin") == null %>></option>
+            <option value="1" <%= "selected" if @model.get("skin") == 1 %>>坚硬</option>
+            <option value="2" <%= "selected" if @model.get("skin") == 2 %>>常规</option>
+            <option value="3" <%= "selected" if @model.get("skin") == 3 %>>柔软</option>
+          </select>
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="life" class="col-sm-4 control-label"><%= App.KeyMap["life"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="life" id="life" value="<%= @model.get("life") %>">
+          <span class="help-block"><a class="calculator">魔宠计算器</a>，计算初始生命、体力</span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="atk" class="col-sm-4 control-label"><%= App.KeyMap["atk"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="atk" id="atk" value="<%= @model.get("atk") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="aarea" class="col-sm-4 control-label"><%= App.KeyMap["aarea"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="aarea" id="aarea" value="<%= @model.get("aarea") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="anum" class="col-sm-4 control-label"><%= App.KeyMap["anum"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="anum" id="anum" value="<%= @model.get("anum") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="aspd" class="col-sm-4 control-label"><%= App.KeyMap["aspd"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="aspd" id="aspd" value="<%= @model.get("aspd") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="tenacity" class="col-sm-4 control-label"><%= App.KeyMap["tenacity"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="tenacity" id="tenacity" value="<%= @model.get("tenacity") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="mspd" class="col-sm-4 control-label"><%= App.KeyMap["mspd"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="mspd" id="mspd" value="<%= @model.get("mspd") %>">
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="fire" class="col-sm-4 control-label"><%= App.KeyMap["fire"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="fire" id="fire" value="<%= @model.get("fire") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="aqua" class="col-sm-4 control-label"><%= App.KeyMap["aqua"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="aqua" id="aqua" value="<%= @model.get("aqua") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="wind" class="col-sm-4 control-label"><%= App.KeyMap["wind"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="wind" id="wind" value="<%= @model.get("wind") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="light" class="col-sm-4 control-label"><%= App.KeyMap["light"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="light" id="light" value="<%= @model.get("light") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="dark" class="col-sm-4 control-label"><%= App.KeyMap["dark"] %></label>
+        <div class="col-sm-8">
+          <input type="number" step="any" class="form-control" name="dark" id="dark" value="<%= @model.get("dark") %>">
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="skill" class="col-sm-4 control-label"><%= App.KeyMap["skill"] %></label>
+        <div class="col-sm-8">
+          <textarea rows="4" class="form-control" name="skill" id="skill"><%= @model.get("skill") %></textarea>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="sklcd" class="col-sm-4 control-label"><%= App.KeyMap["sklcd"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="sklcd" id="sklcd" value="<%= @model.get("sklcd") %>">
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="sklsp" class="col-sm-4 control-label"><%= App.KeyMap["sklsp"] %></label>
+        <div class="col-sm-8">
+          <input type="number" class="form-control" name="sklsp" id="sklsp" value="<%= @model.get("sklsp") %>">
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="obtain" class="col-sm-4 control-label"><%= App.KeyMap["obtain"] %></label>
+        <div class="col-sm-8">
+          <textarea rows="4" class="form-control" name="obtain" id="obtain"><%= @model.get("obtain") %></textarea>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="remark" class="col-sm-4 control-label"><%= App.KeyMap["remark"] %></label>
+        <div class="col-sm-8">
+          <textarea rows="4" class="form-control" name="remark" id="remark"><%= @model.get("remark") %></textarea>
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="nickname" class="col-sm-4 control-label">数据提供者</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="nickname" id="nickname">
+          <span class="help-block">此处昵称将出现在数据提供者名单中。</span>
+        </div>
+      </div>
+      <div class="form-group col-sm-6 col-md-4">
+        <label for="contact" class="col-sm-4 control-label">联系方式</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" name="contact" id="contact">
+          <span class="help-block">QQ或邮箱，用于问题反馈。</span>
+        </div>
+      </div>
+      <hr class="col-sm-11">
+
+      <div class="form-group col-sm-6 col-md-4">
+        <div class="col-sm-offset-4 col-sm-8">
+          <button type="submit" class="btn btn-primary">提交数据</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal fade" id="confirm-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提交数据</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            您提交的数据在被管理员审核后，将会更新到图鉴中；同时您的昵称也将会加入图鉴数据提供者名单，感谢您对图鉴的热情与贡献！
+          </p>
+          <p>您本次提交的修改包括：</p>
+          <ul id="changelog"></ul>
+          <p>您确定要提交这些修改么？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="confirm-button">确认提交</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="modal fade" id="calculator-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">魔宠计算器</h4>
+        </div>
+        <div class="modal-body form-horizontal">
+          <div class="form-group">
+            <label for="csize" class="col-xs-3 control-label">体型</label>
+            <div class="col-xs-5">
+              <input type="number" step="any" class="form-control" id="csize">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="clife" class="col-xs-3 control-label">生命</label>
+            <div class="col-xs-5">
+              <input type="number" class="form-control" id="clife">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="catk" class="col-xs-3 control-label">攻击</label>
+            <div class="col-xs-5">
+              <input type="number" class="form-control" id="catk">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rlife" class="col-xs-3 control-label">初始生命</label>
+            <div class="col-xs-5">
+              <input type="text" class="form-control" id="rlife" readonly>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ratk" class="col-xs-3 control-label">初始攻击</label>
+            <div class="col-xs-5">
+              <input type="text" class="form-control" id="ratk" readonly>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="insert-button">插入数据</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+

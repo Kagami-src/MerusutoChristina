@@ -1,0 +1,16 @@
+# A sample Bowerfile
+# Check out https://github.com/42dev/bower-rails#ruby-dsl-configuration for more options
+
+asset 'backbone'
+asset 'zepto'
+
+asset 'hammerjs'
+
+asset 'ratchet'
+asset 'bootstrap'
+asset 'bootstrap.notify'
+asset 'animate.css'
+
+asset 'datatables'
+
+asset 'leancloud-javascript-sdk'

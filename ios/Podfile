@@ -1,0 +1,12 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'MerusutoChristina' do
+  pod 'ActionSheetPicker-3.0', '~> 1.5.1'
+end
+
+target 'MerusutoChristinaTests' do
+
+end

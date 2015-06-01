@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">MerusutoChristina</string>
+
+  <string name="drawer_open">打开侧边栏</string>
+  <string name="drawer_close">收起侧边栏</string>
+
+</resources>

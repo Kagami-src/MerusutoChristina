@@ -1,0 +1,9 @@
+<%- _.renderTemplate("templates/mobile/mirror_info") %>
+
+<view class="main">
+  <%- _.renderTemplate("templates/mobile/sidebar") %>
+
+  <container class="content container"></container>
+</view>
+
+<modal class="modal"></modal>

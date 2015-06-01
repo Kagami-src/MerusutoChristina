@@ -1,0 +1,19 @@
+// Form
+.input-toggle {
+  height: 30px;
+  margin-bottom: 15px;
+  overflow: hidden;
+
+  label {
+    float: left;
+    width: 35%;
+    padding: 8px 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+    line-height: 1.1;
+    color: #8f8f94;
+  }
+
+  .toggle {
+    float: right;
+  }
+}

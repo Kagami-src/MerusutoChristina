@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dialog_large_margin"
+    android:layout_gravity="top">
+
+    <TextView
+      android:id="@+id/rare"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="left"
+      style="@style/OverlayText" />
+
+    <TextView
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/rare"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      android:layout_marginLeft="@dimen/fragment_large_margin"
+      style="@style/OverlayText" />
+
+    <TextView
+      android:id="@+id/identity"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/name"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      android:layout_marginLeft="@dimen/fragment_large_margin"
+      style="@style/OverlayText" />
+
+    <LinearLayout
+      android:id="@+id/text_layout1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/name"
+      android:layout_marginBottom="@dimen/fragment_medium_margin">
+
+      <TextView
+        android:id="@+id/text_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+      <TextView
+        android:id="@+id/text_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/text_layout2"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_layout1"
+      android:layout_marginBottom="@dimen/fragment_medium_margin">
+
+      <TextView
+        android:id="@+id/text_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+      <TextView
+        android:id="@+id/text_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:id="@+id/text_layout3"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_layout2"
+      android:layout_marginBottom="@dimen/fragment_medium_margin">
+
+      <TextView
+        android:id="@+id/text_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+      <TextView
+        android:id="@+id/text_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/OverlayText" />
+
+    </LinearLayout>
+
+    <TextView
+      android:id="@+id/text_7"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_layout3"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      style="@style/OverlayText" />
+
+    <TextView
+      android:id="@+id/text_8"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_7"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      style="@style/OverlayText" />
+
+    <TextView
+      android:id="@+id/text_9"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_8"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      style="@style/OverlayText" />
+
+    <TextView
+      android:id="@+id/text_10"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/text_9"
+      android:layout_marginBottom="@dimen/fragment_medium_margin"
+      style="@style/OverlayText" />
+
+  </RelativeLayout>
+
+  <Button
+    android:id="@+id/like"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|left"
+    android:padding="@dimen/dialog_large_margin"
+    android:background="@android:color/transparent"
+    android:textSize="14sp"
+    android:text="☆ 收藏"
+    style="@style/OverlayText" />
+
+  <Button
+    android:id="@+id/feedback"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|right"
+    android:padding="@dimen/dialog_large_margin"
+    android:background="@android:color/transparent"
+    android:textSize="14sp"
+    android:text="数据错误? 点击这里"
+    style="@style/OverlayText" />
+
+</FrameLayout>

@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9608662D1AA2DC0500837F95 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608662C1AA2DC0500837F95 /* Reachability.swift */; };
+		9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6561AA30B2400827D0C /* AVOSCloud.framework */; };
+		9615C6591AA30E9F00827D0C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */; };
+		9615C65B1AA30EB000827D0C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */; };
+		9615C65D1AA30EB900827D0C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65C1AA30EB900827D0C /* CoreTelephony.framework */; };
+		9615C65F1AA30EC100827D0C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65E1AA30EC100827D0C /* CoreLocation.framework */; };
+		9615C6611AA30ECA00827D0C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6601AA30ECA00827D0C /* libicucore.dylib */; };
+		9615C6751AA320FC00827D0C /* UnitListPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */; };
+		965E74621AA00D3D00536285 /* UnitItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965E74611AA00D3D00536285 /* UnitItemController.swift */; };
+		96819A0B1AA0A307009DFF6A /* UnitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96819A0A1AA0A307009DFF6A /* UnitItem.swift */; };
+		9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */; };
+		9692F1091A9C7E8A00190CD4 /* UnitListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F1081A9C7E8A00190CD4 /* UnitListController.swift */; };
+		9692F10C1A9C7E8A00190CD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10A1A9C7E8A00190CD4 /* Main.storyboard */; };
+		9692F10E1A9C7E8A00190CD4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10D1A9C7E8A00190CD4 /* Images.xcassets */; };
+		9692F1111A9C7E8A00190CD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */; };
+		9692F11D1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */; };
+		96C756071A9E022600F608C3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C756061A9E022600F608C3 /* SwiftyJSON.swift */; };
+		96C756091A9E033500F608C3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C756081A9E033500F608C3 /* DataManager.swift */; };
+		96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C7560A1A9EB2F100F608C3 /* ElementView.swift */; };
+		E5928BBE964B32EE2ACE41A3 /* libPods-MerusutoChristina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9692F1171A9C7E8A00190CD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9692F0F91A9C7E8900190CD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9692F1001A9C7E8900190CD4;
+			remoteInfo = MerusutoChristina;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.release.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.release.xcconfig"; sourceTree = "<group>"; };
+		9608662C1AA2DC0500837F95 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		9615C6561AA30B2400827D0C /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = MerusutoChristina/AVOSCloud.framework; sourceTree = "<group>"; };
+		9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		9615C65C1AA30EB900827D0C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		9615C65E1AA30EC100827D0C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9615C6601AA30ECA00827D0C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitListPickerItem.swift; sourceTree = "<group>"; };
+		963D1B9D1AD0234000BDD532 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = ../BridgingHeader.h; sourceTree = "<group>"; };
+		9659BA1E1AD020BA00C0EB8F /* MerusutoChristina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerusutoChristina.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9659BA1F1AD020BA00C0EB8F /* MerusutoChristinaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MerusutoChristinaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		965E74611AA00D3D00536285 /* UnitItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitItemController.swift; sourceTree = "<group>"; };
+		96819A0A1AA0A307009DFF6A /* UnitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitItem.swift; sourceTree = "<group>"; };
+		9692F1051A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9692F1081A9C7E8A00190CD4 /* UnitListController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = UnitListController.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
+		9692F10B1A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9692F10D1A9C7E8A00190CD4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9692F1101A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9692F11B1A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerusutoChristinaTests.swift; sourceTree = "<group>"; };
+		96C756061A9E022600F608C3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		96C756081A9E033500F608C3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		96C7560A1A9EB2F100F608C3 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
+		CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MerusutoChristina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9692F0FE1A9C7E8900190CD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9615C6611AA30ECA00827D0C /* libicucore.dylib in Frameworks */,
+				9615C65F1AA30EC100827D0C /* CoreLocation.framework in Frameworks */,
+				9615C65D1AA30EB900827D0C /* CoreTelephony.framework in Frameworks */,
+				9615C65B1AA30EB000827D0C /* SystemConfiguration.framework in Frameworks */,
+				9615C6591AA30E9F00827D0C /* MobileCoreServices.framework in Frameworks */,
+				9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */,
+				E5928BBE964B32EE2ACE41A3 /* libPods-MerusutoChristina.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692F1131A9C7E8A00190CD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9692F0F81A9C7E8900190CD4 = {
+			isa = PBXGroup;
+			children = (
+				9692F1031A9C7E8A00190CD4 /* MerusutoChristina */,
+				9692F1191A9C7E8A00190CD4 /* MerusutoChristinaTests */,
+				A3F55DEAA690B50F4DDDC710 /* Pods */,
+				D6E9AAFCB93E46DF6518D1D0 /* Frameworks */,
+				9659BA1E1AD020BA00C0EB8F /* MerusutoChristina.app */,
+				9659BA1F1AD020BA00C0EB8F /* MerusutoChristinaTests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		9692F1031A9C7E8A00190CD4 /* MerusutoChristina */ = {
+			isa = PBXGroup;
+			children = (
+				963D1B9D1AD0234000BDD532 /* BridgingHeader.h */,
+				9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */,
+				96C756061A9E022600F608C3 /* SwiftyJSON.swift */,
+				9608662C1AA2DC0500837F95 /* Reachability.swift */,
+				96C756081A9E033500F608C3 /* DataManager.swift */,
+				96819A0A1AA0A307009DFF6A /* UnitItem.swift */,
+				9692F1081A9C7E8A00190CD4 /* UnitListController.swift */,
+				9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */,
+				965E74611AA00D3D00536285 /* UnitItemController.swift */,
+				96C7560A1A9EB2F100F608C3 /* ElementView.swift */,
+				9692F10A1A9C7E8A00190CD4 /* Main.storyboard */,
+				9692F10D1A9C7E8A00190CD4 /* Images.xcassets */,
+				9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */,
+				9692F1041A9C7E8A00190CD4 /* Supporting Files */,
+			);
+			path = MerusutoChristina;
+			sourceTree = "<group>";
+		};
+		9692F1041A9C7E8A00190CD4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9692F1051A9C7E8A00190CD4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9692F1191A9C7E8A00190CD4 /* MerusutoChristinaTests */ = {
+			isa = PBXGroup;
+			children = (
+				9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */,
+				9692F11A1A9C7E8A00190CD4 /* Supporting Files */,
+			);
+			path = MerusutoChristinaTests;
+			sourceTree = "<group>";
+		};
+		9692F11A1A9C7E8A00190CD4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9692F11B1A9C7E8A00190CD4 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A3F55DEAA690B50F4DDDC710 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */,
+				6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D6E9AAFCB93E46DF6518D1D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9615C6601AA30ECA00827D0C /* libicucore.dylib */,
+				9615C65E1AA30EC100827D0C /* CoreLocation.framework */,
+				9615C65C1AA30EB900827D0C /* CoreTelephony.framework */,
+				9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */,
+				9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */,
+				9615C6561AA30B2400827D0C /* AVOSCloud.framework */,
+				CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9692F1001A9C7E8900190CD4 /* MerusutoChristina */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9692F1201A9C7E8A00190CD4 /* Build configuration list for PBXNativeTarget "MerusutoChristina" */;
+			buildPhases = (
+				6459593A9FCD482B44334B19 /* Check Pods Manifest.lock */,
+				9692F0FD1A9C7E8900190CD4 /* Sources */,
+				9692F0FE1A9C7E8900190CD4 /* Frameworks */,
+				9692F0FF1A9C7E8900190CD4 /* Resources */,
+				8D532CFDD3C319C9A72980BB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MerusutoChristina;
+			productName = MerusutoChristina;
+			productReference = 9659BA1E1AD020BA00C0EB8F /* MerusutoChristina.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9692F1151A9C7E8A00190CD4 /* MerusutoChristinaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9692F1231A9C7E8A00190CD4 /* Build configuration list for PBXNativeTarget "MerusutoChristinaTests" */;
+			buildPhases = (
+				9692F1121A9C7E8A00190CD4 /* Sources */,
+				9692F1131A9C7E8A00190CD4 /* Frameworks */,
+				9692F1141A9C7E8A00190CD4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9692F1181A9C7E8A00190CD4 /* PBXTargetDependency */,
+			);
+			name = MerusutoChristinaTests;
+			productName = MerusutoChristinaTests;
+			productReference = 9659BA1F1AD020BA00C0EB8F /* MerusutoChristinaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9692F0F91A9C7E8900190CD4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = bbtfr;
+				TargetAttributes = {
+					9692F1001A9C7E8900190CD4 = {
+						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = Y3VGK35SR6;
+					};
+					9692F1151A9C7E8A00190CD4 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 9692F1001A9C7E8900190CD4;
+					};
+				};
+			};
+			buildConfigurationList = 9692F0FC1A9C7E8900190CD4 /* Build configuration list for PBXProject "MerusutoChristina" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9692F0F81A9C7E8900190CD4;
+			productRefGroup = 9692F0F81A9C7E8900190CD4;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9692F1001A9C7E8900190CD4 /* MerusutoChristina */,
+				9692F1151A9C7E8A00190CD4 /* MerusutoChristinaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9692F0FF1A9C7E8900190CD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692F10C1A9C7E8A00190CD4 /* Main.storyboard in Resources */,
+				9692F1111A9C7E8A00190CD4 /* LaunchScreen.xib in Resources */,
+				9692F10E1A9C7E8A00190CD4 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692F1141A9C7E8A00190CD4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6459593A9FCD482B44334B19 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8D532CFDD3C319C9A72980BB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9692F0FD1A9C7E8900190CD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96819A0B1AA0A307009DFF6A /* UnitItem.swift in Sources */,
+				96C756091A9E033500F608C3 /* DataManager.swift in Sources */,
+				9692F1091A9C7E8A00190CD4 /* UnitListController.swift in Sources */,
+				9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */,
+				96C756071A9E022600F608C3 /* SwiftyJSON.swift in Sources */,
+				965E74621AA00D3D00536285 /* UnitItemController.swift in Sources */,
+				9608662D1AA2DC0500837F95 /* Reachability.swift in Sources */,
+				9615C6751AA320FC00827D0C /* UnitListPickerItem.swift in Sources */,
+				96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9692F1121A9C7E8A00190CD4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9692F11D1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9692F1181A9C7E8A00190CD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9692F1001A9C7E8900190CD4 /* MerusutoChristina */;
+			targetProxy = 9692F1171A9C7E8A00190CD4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9692F10A1A9C7E8A00190CD4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692F10B1A9C7E8A00190CD4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9692F1101A9C7E8A00190CD4 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9692F11E1A9C7E8A00190CD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9692F11F1A9C7E8A00190CD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9692F1211A9C7E8A00190CD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MerusutoChristina",
+				);
+				INFOPLIST_FILE = MerusutoChristina/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				New_Setting = "";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
+			};
+			name = Debug;
+		};
+		9692F1221A9C7E8A00190CD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MerusutoChristina",
+				);
+				INFOPLIST_FILE = MerusutoChristina/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				New_Setting = "";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
+			};
+			name = Release;
+		};
+		9692F1241A9C7E8A00190CD4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MerusutoChristinaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MerusutoChristina.app/MerusutoChristina";
+			};
+			name = Debug;
+		};
+		9692F1251A9C7E8A00190CD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MerusutoChristinaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MerusutoChristina.app/MerusutoChristina";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9692F0FC1A9C7E8900190CD4 /* Build configuration list for PBXProject "MerusutoChristina" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692F11E1A9C7E8A00190CD4 /* Debug */,
+				9692F11F1A9C7E8A00190CD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9692F1201A9C7E8A00190CD4 /* Build configuration list for PBXNativeTarget "MerusutoChristina" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692F1211A9C7E8A00190CD4 /* Debug */,
+				9692F1221A9C7E8A00190CD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9692F1231A9C7E8A00190CD4 /* Build configuration list for PBXNativeTarget "MerusutoChristinaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9692F1241A9C7E8A00190CD4 /* Debug */,
+				9692F1251A9C7E8A00190CD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9692F0F91A9C7E8900190CD4 /* Project object */;
+}

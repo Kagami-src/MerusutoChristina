@@ -1,0 +1,27 @@
+<li class="navbar-form">
+  <input type="text" class="form-control" placeholder="搜索" id="search">
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">审核状态 <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li class="active"><a class="state" data-key="">全部</a></li>
+    <li><a class="state" data-key="等待审核">等待审核</a></li>
+    <li><a class="state" data-key="审核通过">审核通过</a></li>
+    <li><a class="state" data-key="审核拒绝">审核拒绝</a></li>
+    <li><a class="state" data-key="数据已合并">数据已合并</a></li>
+    <li><a class="state" data-key="数据已作废">数据已作废</a></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">每页显示条目数 <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li class="active"><a class="page" data-key="10">10</a></li>
+    <li><a class="page" data-key="25">25</a></li>
+    <li><a class="page" data-key="50">50</a></li>
+    <li><a class="page" data-key="100">100</a></li>
+    <li><a class="page" data-key="-1">全部</a></li>
+  </ul>
+</li>
+<li>
+  <a class="action-logout" href="#">登出</a>
+</li>

@@ -1,0 +1,11 @@
+<%- _.renderTemplate("templates/desktop/navbar") %>
+
+<%- _.renderTemplate("templates/desktop/mirror_info") %>
+
+<view class="container-fluid" id="collectionView">
+  <%- _.renderTemplate("templates/desktop/pages/loading") %>
+</view>
+
+<view class="container-fluid" id="modelView"></view>
+
+<modal class="modal fade"></modal>

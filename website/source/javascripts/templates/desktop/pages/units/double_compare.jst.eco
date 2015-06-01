@@ -1,0 +1,47 @@
+<div class="compare">
+  <ul class="list-inline pull-right links">
+    <li><a href="#units/<%= @collection[1].id %>">返回详情页</a></li>
+    <li><a href="#units">返回列表页</a></li>
+  </ul>
+
+  <div class="row compare-body">
+    <div class="clearfix col-xs-12"></div>
+    <div class="col-xs-6">
+      <div class="page-header">
+        <h2>
+          <%= @collection[1].getTitleString() %>
+          <br class="visible-xs-block">
+          <small><%= @collection[1].getRareString() %></small>
+          <small>ID: <%= @collection[1].get("id") %></small>
+        </h2>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="page-header">
+        <h2>
+          <%= @collection[0].getTitleString() %>
+          <br class="visible-xs-block">
+          <small><%= @collection[0].getRareString() %></small>
+          <small>ID: <%= @collection[0].get("id") %></small>
+        </h2>
+      </div>
+    </div>
+
+    <div class="clearfix col-xs-12"></div>
+    <div class="col-xs-6">
+      <%- _.renderTemplate("templates/desktop/pages/units/part_compare", model: @collection[1], other_model: @collection[0]) %>
+    </div>
+    <div class="col-xs-6">
+      <%- _.renderTemplate("templates/desktop/pages/units/part_compare", model: @collection[0], other_model: @collection[1]) %>
+    </div>
+
+    <div class="clearfix col-xs-12"></div>
+    <div class="col-xs-6 image">
+      <img src="<%= @collection[1].originalUrl() %>">
+    </div>
+    <div class="col-xs-6 image">
+      <img src="<%= @collection[0].originalUrl() %>">
+    </div>
+
+  </div>
+</div>

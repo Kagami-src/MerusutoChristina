@@ -1,0 +1,46 @@
+<resources>
+
+  <!--
+      Base application theme, dependent on API level. This theme is replaced
+      by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+  -->
+  <style name="AppBaseTheme" parent="@android:style/Theme.Light">
+    <!--
+        Theme customizations available in newer API levels can go in
+        res/values-vXX/styles.xml, while customizations related to
+        backward-compatibility can go here.
+    -->
+  </style>
+
+  <!-- Application theme. -->
+  <style name="AppTheme" parent="AppBaseTheme">
+    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <item name="android:homeAsUpIndicator">@android:color/transparent</item>
+    <item name="android:itemTextAppearance">@style/MenuItemTextAppearance</item>
+  </style>
+
+  <style name="MenuItemTextAppearance">
+    <item name="android:textColor">@drawable/menu_item_text_color</item>
+  </style>
+
+  <style name="NobackgroundDialog" parent="@android:style/Theme.Holo.Dialog">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:background">@android:color/transparent</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:backgroundDimAmount">0.75</item>
+  </style>
+
+  <style name="OverlayText" parent="ListText">
+    <item name="android:shadowColor">@android:color/black</item>
+    <item name="android:shadowDx">0</item>
+    <item name="android:shadowDy">0</item>
+    <item name="android:shadowRadius">20</item>
+  </style>
+
+  <style name="ListText">
+    <!-- <item name="android:lineSpacingExtra">2.5dp</item> -->
+    <item name="android:lineSpacingMultiplier">1.2</item>
+  </style>
+
+</resources>

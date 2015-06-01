@@ -1,0 +1,91 @@
+<div class="detail">
+  <ul class="list-inline pull-right links">
+    <li><a href="#units/<%= @model.id %>/edit">数据补全 / 报错</a></li>
+    <li><a href="#units/<%= @model.id %>/compare">数据比较</a></li>
+    <li><a href="#units">返回列表页</a></li>
+  </ul>
+
+  <div class="row detail-body">
+    <div class="col-md-5 left-side image">
+      <img src="<%= @model.originalUrl() %>">
+    </div>
+
+    <div class="col-md-7 right-side">
+      <div class="page-header">
+        <h2>
+          <%= @model.getTitleString() %>
+          <small><%= @model.getRareString() %></small>
+          <small>ID: <%= @model.get("id") %></small>
+        </h2>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          初始生命：<%= @model.origin.life %><br>
+          满级生命：<%= @model.calcMaxLv('life') %><br>
+          满觉生命：<%= @model.calcMaxLvAndGrow('life') %><br>
+          初始攻击：<%= @model.origin.atk %><br>
+          满级攻击：<%= @model.calcMaxLv('atk') %><br>
+          满觉攻击：<%= @model.calcMaxLvAndGrow('atk') %><br>
+        </p>
+        <p class="col-xs-6">
+          攻距：<%= @model.getString("aarea") %><br>
+          攻数：<%= @model.getString("anum") %><br>
+          攻速：<%= @model.getString("aspd") %><br>
+          韧性：<%= @model.getString("tenacity") %><br>
+          移速：<%= @model.getString("mspd") %><br>
+          成长：<%= @model.getTypeString() %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          初始DPS：<%= Math.round(@model.origin.dps) %><br>
+          满级DPS：<%= Math.round(@model.calcMaxLv('dps')) %><br>
+          满觉DPS：<%= Math.round(@model.calcMaxLvAndGrow('dps')) %><br>
+          初始总DPS：<%= Math.round(@model.origin.mdps) %><br>
+          满级总DPS：<%= Math.round(@model.calcMaxLv('mdps')) %><br>
+          满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrow('mdps')) %><br>
+        </p>
+        <p class="col-xs-6">
+          火：<%= @model.getElementPercentString("fire") %><br>
+          水：<%= @model.getElementPercentString("aqua") %><br>
+          风：<%= @model.getElementPercentString("wind") %><br>
+          光：<%= @model.getElementPercentString("light") %><br>
+          暗：<%= @model.getElementPercentString("dark") %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          国家：<%= @model.getString('country') %><br>
+          性别：<%= @model.getGenderString() %><br>
+          年龄：<%= @model.getAgeString() %><br>
+        </p>
+        <p class="col-xs-6">
+          职业：<%= @model.getString('career') %><br>
+          兴趣：<%= @model.getString('interest') %><br>
+          性格：<%= @model.getString('nature') %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-12">
+          获取方式：<%- @model.getFormatString('obtain') %><br>
+          <% if @model.get('remark'): %>
+            备注：<%- @model.getFormatString('remark') %><br>
+          <% end %>
+        </p>
+      </div>
+      <% if @model.get('contributors'): %>
+        <div class="row">
+          <p class="col-xs-12">
+            数据提供者：<%= @model.get('contributors').join("、") %><br>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-5 col-md-5">
+      <%- _.renderTemplate("templates/desktop/pages/disqus", model: @model) %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'merusuto';
+  var disqus_identifier = '<%= @model.klass %><%= @model.id %>';
+  var disqus_title = '<%= @model.getTitleString() %>';
+  var disqus_url = '<%= window.location.href.replace("#", "#!") %>';
+  var disqus_config = function () {
+    this.language = "zh";
+  };
+
+  if (typeof DISQUS === "undefined") {
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  } else {
+    DISQUS.reset({
+      reload: true,
+      config: function () {
+        this.page.identifier = disqus_identifier;
+        this.page.title = disqus_title;
+        this.page.url = disqus_url;
+        this.language = "zh";
+      }
+    });
+  }
+</script>
