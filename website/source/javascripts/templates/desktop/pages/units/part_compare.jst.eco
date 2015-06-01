@@ -1,4 +1,4 @@
-<% compareValue = (v1, v2) -> if v1.toString() == "NaN" && v2.toString() == "NaN" || v1 == v2 then 'text-default' else if v2.toString() == "NaN" || v1 > v2 then 'text-danger' else 'text-success' %>
+<% compareValue = (v1, v2) -> if v1?.toString() == "NaN" && v2?.toString() == "NaN" || v1 == v2 then 'text-default' else if v2?.toString() == "NaN" || v1 > v2 then 'text-danger' else 'text-success' %>
 <% compareObject = (o1, o2, func, args) -> compareValue(o1[func].call(o1, args), o2[func].call(o2, args)) %>
 
 <div class="row">
