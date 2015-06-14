@@ -7,6 +7,7 @@ KeyMap = {
   "属性" => "element",
   "外皮" => "skin",
   "同時攻撃数" => "anum",
+  "攻撃段数" => "hits",
   "移動速度" => "mspd",
   "リーチ" => "aarea",
   "攻撃間隔" => "aspd",
@@ -89,6 +90,8 @@ def parse_wiki_detail_page url, id = nil, strict = false
         value.to_f
       elsif value =~ /^\d+.$/
         value.to_i
+      elsif value =~ /^\d(HIT|Hit|hit)$/
+        value.sub(/(HIT|Hit|hit)/, '').to_i
       elsif value =~ /^.\d+$/
         value.sub(/[☆★]/, '').to_i
       elsif ValueMap[value]
@@ -108,7 +111,7 @@ def parse_wiki_detail_page url, id = nil, strict = false
       next if strict
     end
     value = ValueMap[value] if ValueMap[value]
-    value = value.to_f / 100 if value =~ /^\d+\%$/
+    value = value.to_f / 100 if value =~ /^\d+[\%％]$/
     json[key] = value
   end
   doc.css(".db_other_block").zip(doc.css(".db_other_text")).each do |key, value|

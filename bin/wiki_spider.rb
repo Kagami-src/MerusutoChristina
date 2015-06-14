@@ -60,11 +60,14 @@ def update_wiki_data key
       changed = false
       json.each do |key, value|
         next if raw[key] == value || %w(id name title country obtain remark).include?(key)
+        next if value == "暂缺"
         puts "#{raw['id']} #{raw['title']} #{raw['name']}: #{key} #{raw[key]} -> #{value}".green
         changed = true
         raw[key] = value
       end
       Result << raw if changed
+    rescue Interrupt => e
+      exit
     rescue Exception => e
       puts e.message.red
     end
@@ -72,7 +75,7 @@ def update_wiki_data key
 end
 
 def wiki_match_url raw
-  title = raw['title_jp'].sub('[', '「').sub(']', '」') + raw['name_jp']
+  title = raw['title_jp'].sub('[', '「').sub(']', '」') + raw['name_jp'] rescue raw['name_jp']
   "http://xn--cckza4aydug8bd3l.gamerch.com/#{URI::encode title}"
 end
 

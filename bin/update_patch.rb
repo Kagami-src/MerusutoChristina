@@ -49,10 +49,10 @@ AV::Query.new("Suggestion")
     puts "#{match["name"]}, #{data["name"]} #{data["from"]} => #{data["to"]}"
 
     value = data["to"]
-    value = if value =~ /^\d*\.\d+$/
-        value.to_f
-      elsif value =~ /^\d+$/
+    value = if value =~ /^\d+$/
         value.to_i
+      elsif value =~ /^\d*\.\d+$/
+        value.to_f
       else
         value
       end
