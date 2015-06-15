@@ -170,8 +170,8 @@ public class UnitItemDialog extends Dialog {
             item.getAtk(R.id.menu_level_zero), item.getAtk(R.id.menu_level_max_lv), item.getAtk(R.id.menu_level_max_lv_gr)));
 
         textView = (TextView) detailView.findViewById(R.id.text_2);
-        textView.setText(String.format("攻距: %d\n攻数: %d\n攻速: %.2f\n韧性: %d\n移速: %d\n成长: %s",
-            item.aarea, item.anum, item.aspd, item.tenacity, item.mspd, item.getTypeString()));
+        textView.setText(String.format("攻距: %d\n攻数: %d\n攻速: %.2f\n韧性: %d\n移速: %d\n多段: %d",
+            item.aarea, item.anum, item.aspd, item.tenacity, item.mspd, item.hits));
 
         textView = (TextView) detailView.findViewById(R.id.text_3);
         textView.setText(String.format("初始DPS: %d\n满级DPS: %d\n满觉DPS: %d\n初始总DPS: %d\n满级总DPS: %d\n满觉总DPS: %d",
@@ -179,7 +179,8 @@ public class UnitItemDialog extends Dialog {
             item.getMultDPS(R.id.menu_level_zero), item.getMultDPS(R.id.menu_level_max_lv), item.getMultDPS(R.id.menu_level_max_lv_gr)));
 
         textView = (TextView) detailView.findViewById(R.id.text_4);
-        textView.setText(String.format("火: %s\n水: %s\n风: %s\n光: %s\n暗: %s",
+        textView.setText(String.format("成长: %s\n火: %s\n水: %s\n风: %s\n光: %s\n暗: %s",
+            item.getTypeString(),
             UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
             UnitItem.getElementString(item.wind), UnitItem.getElementString(item.light),
             UnitItem.getElementString(item.dark)));

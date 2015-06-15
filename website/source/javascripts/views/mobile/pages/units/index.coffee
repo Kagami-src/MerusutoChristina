@@ -156,7 +156,9 @@ class App.Pages.UnitsIndex extends Backbone.View
     $target = $(event.target)
     @setActive($target)
     key = $target.data("key")
-    @binder.sort (model) -> -model.get(key)
+    @binder.sort (model) ->
+      value = model.get(key)
+      if value?.toString()  == "NaN" || !value? then 0 else -value
 
   setLevelMode: (event) ->
     $target = $(event.target)

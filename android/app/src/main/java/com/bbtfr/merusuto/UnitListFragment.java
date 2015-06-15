@@ -413,6 +413,10 @@ public class UnitListFragment extends Fragment {
               l = lhs.mspd;
               r = rhs.mspd;
               break;
+            case R.id.menu_sort_hits:
+              l = lhs.hits;
+              r = rhs.hits;
+              break;
             case R.id.menu_sort_id:
               l = lhs.id;
               r = rhs.id;
@@ -492,17 +496,19 @@ public class UnitListFragment extends Fragment {
           nameView.setText(item.title + item.name);
 
           textView = (TextView) convertView.findViewById(R.id.text_2);
-          textView.setText(String.format("攻速: %.2f\n韧性: %d\n移速: %d\n成长: %s",
-              item.aspd, item.tenacity, item.mspd, item.getTypeString()));
+          textView.setText(String.format("攻速: %.2f\n韧性: %d\n移速: %d\n多段: %d",
+              item.aspd, item.tenacity, item.mspd, item.hits));
 
           textView = (TextView) convertView.findViewById(R.id.text_3);
-          textView.setText(String.format("火: %s\n水: %s\n风: %s\n光: %s",
+          textView.setText(String.format("成长: %s\n火: %s\n水: %s\n风: %s",
+              item.getTypeString(),
               UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
-              UnitItem.getElementString(item.wind), UnitItem.getElementString(item.light)));
+              UnitItem.getElementString(item.wind)));
 
           textView = (TextView) convertView.findViewById(R.id.text_4);
-          textView.setText(String.format("暗: %s\n\nDPS: %d\n总DPS: %d",
-              UnitItem.getElementString(item.dark), item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));
+          textView.setText(String.format("光: %s\n暗: %s\nDPS: %d\n总DPS: %d",
+              UnitItem.getElementString(item.light), UnitItem.getElementString(item.dark),
+              item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));
 
           break;
 

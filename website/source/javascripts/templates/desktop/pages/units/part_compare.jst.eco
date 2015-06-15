@@ -1,4 +1,4 @@
-<% compareValue = (v1, v2) -> if v1?.toString() == "NaN" && v2?.toString() == "NaN" || v1 == v2 then 'text-default' else if v2?.toString() == "NaN" || v1 > v2 then 'text-danger' else 'text-success' %>
+<% compareValue = (v1, v2) -> if v1?.toString() == "NaN" && v2?.toString() == "NaN" || v1 == v2 then 'text-default' else if v2?.toString() == "NaN" || !v2? || v1 > v2 then 'text-danger' else 'text-success' %>
 <% compareObject = (o1, o2, func, args) -> compareValue(o1[func].call(o1, args), o2[func].call(o2, args)) %>
 
 <div class="row">
@@ -16,7 +16,7 @@
     <span class="<%= compareObject(@other_model, @model, "get", "aarea") %>">攻速：<%= @model.getString("aspd") %></span><br>
     <span class="<%= compareObject(@model, @other_model, "get", "tenacity") %>">韧性：<%= @model.getString("tenacity") %></span><br>
     <span class="<%= compareObject(@model, @other_model, "get", "mspd") %>">移速：<%= @model.getString("mspd") %></span><br>
-    <span class="<%= compareObject(@model, @other_model, "get", "type") %>">成长：<%= @model.getTypeString() %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "hits") %>">多段：<%= @model.getString("hits") %></span><br>
   </p>
 </div>
 <div class="row">
@@ -29,6 +29,7 @@
     <span class="<%= compareObject(@model, @other_model, "calcMaxLvAndGrow", "mdps") %>">满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrow("mdps")) %></span><br>
   </p>
   <p class="col-sm-6">
+    <span class="<%= compareObject(@model, @other_model, "get", "type") %>">成长：<%= @model.getTypeString() %></span><br>
     <span class="<%= compareObject(@model, @other_model, "get", "fire") %>">火：<%= @model.getElementPercentString("fire") %></span><br>
     <span class="<%= compareObject(@model, @other_model, "get", "aqua") %>">水：<%= @model.getElementPercentString("aqua") %></span><br>
     <span class="<%= compareObject(@model, @other_model, "get", "wind") %>">风：<%= @model.getElementPercentString("wind") %></span><br>

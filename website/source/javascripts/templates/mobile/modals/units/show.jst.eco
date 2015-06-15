@@ -28,7 +28,7 @@
               攻速：<%= @model.getString("aspd") %><br>
               韧性：<%= @model.getString("tenacity") %><br>
               移速：<%= @model.getString("mspd") %><br>
-              成长：<%= @model.getTypeString() %><br>
+              多段：<%= @model.getString("hits") %><br>
             </p>
           </div>
           <div class="media-info-group">
@@ -41,6 +41,7 @@
               满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrow('mdps')) %><br>
             </p>
             <p class="media-info">
+              成长：<%= @model.getTypeString() %><br>
               火：<%= @model.getElementPercentString("fire") %><br>
               水：<%= @model.getElementPercentString("aqua") %><br>
               风：<%= @model.getElementPercentString("wind") %><br>

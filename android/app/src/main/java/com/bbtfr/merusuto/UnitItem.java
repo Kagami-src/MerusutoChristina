@@ -36,6 +36,7 @@ public class UnitItem {
   public int weapon; // 武器 1斩击 2突击 3打击 4弓箭 5魔法 6铳弹 7回复
   public int aarea; // 攻击范围
   public int anum; // 攻击数量
+  public int hits; // 多段攻击
   public int type; // 类型 1早熟 2平均 3晚成
 
   public int gender; // 性别
@@ -75,6 +76,7 @@ public class UnitItem {
     this.aarea = getIntValue(json, "aarea");
     this.type = getIntValue(json, "type");
     this.anum = getIntValue(json, "anum");
+    this.hits = getIntValue(json, "hits");
     this.country = getString(json, "country");
 
     this.gender = getIntValue(json, "gender");

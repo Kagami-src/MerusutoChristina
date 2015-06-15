@@ -23,16 +23,17 @@
           攻速：<%= @model.getString("aspd") %><br>
           韧性：<%= @model.getString("tenacity") %><br>
           移速：<%= @model.getString("mspd") %><br>
-          成长：<%= @model.getTypeString() %><br>
+          多段：<%= @model.getString("hits") %><br>
         </p>
         <p class="media-info hidden-xs">
+          成长：<%= @model.getTypeString() %><br>
           火：<%= @model.getElementPercentString("fire") %><br>
           水：<%= @model.getElementPercentString("aqua") %><br>
           风：<%= @model.getElementPercentString("wind") %><br>
-          光：<%= @model.getElementPercentString("light") %><br>
         </p>
         <p class="media-info hidden-sm">
-          暗：<%= @model.getElementPercentString("dark") %><br><br>
+          光：<%= @model.getElementPercentString("light") %><br>
+          暗：<%= @model.getElementPercentString("dark") %><br>
           DPS：<span id="dps"><%= @model.get("dps") %></span><br>
           总DPS：<span id="mdps"><%= @model.get("mdps") %></span><br>
         </p>

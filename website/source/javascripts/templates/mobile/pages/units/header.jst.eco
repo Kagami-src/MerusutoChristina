@@ -119,6 +119,7 @@
       <li><a class="sort-mode" data-key="aspd">攻击速度</a></li>
       <li><a class="sort-mode" data-key="tenacity">韧性</a></li>
       <li><a class="sort-mode" data-key="mspd">移动速度</a></li>
+      <li><a class="sort-mode" data-key="hits">多段攻击</a></li>
       <li><a class="sort-mode" data-key="id">新品上架</a></li>
     </ul>
   </div>

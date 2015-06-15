@@ -55,6 +55,9 @@
         android:id="@+id/menu_sort_mspd"
         android:title="移动速度" />
       <item
+        android:id="@+id/menu_sort_hits"
+        android:title="多段攻击" />
+      <item
         android:id="@+id/menu_sort_id"
         android:title="新品上架" />
     </menu>

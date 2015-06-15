@@ -385,6 +385,7 @@ public class MainActivity extends Activity {
       case R.id.menu_sort_aspd:
       case R.id.menu_sort_tenacity:
       case R.id.menu_sort_mspd:
+      case R.id.menu_sort_hits:
       case R.id.menu_sort_id:
         mUnitListFragment.setSortMode(itemId);
         setMenuItemEnabled(R.id.menu_sort_mode, item);

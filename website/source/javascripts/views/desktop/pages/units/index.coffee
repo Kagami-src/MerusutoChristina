@@ -70,9 +70,13 @@ class App.Pages.UnitsIndex extends Backbone.View
       title: "移速"
       data: (model) -> model.get("mspd")
     ,
+      title: "多段"
+      data: (model) -> model.get("hits")
+    ,
       title: "成长"
       data: (model) -> model.get("type")
       render: (data, type, model) -> model.getTypeString()
+      visible: false
     ,
       title: "DPS"
       data: (model) -> model.get("dps")
