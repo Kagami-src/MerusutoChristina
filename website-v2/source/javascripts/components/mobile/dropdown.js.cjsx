@@ -1,5 +1,8 @@
 App.Components.Dropdown = React.createClass
   displayName: "Dropdown"
+  propTypes:
+    filters: React.PropTypes.object.isRequired
+    onChange: React.PropTypes.func.isRequired
 
   getInitialState: ->
     active: @props.active || false
@@ -21,6 +24,10 @@ App.Components.Dropdown = React.createClass
   shouldComponentUpdate: (nextProps, nextState) ->
     nextState.active || @state.active
 
+  handleChange: (change) ->
+    (update = {})[@props.name] = change
+    @props.onChange(update)
+
   render: ->
     <div className={classNames("dropdown pull-right", active: @state.active)}>
       <a className="btn btn-link dropdown-toggle" onClick={@toggleActive}>
@@ -30,13 +37,18 @@ App.Components.Dropdown = React.createClass
         {
           React.Children.map @props.children, (child) =>
             React.cloneElement child,
-              parentName: @props.name
+              filters: @props.filters[@props.name]
+              onChange: @handleChange
         }
       </ul>
     </div>
 
 App.Components.Dropdown.SubDropdown = React.createClass
   displayName: "SubDropdown"
+
+  handleChange: (change) ->
+    (update = {})[@props.name] = change
+    @props.onChange(update)
 
   render: ->
     <li className="dropdown-submenu pull-left">
@@ -45,7 +57,8 @@ App.Components.Dropdown.SubDropdown = React.createClass
         {
           React.Children.map @props.children, (child) =>
             React.cloneElement child,
-              parentName: "#{@props.parentName}_#{@props.name}"
+              filters: @props.filters[@props.name]
+              onChange: @handleChange
         }
       </ul>
     </li>
@@ -55,12 +68,10 @@ App.Components.Dropdown.Item = React.createClass
   mixins: [ReactRouter.State, ReactRouter.Navigation]
 
   handleClick: ->
-    query = React.addons.update(@getQuery(), {})
-    query[@props.parentName] = @props.value
-    @transitionTo(@getPathname(), @getParams(), query)
+    @props.onChange($set: @props.value)
 
   render: ->
-    <li className={classNames(active: false)}>
+    <li className={classNames(active: @props.filters == @props.value)}>
       <a onClick={@handleClick}>{@props.title}</a>
     </li>
 
