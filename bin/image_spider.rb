@@ -6,6 +6,17 @@ require_relative 'color'
 BASEURLJP = "http://dbcj6kgtik9tl.cloudfront.net/toto_image_s3/jp_v2"
 BASEURLCN = "http://static.miracle.happyelements.cn/toto_image_2/unity"
 
+def precheck path, range
+  if File.exists? "../website/source"
+    path = "../website/source/data/#{path}"
+  else
+    path = "../website/build/data/#{path}"
+  end
+  range.to_a.reject! do |index|
+    File.exists? path + "/#{index}.png"
+  end
+end
+
 def download baseurl, range
   range.each do |index|
     begin
@@ -82,29 +93,35 @@ def resources key1, key2, range
 
   case key2
   when :unit
-    download "#{baseurl}/unit/unit_btn_#INDEX##{ext}", range
+    checked_range = precheck "units/thumbnail", range
+    download "#{baseurl}/unit/unit_btn_#INDEX##{ext}", checked_range
     convert "units/thumbnail"
     cleanup
 
-    download "#{baseurl}/unit/unit_large_#INDEX##{ext}", range
+    checked_range = precheck "units/original", range
+    download "#{baseurl}/unit/unit_large_#INDEX##{ext}", checked_range
     convert "units/original"
     cleanup
 
-    download "#{baseurl}/unit/unit_square_#INDEX##{ext}", range
+    checked_range = precheck "units/icon", range
+    download "#{baseurl}/unit/unit_square_#INDEX##{ext}", checked_range
     convert "units/icon"
     cleanup
 
     merge :unit
   when :monster
-    download "#{baseurl}/monster/monster_btn_#INDEX##{ext}", range
+    checked_range = precheck "monsters/thumbnail", range
+    download "#{baseurl}/monster/monster_btn_#INDEX##{ext}", checked_range
     convert "monsters/thumbnail"
     cleanup
 
-    download "#{baseurl}/monster/monster_large_ns_#INDEX##{ext}", range
+    checked_range = precheck "monsters/original", range
+    download "#{baseurl}/monster/monster_large_ns_#INDEX##{ext}", checked_range
     convert "monsters/original"
     cleanup
 
-    download "#{baseurl}/monster/monster_square_#INDEX##{ext}", range
+    checked_range = precheck "monsters/icon", range
+    download "#{baseurl}/monster/monster_square_#INDEX##{ext}", checked_range
     convert "monsters/icon"
     cleanup
 
