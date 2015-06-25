@@ -5,6 +5,9 @@ asset "react"
 asset "react-router"
 asset "reflux"
 
+asset "react-list"
+
+asset "fetch"
 asset "classnames"
 
 asset "ratchet"

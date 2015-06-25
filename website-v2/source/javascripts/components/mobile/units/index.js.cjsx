@@ -1,25 +1,61 @@
+#= reuqire ../dropdown
+#= reuqire ./item
+{VirtualList, WithScope, Dropdown, Units} = App.Components
+
+sortByKey = (p, o = 1) ->
+  (a, b) -> o * if (a[p] < b[p]) then 1 else if (a[p] > b[p]) then -1 else
+    if a.id < b.id then -1 else 1
+
 App.Components.Units.Index = React.createClass
   displayName: "UnitIndex"
   mixins: [App.Mixins.RenderPartials, App.Mixins.SharedState("unit")]
 
   getInitialState: ->
-    conditions:
-      filters: {}
+    filters:
+      conditions: {}
       sortMode: "rare"
       levelMode: "zero"
 
   handleChange: (change) ->
-    conditions = React.addons.update(@state.conditions, change)
-    @setSharedState(conditions: conditions)
+    filters = React.addons.update(@state.filters, change)
+    @setSharedState(filters: filters)
 
-  render: ->
-    <h1>{JSON.stringify @state}</h1>
+  sortItems: (sortBy)->
+    @items?.slice().sort sortByKey(sortBy)
+
+  componentWillReceiveSharedState: (nextState) ->
+    @inPartial "Main", ->
+      items = @sortItems(nextState.filters.sortMode)
+      nextState.items = items
+
+  componentDidMount: ->
+    @inPartial "Main", ->
+      fetch("../data/units.json")
+        .then (response) ->
+          return response.json()
+        .then (data) =>
+          @items = data
+          items = @sortItems(@state.filters.sortMode)
+          @setState(items: items)
+
+  render: -> @separatePartials("render")
+
+  renderMain: ->
+    <ReactList itemRenderer={@renderItem} itemsRenderer={@renderItems}
+      length={@state.items?.length} filters={@state.filters}/>
+
+  renderItems: (items, ref) ->
+    <ul className="table-view" ref={ref}>
+      {items}
+    </ul>
+
+  renderItem: (index, key) ->
+    item = @state.items[index]
+    <Units.Item model={item} key={item.id}/>
 
   renderHeaderFilters: ->
-    {Dropdown, WithScope} = App.Components
-
-    <WithScope className="header-filters" filters={@state.conditions} onChange={@handleChange}>
-      <Dropdown name="filters" title="筛选">
+    <WithScope className="header-filters" filters={@state.filters} onChange={@handleChange}>
+      <Dropdown name="conditions" title="筛选">
         <Dropdown.SubDropdown name="rare" title="稀有度">
           <Dropdown.Item value={undefined} title="全部"/>
           <Dropdown.Item value={1} title="★"/>

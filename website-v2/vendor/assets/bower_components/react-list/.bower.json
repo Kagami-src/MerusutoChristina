@@ -1,0 +1,29 @@
+{
+  "name": "react-list",
+  "version": "0.6.0",
+  "main": "react-list.js",
+  "ignore": [
+    "/.gitignore",
+    "/.npmignore",
+    "/Makefile",
+    "/cogs.js",
+    "/index.*",
+    "/node_modules",
+    "/package.json",
+    "/react-list.es6",
+    "/transformers"
+  ],
+  "dependencies": {
+    "react": "0.13.x"
+  },
+  "homepage": "https://github.com/orgsync/react-list",
+  "_release": "0.6.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.6.0",
+    "commit": "7a3372e5a965566baff5b9cfa1449e571edddcf0"
+  },
+  "_source": "git://github.com/orgsync/react-list.git",
+  "_target": "*",
+  "_originalSource": "react-list"
+}

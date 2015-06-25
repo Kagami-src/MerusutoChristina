@@ -15,6 +15,7 @@ App.Mixins.SharedState = (key) ->
 
   setSharedState: (nextState, callback) ->
     for component in components
+      component.componentWillReceiveSharedState?(nextState)
       component.setState(nextState, callback)
 
   replaceSharedState: (nextState, callback) ->

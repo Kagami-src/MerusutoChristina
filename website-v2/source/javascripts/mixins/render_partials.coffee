@@ -1,8 +1,6 @@
 App.Mixins.RenderPartials =
-  componentWillMount: ->
-    if typeof @props.partial == "string"
-      key = "render#{@props.partial}"
-      if typeof @[key] == "function"
-        @render = @[key]
-      else
-        @render = -> null
+  separatePartials: (prefix) ->
+    @["#{prefix}#{@props.partial}"]?() if @props.partial?
+
+  inPartial: (partial, callback) ->
+    callback.apply(@) if @props.partial == partial
