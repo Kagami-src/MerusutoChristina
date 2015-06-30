@@ -13,8 +13,8 @@ def precheck path, range
     path = "../website/build/data/#{path}"
   end
   range.to_a.reject! do |index|
-    File.exists? path + "/#{index}.png"
-  end
+    File.exists? "#{path}/#{index}.png"
+  end || range
 end
 
 def download baseurl, range
@@ -48,7 +48,7 @@ def convert path
       image = MiniMagick::Image.open(file)
       image.format("png")
       image.write("png/#{path}/#{File.basename(file, ".*")}.png")
-    rescue
+    rescue Exception => e
       puts "\rError: #{filename}, #{e}"
     end
   end
@@ -67,9 +67,9 @@ def setup
   cleanup
 end
 
-def merge key
+def merge path
   puts "\n"
-  Dir["png/#{key}s/**/*.png"].each do |file|
+  Dir["png/#{path}/**/*.png"].each do |file|
     if File.exists? "../website/source"
       path = file.sub("png", "../website/source/data")
     else
@@ -93,6 +93,11 @@ def resources key1, key2, range
 
   case key2
   when :unit
+    checked_range = precheck "units/icon", range
+    download "#{baseurl}/unit/unit_square_#INDEX##{ext}", checked_range
+    convert "units/icon"
+    cleanup
+
     checked_range = precheck "units/thumbnail", range
     download "#{baseurl}/unit/unit_btn_#INDEX##{ext}", checked_range
     convert "units/thumbnail"
@@ -103,13 +108,18 @@ def resources key1, key2, range
     convert "units/original"
     cleanup
 
-    checked_range = precheck "units/icon", range
-    download "#{baseurl}/unit/unit_square_#INDEX##{ext}", checked_range
-    convert "units/icon"
+    checked_range = precheck "units/foreground", range
+    download "#{baseurl}/unit/unit_large_ns_#INDEX##{ext}", checked_range
+    convert "units/foreground"
     cleanup
 
-    merge :unit
+    merge "units"
   when :monster
+    checked_range = precheck "monsters/icon", range
+    download "#{baseurl}/monster/monster_square_#INDEX##{ext}", checked_range
+    convert "monsters/icon"
+    cleanup
+
     checked_range = precheck "monsters/thumbnail", range
     download "#{baseurl}/monster/monster_btn_#INDEX##{ext}", checked_range
     convert "monsters/thumbnail"
@@ -120,12 +130,7 @@ def resources key1, key2, range
     convert "monsters/original"
     cleanup
 
-    checked_range = precheck "monsters/icon", range
-    download "#{baseurl}/monster/monster_square_#INDEX##{ext}", checked_range
-    convert "monsters/icon"
-    cleanup
-
-    merge :monster
+    merge "monsters"
   when :sound
     download "#{baseurl}/sound/B-#INDEX##{ext}", range
     FileUtils.mkdir_p "mp3"
@@ -151,7 +156,8 @@ def resources key1, key2, range
     convert "storybackground"
     cleanup
   when :storyactress
-    download "#{baseurl}/storyactress/storyactress#INDEX##{ext}", range
+    checked_range = precheck "storyactress", range
+    download "#{baseurl}/storyactress/storyactress#INDEX##{ext}", checked_range
     convert "storyactress"
     cleanup
   end

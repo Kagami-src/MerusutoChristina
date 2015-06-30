@@ -2,13 +2,13 @@ require 'mini_magick'
 require 'chunky_png'
 
 `mkdir -p tmp/png/storyactress-splited/`
-`mkdir -p tmp/png/storyactress-splited2/`
+`mkdir -p tmp/png/storyactress-splited\\ 2/`
 
 def opaque? file
   image = ChunkyPNG::Image.from_file(file)
   image.height.times do |y|
     image.width.times do |x|
-      return true if ChunkyPNG::Color.a(image[x, y]) != 0
+      return true unless ChunkyPNG::Color.a(image[x, y]) == 0
     end
   end
   return false
@@ -36,7 +36,7 @@ files.each do |file|
 
   image = MiniMagick::Image.open(file)
   image.crop("700x790+0+0")
-  image.write("tmp/png/storyactress-splited2/#{File.basename(file, ".*")}.png")
+  image.write("tmp/png/storyactress-splited\\ 2/#{File.basename(file, ".*")}.png")
 end
 
 Dir["tmp/png/storyactress-splited/*.png"].each do |file|
