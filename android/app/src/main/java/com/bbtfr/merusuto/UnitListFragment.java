@@ -279,9 +279,11 @@ public class UnitListFragment extends Fragment {
     }
 
     public void updateJSONData(boolean force) {
+      final int template = mTemplate;
       DataManager.loadRemoteJSON(getActivity(), getTemplateString(), force, new DataManager.JSONHandler() {
         @Override
         public void onSuccess(Object data) {
+          if (template != mTemplate) return;
           addAllJSONData((JSONArray) data);
           search();
         }
