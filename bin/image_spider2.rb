@@ -34,7 +34,8 @@ setup
 # cleanup
 
 # download /unit_large_[^ns]/
-# convert "units/original"
+download /unit_large_658/
+convert "units/original"
 # cleanup
 
 # download /unit_large_ns/
@@ -51,11 +52,11 @@ setup
 # convert "monsters/thumbnail"
 # cleanup
 
-download /monster_large_ns/
-convert "monsters/original"
-cleanup
+# download /monster_large_ns/
+# convert "monsters/original"
+# cleanup
 
-merge "monsters"
+# merge "monsters"
 
 # download /storyactress/
 # convert "storyactress"
