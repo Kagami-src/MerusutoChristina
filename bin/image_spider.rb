@@ -6,7 +6,7 @@ require_relative 'color'
 BASEURLJP = "http://dbcj6kgtik9tl.cloudfront.net/toto_image_s3/jp_v2"
 BASEURLCN = "http://static.miracle.happyelements.cn/toto_image_2/unity"
 
-if File.exists? "../website/source"
+if File.exists? "website/source"
   PATH = "../website/source/data"
 else
   PATH = "../website/build/data"

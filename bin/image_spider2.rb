@@ -84,10 +84,10 @@ cleanup
 
 merge "monsters"
 
-range = select_range /storyactress/
-checked_range = precheck "storyactress", range
-download checked_range
-convert "storyactress"
-cleanup
+# range = select_range /storyactress/
+# checked_range = precheck "storyactress", range
+# download checked_range
+# convert "storyactress"
+# cleanup
 
 # merge "storyactress"
