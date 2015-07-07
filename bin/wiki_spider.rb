@@ -50,8 +50,8 @@ def json_match_data key, raw
   end
 end
 
-def update_wiki_data key
-  Collection[key].each do |raw|
+def update_wiki_data key, range
+  Collection[key][range].each do |raw|
     begin
       # next unless raw.values.include?('暂缺')
       next unless raw['name_jp']
@@ -84,7 +84,9 @@ if __FILE__ == $0
 
   if key == :update
     key = (ARGV[1] || :unit).to_sym
-    update_wiki_data key
+    from = (ARGV[2] || 0).to_i
+    to = (ARGV[3] || -1).to_i
+    update_wiki_data key, (from..to)
   else
     parse_wiki_list_page key
   end

@@ -6,14 +6,15 @@ require_relative 'color'
 BASEURLJP = "http://dbcj6kgtik9tl.cloudfront.net/toto_image_s3/jp_v2"
 BASEURLCN = "http://static.miracle.happyelements.cn/toto_image_2/unity"
 
+if File.exists? "../website/source"
+  PATH = "../website/source/data"
+else
+  PATH = "../website/build/data"
+end
+
 def precheck path, range
-  if File.exists? "../website/source"
-    path = "../website/source/data/#{path}"
-  else
-    path = "../website/build/data/#{path}"
-  end
   range.to_a.reject! do |index|
-    File.exists? "#{path}/#{index}.png"
+    File.exists? "#{PATH}/#{path}/#{index}.png"
   end || range
 end
 
@@ -70,11 +71,7 @@ end
 def merge path
   puts "\n"
   Dir["png/#{path}/**/*.png"].each do |file|
-    if File.exists? "../website/source"
-      path = file.sub("png", "../website/source/data")
-    else
-      path = file.sub("png", "../website/build/data")
-    end
+    path = file.sub("png", PATH)
     next if File.exists? path
     puts "Copy #{path}"
     FileUtils.cp file, path

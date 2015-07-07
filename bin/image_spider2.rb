@@ -2,10 +2,23 @@ require 'open-uri'
 require 'json'
 require './bin/image_spider'
 
-def download key
-  json = JSON.parse open("http://toto.hekk.org/asset_info/android/40.json").read
-  json["crc"].each do |name, crc|
-    next unless name =~ key
+CRC = JSON.parse(open("http://toto.hekk.org/asset_info/android/40.json").read)["crc"]
+
+def precheck path, range
+  range.reject! do |name, crc|
+    index = name[/\d+/]
+    File.exists? "#{PATH}/#{path}/#{index}.png"
+  end || range
+end
+
+def select_range key
+  CRC.select do |name, crc|
+    name =~ key
+  end
+end
+
+def download range
+  range.each do |name, crc|
     begin
       url = "http://images.toto-japan.hekk.org/toto_image_s3/jp_v4#{name.sub(".Android", "_#{crc}.Android")}.unity3d"
       filename = File.basename(url)
@@ -25,41 +38,56 @@ end
 
 setup
 
-# download /unit_square/
-# convert "units/icon"
-# cleanup
+range = select_range /unit_square/
+checked_range = precheck "units/icon", range
+download checked_range
+convert "units/icon"
+cleanup
 
-# download /unit_btn/
-# convert "units/thumbnail"
-# cleanup
+range = select_range /unit_btn/
+checked_range = precheck "units/thumbnail", range
+download checked_range
+convert "units/thumbnail"
+cleanup
 
-# download /unit_large_[^ns]/
-download /unit_large_658/
+range = select_range /unit_large_[^ns]/
+checked_range = precheck "units/original", range
+download checked_range
 convert "units/original"
-# cleanup
+cleanup
 
-# download /unit_large_ns/
-# convert "units/foreground"
-# cleanup
+range = select_range /unit_large_ns/
+checked_range = precheck "units/foreground", range
+download checked_range
+convert "units/foreground"
+cleanup
 
-# merge "units"
+merge "units"
 
-# download /monster_square/
-# convert "monsters/icon"
-# cleanup
+range = select_range /monster_square/
+checked_range = precheck "monsters/icon", range
+download checked_range
+convert "monsters/icon"
+cleanup
 
-# download /monster_btn/
-# convert "monsters/thumbnail"
-# cleanup
+range = select_range /monster_btn/
+checked_range = precheck "monsters/thumbnail", range
+download checked_range
+convert "monsters/thumbnail"
+cleanup
 
-# download /monster_large_ns/
-# convert "monsters/original"
-# cleanup
+range = select_range /monster_large_ns/
+checked_range = precheck "monsters/original", range
+download checked_range
+convert "monsters/original"
+cleanup
 
-# merge "monsters"
+merge "monsters"
 
-# download /storyactress/
-# convert "storyactress"
-# cleanup
+range = select_range /storyactress/
+checked_range = precheck "storyactress", range
+download checked_range
+convert "storyactress"
+cleanup
 
 # merge "storyactress"
