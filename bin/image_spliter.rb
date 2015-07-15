@@ -22,21 +22,27 @@ files.each do |file|
 
   (0..1).each do |x|
     (0..5).each do |y|
+      filename = "tmp/png/storyactress-splited/#{File.basename(file, ".*")}-#{x}#{y}.png"
+      next if File.exist? filename
       image = MiniMagick::Image.open(file)
       image.crop("150x150+#{x*153+702}+#{y*153}")
-      image.write("tmp/png/storyactress-splited/#{File.basename(file, ".*")}-#{x}#{y}.png")
+      image.write(filename)
     end
   end
 
   (0..3).each do |x|
+    filename = "tmp/png/storyactress-splited/#{File.basename(file, ".*")}-3#{x}.png"
+    next if File.exist? filename
     image = MiniMagick::Image.open(file)
     image.crop("150x150+#{x*153}+790")
-    image.write("tmp/png/storyactress-splited/#{File.basename(file, ".*")}-3#{x}.png")
+    image.write(filename)
   end
 
+  filename = "tmp/png/storyactress-splited\ 2/#{File.basename(file, ".*")}.png"
+  next if File.exist? filename
   image = MiniMagick::Image.open(file)
   image.crop("700x790+0+0")
-  image.write("tmp/png/storyactress-splited\\ 2/#{File.basename(file, ".*")}.png")
+  image.write(filename)
 end
 
 Dir["tmp/png/storyactress-splited/*.png"].each do |file|

@@ -4,7 +4,7 @@ require 'mini_magick'
 require_relative 'color'
 
 BASEURLJP = "http://dbcj6kgtik9tl.cloudfront.net/toto_image_s3/jp_v2"
-BASEURLCN = "http://static.miracle.happyelements.cn/toto_image_2/unity"
+BASEURLCN = "http://static.miracle.happyelements.cn/toto_image_4/unity"
 
 if File.exists? "website/source"
   PATH = "../website/source/data"
@@ -22,6 +22,7 @@ def download baseurl, range
   range.each do |index|
     begin
       url = baseurl.sub("#INDEX#", index.to_s)
+      puts url
       filename = File.basename(url)
       print "\rDownload: #{filename}   "
       image = open(url)
@@ -85,7 +86,7 @@ def resources key1, key2, range
     ext = ".Android.unity3d"
   when :cn
     baseurl = BASEURLCN
-    ext = ".Android.1.unity3d"
+    ext = ".Android.21.unity3d"
   end
 
   case key2
