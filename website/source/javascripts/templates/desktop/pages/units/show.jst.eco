@@ -40,10 +40,10 @@
         <p class="col-xs-6">
           初始DPS：<%= Math.round(@model.origin.dps) %><br>
           满级DPS：<%= Math.round(@model.calcMaxLv('dps')) %><br>
-          满觉DPS：<%= Math.round(@model.calcMaxLvAndGrow('dps')) %><br>
+          满觉DPS：<%= Math.round(@model.calcMaxLvAndGrowDPS()) %><br>
           初始总DPS：<%= Math.round(@model.origin.mdps) %><br>
           满级总DPS：<%= Math.round(@model.calcMaxLv('mdps')) %><br>
-          满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrow('mdps')) %><br>
+          满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrowMDPS()) %><br>
         </p>
         <p class="col-xs-6">
           成长：<%= @model.getTypeString() %><br>

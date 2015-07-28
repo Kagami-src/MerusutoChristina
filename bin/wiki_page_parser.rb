@@ -116,7 +116,7 @@ def parse_wiki_detail_page url, id = nil, strict = false
   end
   doc.css(".db_other_block").zip(doc.css(".db_other_text")).each do |key, value|
     key = key.text.strip
-    value = value.text.strip
+    value = value.text.strip rescue nil
     if KeyMap[key]
       key = KeyMap[key]
     else

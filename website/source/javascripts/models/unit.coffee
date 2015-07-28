@@ -6,8 +6,8 @@ class App.Models.Unit extends Backbone.Model
       atk: attributes.atk
       life: attributes.life
     @setLevelMode("zero")
-    @origin.dps = @get('dps')
-    @origin.mdps = @get('mdps')
+    @origin.dps = @get("dps")
+    @origin.mdps = @get("mdps")
 
   calcF: ->
     @f ||= 1.8 + 0.1 * @get("type")
@@ -26,6 +26,12 @@ class App.Models.Unit extends Backbone.Model
     growPart = Math.floor(value * (f - 1) / (19 + 10 * rare)) *
       5 * (if rare == 1 then 5 else 15)
     levelPart + growPart
+
+  calcMaxLvAndGrowDPS: ->
+    @calcMaxLvAndGrow("atk") / @get("aspd")
+
+  calcMaxLvAndGrowMDPS: ->
+    @calcMaxLvAndGrowDPS() * @get("anum")
 
   setLevelMode: (mode) ->
     switch mode

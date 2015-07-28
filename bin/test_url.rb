@@ -3,8 +3,7 @@ require_relative 'color'
 require 'thread'
 
 # I = (0..660).to_a
-# I = (110000..110100).to_a
-I = [110061]
+I = (100000..100100).to_a
 J = [20,21,22,30,40,50]
 # J = [nil] + (0..100).to_a
 
@@ -15,7 +14,7 @@ THREADS = 50
 I.each do |i|
   J.each do |j|
     url = "http://static.miracle.happyelements.cn/toto_image_4/unity/"
-    url += "unit/unit_square_#{i}.Android"
+    url += "unit/unit_btn_#{i}.Android"
     url += ".#{j}" if j
     url += ".unity3d"
     URLs << url
