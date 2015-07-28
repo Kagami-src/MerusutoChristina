@@ -14,6 +14,13 @@ def run command, ignore = false
   end
 end
 
+changes = `git status -s | grep website\/`.strip
+if changes == ""
+  puts "Nothing to commit!"
+  exit -1
+end
+puts changes
+
 FileUtils.cd "website"
 
 if File.exists? "source" and !ARGV.include?("-nb")
