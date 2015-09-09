@@ -1,18 +1,19 @@
 GIT
-  remote: git://github.com/bbtfr/middleman-bower.git
+  remote: https://github.com/bbtfr/frontend-toolkit.git
+  revision: 1adecefa278d25b4022380551549ac21970caae6
+  specs:
+    frontend-toolkit (0.0.3)
+
+GIT
+  remote: https://github.com/bbtfr/middleman-bower.git
   revision: 024da5be717979e561b1d274965a2e36c40f8879
   specs:
     middleman-bower (0.0.2)
       bower-rails (~> 0.8.3)
       middleman-core (>= 3.0.0)
 
-PATH
-  remote: ../../../RUBY
-  specs:
-    frontend-toolkit (0.0.3)
-
 GEM
-  remote: https://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     activesupport (4.1.8)
       i18n (~> 0.6, >= 0.6.9)
@@ -162,3 +163,6 @@ DEPENDENCIES
   middleman-deploy
   middleman-livereload
   redcarpet
+
+BUNDLED WITH
+   1.10.6

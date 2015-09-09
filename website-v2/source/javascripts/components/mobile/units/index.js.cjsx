@@ -2,9 +2,9 @@
 #= reuqire ./item
 {VirtualList, WithScope, Dropdown, Units} = App.Components
 
-sortByKey = (p, o = 1) ->
-  (a, b) -> o * if (a[p] < b[p]) then 1 else if (a[p] > b[p]) then -1 else
-    if a.id < b.id then -1 else 1
+sortByKey = (p) ->
+  if p[0] == "-" then p = p[1..-1]; o = -1 else o = 1
+  (a, b) -> if (a[p] < b[p]) then o else if (a[p] > b[p]) then -o else 0
 
 App.Components.Units.Index = React.createClass
   displayName: "UnitIndex"
@@ -20,13 +20,40 @@ App.Components.Units.Index = React.createClass
     filters = React.addons.update(@state.filters, change)
     @setSharedState(filters: filters)
 
-  sortItems: (sortBy)->
-    @items?.slice().sort sortByKey(sortBy)
+  sortItems: (items, sortBy) ->
+    items.sort sortByKey(sortBy)
+
+  checkItem: (item, conditions) ->
+    for key, rule of conditions
+      value = item[key]
+      if typeof rule == "number" || typeof rule == "string"
+        return false unless value == rule
+      else if typeof rule == "object"
+        if rule instanceof Array
+          return false unless rule.indexOf value >= 0
+        else
+          return false if rule.$max && rule.$max < value
+          return false if rule.$min && rule.$min > value
+    return true
+
+  filterItems: (items, conditions) ->
+    result = []
+    for item in items
+      result.push item if @checkItem(item, conditions)
+    result
 
   componentWillReceiveSharedState: (nextState) ->
     @inPartial "Main", ->
-      items = @sortItems(nextState.filters.sortMode)
+      @calculateDPS(@items)
+      items = @items?.slice()
+      items = @sortItems(items, nextState.filters.sortMode)
+      items = @filterItems(items, nextState.filters.conditions)
       nextState.items = items
+
+  calculateDPS: (items) ->
+    for item in items
+      item["dps"] = Math.round(item["atk"] / item["aspd"])
+      item["mdps"] = Math.round(item["atk"] / item["aspd"] * item["anum"])
 
   componentDidMount: ->
     @inPartial "Main", ->
@@ -35,7 +62,10 @@ App.Components.Units.Index = React.createClass
           return response.json()
         .then (data) =>
           @items = data
-          items = @sortItems(@state.filters.sortMode)
+          @calculateDPS(@items)
+          items = @items?.slice()
+          items = @sortItems(items, @state.filters.sortMode)
+          items = @filterItems(items, @state.filters.conditions)
           @setState(items: items)
 
   render: -> @separatePartials("render")
@@ -51,7 +81,7 @@ App.Components.Units.Index = React.createClass
 
   renderItem: (index, key) ->
     item = @state.items[index]
-    <Units.Item model={item} key={item.id}/>
+    <Units.Item item={item} key={item.id}/>
 
   renderHeaderFilters: ->
     <WithScope className="header-filters" filters={@state.filters} onChange={@handleChange}>
@@ -119,7 +149,7 @@ App.Components.Units.Index = React.createClass
         <Dropdown.SubDropdown name="country" title="国别">
         </Dropdown.SubDropdown>
         <Dropdown.Divider/>
-        <Dropdown.Item value={{}} title="重置"/>
+        <Dropdown.Item value={{}} title="重置" active={false}/>
       </Dropdown>
       <Dropdown name="sortMode" title="筛选">
         <Dropdown.Item value="rare" title="稀有度"/>
@@ -129,7 +159,7 @@ App.Components.Units.Index = React.createClass
         <Dropdown.Item value="atk" title="攻击"/>
         <Dropdown.Item value="aarea" title="攻击距离"/>
         <Dropdown.Item value="anum" title="攻击数量"/>
-        <Dropdown.Item value="aspd" title="攻击速度"/>
+        <Dropdown.Item value="-aspd" title="攻击速度"/>
         <Dropdown.Item value="tenacity" title="韧性"/>
         <Dropdown.Item value="mspd" title="移动速度"/>
         <Dropdown.Item value="id" title="新品上架"/>

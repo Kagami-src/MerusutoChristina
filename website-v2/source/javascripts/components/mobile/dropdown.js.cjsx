@@ -71,7 +71,9 @@ App.Components.Dropdown.Item = React.createClass
     @props.onChange($set: @props.value)
 
   render: ->
-    <li className={classNames(active: @props.filters == @props.value)}>
+    active = if @props.active? then @props.active else JSON.stringify(@props.filters) == JSON.stringify(@props.value)
+
+    <li className={classNames(active: active)}>
       <a onClick={@handleClick}>{@props.title}</a>
     </li>
 

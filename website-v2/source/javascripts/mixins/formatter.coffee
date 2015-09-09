@@ -1,6 +1,6 @@
 App.Mixins.Formatter =
   get: (key) ->
-    @props.model[key]
+    @props.item[key]
 
   getString: (key) ->
     @get(key) || "暂缺"
