@@ -1,6 +1,6 @@
 require 'open-uri'
 require 'json'
-require './bin/image_spider'
+require_relative 'image_spider'
 
 CRC = JSON.parse(open("http://toto.hekk.org/asset_info/android/40.json").read)["crc"]
 
