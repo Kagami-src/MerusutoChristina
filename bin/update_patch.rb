@@ -7,7 +7,7 @@ AV.init application_id: "ixeo5jke9wy1vvvl3lr06uqy528y1qtsmmgsiknxdbt2xalg",
 
 Collection = {}
 def read_collection key
-  Collection[key] = JSON.parse(open("website/source/data/#{key}.json").read)
+  Collection[key] = JSON.parse(open("D:/github/MerusutoChristina/website/source/data/#{key}.json").read)
 end
 def write_collection key
   result = JSON.generate Collection[key]
