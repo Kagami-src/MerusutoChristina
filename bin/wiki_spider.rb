@@ -1,3 +1,4 @@
+﻿#encoding=UTF-8
 require 'nokogiri'
 require 'open-uri'
 require 'json'
@@ -7,7 +8,7 @@ require_relative 'color'
 Result = []
 Collection = {}
 def read_collection key
-  Collection[key] = JSON.parse(open("website/source/data/#{key}s.json").read)
+  Collection[key] = JSON.parse(open("D:/github/MerusutoChristina/website/source/data/#{key}s.json").read)
 end
 def write_collection key
   open("website/source/data/#{key}s.json", "w").puts format_json Collection[key]
