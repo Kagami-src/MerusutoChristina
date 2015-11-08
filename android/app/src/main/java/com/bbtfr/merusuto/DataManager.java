@@ -23,7 +23,7 @@ import java.io.InputStream;
 public class DataManager {
 
   final static long EXPIRATION = 3600000L;
-//  final static long EXPIRATION = 0L;
+  //  final static long EXPIRATION = 0L;
   final static String BASEURL = "http://bbtfr.github.io/MerusutoChristina/data/";
   final static String BASEURL_RETRY = "http://merusuto.gitcafe.io/data/";
   private static Bitmap mDefaultThumbnail;
@@ -92,13 +92,13 @@ public class DataManager {
       public void onSuccess(final byte[] version) {
         if (version != null) {
           Toast.makeText(context, "检测到数据更新，正在下载，请稍候...",
-              Toast.LENGTH_SHORT).show();
+                  Toast.LENGTH_SHORT).show();
           loadRemoteData(context, key, new DataHandler() {
             @Override
             public void onSuccess(byte[] data) {
               if (data != null) {
                 Toast.makeText(context, "数据已更新，重新加载界面...",
-                    Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
                 try {
                   handler.onSuccess(JSON.parse(data));
                   saveLocalData(context, key, data);
@@ -106,7 +106,7 @@ public class DataManager {
                 } catch (Exception e) {}
               } else {
                 Toast.makeText(context, "网络错误，请稍候重试...",
-                    Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
               }
             }
           });
@@ -118,7 +118,7 @@ public class DataManager {
   }
 
   static File getLocalFile(String key) {
-    return new File(Environment.getExternalStorageDirectory(), "merusuto/" + key);
+    return new File(Environment.getExternalStorageDirectory(), ".merusuto/" + key);
   }
 
   static void ensureParentDirectoryExists(File file) {

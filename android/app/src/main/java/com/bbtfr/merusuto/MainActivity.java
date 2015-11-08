@@ -59,12 +59,12 @@ public class MainActivity extends Activity {
     for (int i = 0; i < menu.size(); i++) {
       menuItem = menu.getItem(i);
       adapter.addItem(new DrawerItem(menuItem.getItemId(),
-          menuItem.getTitle(), true));
+              menuItem.getTitle(), true));
       SubMenu subMenu = menuItem.getSubMenu();
       for (int j = 0; j < subMenu.size(); j++) {
         menuItem = subMenu.getItem(j);
         adapter.addItem(new DrawerItem(menuItem.getItemId(),
-            menuItem.getTitle(), false));
+                menuItem.getTitle(), false));
       }
     }
 
@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
               startActivityForResult(intent, R.id.menu_load_zip_data);
             } catch(Exception e) {
               Toast.makeText(MainActivity.this, "未找到内置文件浏览器...",
-                  Toast.LENGTH_SHORT).show();
+                      Toast.LENGTH_SHORT).show();
             }
             break;
           case R.id.menu_user_feedback:
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
             break;
           case R.id.menu_check_update:
             Toast.makeText(MainActivity.this, "检查版本更新...",
-                Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();
             Utils.checkUpdate(MainActivity.this, true);
             mUnitListFragment.updateJSONData(true);
             break;
@@ -111,20 +111,20 @@ public class MainActivity extends Activity {
     });
 
     mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout,
-        R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
+            R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
 
     drawerLayout.setDrawerListener(mDrawerToggle);
 
     if (savedInstanceState == null) {
       mUnitListFragment = new UnitListFragment();
       getFragmentManager().beginTransaction()
-          .add(R.id.content_frame, mUnitListFragment, "UnitListFragment")
-          .commit();
+              .add(R.id.content_frame, mUnitListFragment, "UnitListFragment")
+              .commit();
 
       Utils.checkUpdate(this, false);
     } else {
       mUnitListFragment = (UnitListFragment) getFragmentManager()
-          .findFragmentByTag("UnitListFragment");
+              .findFragmentByTag("UnitListFragment");
     }
 
     mAgent = new FeedbackAgent(this);
@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
         menuItem.setVisible(!visible);
 
         getActionBar().setIcon(visible ? R.drawable.ic_logo :
-            android.R.color.transparent);
+                android.R.color.transparent);
       }
 
       @Override
@@ -333,6 +333,15 @@ public class MainActivity extends Activity {
         mUnitListFragment.setGender(item.getOrder());
         setMenuItemEnabledEx(R.id.menu_gender, item);
         break;
+      case R.id.menu_server_0:
+        mUnitListFragment.setServer(0);
+        setMenuItemEnabledEx(R.id.menu_server);
+        break;
+      case R.id.menu_server_1:
+      case R.id.menu_server_2:
+        mUnitListFragment.setServer(item.getOrder());
+        setMenuItemEnabledEx(R.id.menu_server, item);
+        break;
       case R.id.menu_skin_0:
         mUnitListFragment.setSkin(0);
         setMenuItemEnabledEx(R.id.menu_skin);
@@ -352,6 +361,22 @@ public class MainActivity extends Activity {
       case R.id.menu_aarea_3:
         mUnitListFragment.setAarea(item.getOrder());
         setMenuItemEnabledEx(R.id.menu_aarea, item);
+        break;
+      case R.id.menu_age_0:
+        mUnitListFragment.setAge(0);
+        setMenuItemEnabledEx(R.id.menu_age);
+        break;
+      case R.id.menu_age_1:
+      case R.id.menu_age_2:
+      case R.id.menu_age_3:
+      case R.id.menu_age_4:
+      case R.id.menu_age_5:
+      case R.id.menu_age_6:
+      case R.id.menu_age_7:
+      case R.id.menu_age_8:
+      case R.id.menu_age_9:
+        mUnitListFragment.setAge(item.getOrder());
+        setMenuItemEnabledEx(R.id.menu_age, item);
         break;
       case R.id.menu_anum_0:
         mUnitListFragment.setAnum(0);
@@ -381,6 +406,7 @@ public class MainActivity extends Activity {
       case R.id.menu_sort_life:
       case R.id.menu_sort_atk:
       case R.id.menu_sort_aarea:
+      case R.id.menu_sort_age:
       case R.id.menu_sort_anum:
       case R.id.menu_sort_aspd:
       case R.id.menu_sort_tenacity:

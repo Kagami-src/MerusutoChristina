@@ -29,7 +29,7 @@ import java.util.List;
 public class UnitListFragment extends Fragment {
 
   private UnitListAdapter mAdapter;
-  private int mRare = 0, mElement = 0, mWeapon = 0, mType = 0, mSkin = 0, mGender = 0, mAarea = 0, mAnum = 0;
+  private int mRare = 0, mElement = 0, mWeapon = 0, mType = 0, mSkin = 0, mGender = 0, mAarea = 0, mAnum = 0, mAge = 0, mServer = 0;
   private int mSortMode = R.id.menu_sort_rare, mLevelMode = R.id.menu_level_zero;
   private int mTemplate = R.id.menu_template_unit;
   private boolean mLike = false;
@@ -109,6 +109,14 @@ public class UnitListFragment extends Fragment {
     mGender = gender;
     mAdapter.search();
   }
+  public void setServer(int server) {
+    mServer = server;
+    mAdapter.search();
+  }
+  public void setAge(int age) {
+    mAge = age;
+    mAdapter.search();
+  }
 
   public void setAarea(int aarea) {
     mAarea = aarea;
@@ -137,7 +145,7 @@ public class UnitListFragment extends Fragment {
   }
 
   private void resetFilters() {
-    mRare = mElement = mWeapon = mType = mSkin = mGender = mAarea = mAnum = 0;
+    mRare = mElement = mWeapon = mType = mSkin = mGender = mAarea = mAnum = mAge =mServer = 0;
     mQuery = mCountry = mSkill = null;
     mLike = false;
   }
@@ -234,6 +242,8 @@ public class UnitListFragment extends Fragment {
     mElement = savedInstanceState.getInt("element");
     mWeapon = savedInstanceState.getInt("weapon");
     mType = savedInstanceState.getInt("type");
+    mAge = savedInstanceState.getInt("age");
+    mServer = savedInstanceState.getInt("server");
     mLevelMode = savedInstanceState.getInt("levelMode");
     mSortMode = savedInstanceState.getInt("sortMode");
     mTemplate = savedInstanceState.getInt("template");
@@ -246,6 +256,8 @@ public class UnitListFragment extends Fragment {
     savedInstanceState.putInt("element", mElement);
     savedInstanceState.putInt("weapon", mWeapon);
     savedInstanceState.putInt("type", mType);
+    savedInstanceState.putInt("age", mAge);
+    savedInstanceState.putInt("server", mServer);
     savedInstanceState.putInt("levelMode", mLevelMode);
     savedInstanceState.putInt("sortMode", mSortMode);
     savedInstanceState.putInt("template", mTemplate);
@@ -345,9 +357,19 @@ public class UnitListFragment extends Fragment {
                 (mType == 0 || item.type == mType) &&
                 (mSkin == 0 || item.skin == mSkin) &&
                 (mGender == 0 || item.gender == mGender) &&
+                (mServer == 0 || item.server == mServer) &&
                 (mAarea == 0 || (mAarea == 1 && item.aarea <= 50) ||
                     (mAarea == 2 && item.aarea > 50 && item.aarea <= 150) ||
                     (mAarea == 3 && item.aarea > 150)) &&
+                 (mAge == 0 || (mAge == 1 && item.age <= 0) ||
+                     (mAge == 2 && item.age > 0 && item.age <= 10) ||
+                     (mAge == 3 && item.age > 10 && item.age <= 15) ||
+                     (mAge == 4 && item.age > 15 && item.age <= 20) ||
+                     (mAge == 5 && item.age > 20 && item.age <= 25) ||
+                     (mAge == 6 && item.age > 25 && item.age <= 30) ||
+                     (mAge == 7 && item.age > 30 && item.age <= 35) ||
+                     (mAge == 8 && item.age > 35 && item.age <= 40) ||
+                     (mAge == 9 && item.age > 40)) &&
                 (mAnum == 0 || item.anum == mAnum ||
                     (mAnum == 6 && item.anum > 1 && item.anum < 4) ||
                     (mAnum == 7 && item.anum > 3 && item.anum < 6)) &&
@@ -419,9 +441,9 @@ public class UnitListFragment extends Fragment {
               l = lhs.hits;
               r = rhs.hits;
               break;
-            case R.id.menu_sort_id:
-              l = lhs.id;
-              r = rhs.id;
+            case R.id.menu_sort_age:
+              l = lhs.age;
+              r = rhs.age;
               break;
           }
 
@@ -475,14 +497,14 @@ public class UnitListFragment extends Fragment {
 
       thumbnailView.setImageBitmap(DataManager.getDefaultThumbnail(getActivity(), null));
       DataManager.loadBitmap(getActivity(), getTemplateString() + "/thumbnail/" + item.id, null,
-          new DataManager.BitmapHandler() {
-            @Override
-            public void onSuccess(Bitmap bitmap) {
-              if (bitmap != null && currentView.getTag() == item) {
-                thumbnailView.setImageBitmap(bitmap);
-              }
-            }
-          });
+              new DataManager.BitmapHandler() {
+                @Override
+                public void onSuccess(Bitmap bitmap) {
+                  if (bitmap != null && currentView.getTag() == item) {
+                    thumbnailView.setImageBitmap(bitmap);
+                  }
+                }
+              });
 
       rareView.setText(item.getRareString());
       elementView.setMode(item.element);

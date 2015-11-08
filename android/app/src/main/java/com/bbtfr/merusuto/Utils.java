@@ -68,7 +68,11 @@ public class Utils {
     protected Void doInBackground(Integer... param) {
       try {
         File location = new File(Environment.getExternalStorageDirectory(),
-            "merusuto/");
+            ".merusuto/");
+        
+        File nomediaFile = new File(location, ".nomedia");
+		if (!nomediaFile.exists())
+			nomediaFile.createNewFile();
 
         FileInputStream fin = new FileInputStream(mFilename);
         ZipInputStream zin = new ZipInputStream(fin);
@@ -82,6 +86,7 @@ public class Utils {
               file.mkdirs();
             }
           } else {
+			  
             publishProgress(mProgress++);
 
             int size;

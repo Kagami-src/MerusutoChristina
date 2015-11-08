@@ -58,8 +58,8 @@
         android:id="@+id/menu_sort_hits"
         android:title="多段攻击" />
       <item
-        android:id="@+id/menu_sort_id"
-        android:title="新品上架" />
+          android:id="@+id/menu_sort_age"
+          android:title="年龄" />
     </menu>
   </item>
   <item
@@ -294,6 +294,52 @@
         </menu>
       </item>
       <item
+          android:id="@+id/menu_age"
+          android:showAsAction="withText"
+          android:title="年龄">
+        <menu>
+          <item
+              android:id="@+id/menu_age_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_age_1"
+              android:orderInCategory="1"
+              android:title="暂无" />
+          <item
+              android:id="@+id/menu_age_2"
+              android:orderInCategory="2"
+              android:title="10岁以下" />
+          <item
+              android:id="@+id/menu_age_3"
+              android:orderInCategory="3"
+              android:title="11至15岁" />
+          <item
+              android:id="@+id/menu_age_4"
+              android:orderInCategory="4"
+              android:title="16至20岁" />
+          <item
+              android:id="@+id/menu_age_5"
+              android:orderInCategory="5"
+              android:title="21至25岁" />
+          <item
+              android:id="@+id/menu_age_6"
+              android:orderInCategory="6"
+              android:title="26至30岁" />
+          <item
+              android:id="@+id/menu_age_7"
+              android:orderInCategory="7"
+              android:title="31至35岁" />
+          <item
+              android:id="@+id/menu_age_8"
+              android:orderInCategory="8"
+              android:title="35至40岁" />
+          <item
+              android:id="@+id/menu_age_9"
+              android:orderInCategory="9"
+              android:title="41岁以上" />
+        </menu>
+      </item>
+      <item
         android:id="@+id/menu_country"
         android:showAsAction="withText"
         android:title="国别">
@@ -301,6 +347,24 @@
           <item
             android:id="@+id/menu_country_0"
             android:title="全部" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_server"
+          android:showAsAction="withText"
+          android:title="新品上架">
+        <menu>
+          <item
+              android:id="@+id/menu_server_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_server_1"
+              android:orderInCategory="1"
+              android:title="日服" />
+          <item
+              android:id="@+id/menu_server_2"
+              android:orderInCategory="2"
+              android:title="国服" />
         </menu>
       </item>
       <item

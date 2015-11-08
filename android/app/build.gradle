@@ -9,8 +9,8 @@ android {
     applicationId 'com.bbtfr.merusuto'
     minSdkVersion 14
     targetSdkVersion 21
-    versionCode 149
-    versionName '1.4.9'
+    versionCode 152
+    versionName '1.5.2'
   }
 
   //为了解决部分第三方库重复打包了META-INF的问题

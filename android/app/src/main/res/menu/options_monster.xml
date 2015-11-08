@@ -158,6 +158,14 @@
             android:id="@+id/menu_skin_3"
             android:orderInCategory="3"
             android:title="柔软" />
+          <item
+              android:id="@+id/menu_skin_4"
+              android:orderInCategory="4"
+              android:title="极软" />
+          <item
+              android:id="@+id/menu_skin_5"
+              android:orderInCategory="5"
+              android:title="极硬" />
         </menu>
       </item>
       <item

@@ -41,6 +41,7 @@ public class UnitItem {
 
   public int gender; // 性别
   public int age; // 年龄
+  public int server; // 服务器
   public String career; // 职业
   public String interest; // 兴趣
   public String nature; // 性格
@@ -80,6 +81,7 @@ public class UnitItem {
     this.country = getString(json, "country");
 
     this.gender = getIntValue(json, "gender");
+    this.server = getIntValue(json, "server");
     this.age = getIntValue(json, "age");
     this.career = getString(json, "career");
     this.interest = getString(json, "interest");
@@ -151,7 +153,6 @@ public class UnitItem {
     String[] keys = {"不明", "男", "女"};
     return getCollectionString(keys, gender);
   }
-
   public String getAgeString() {
     return age != 0 ? String.format("%s岁", age) : "暂缺";
   }
@@ -237,7 +238,7 @@ public class UnitItem {
   // =====
   // 魔宠
   public String getSkinString() {
-    String[] keys = {"坚硬", "常规", "柔软"};
+    String[] keys = {"坚硬", "常规", "柔软", "极软", "极硬"};
     return getCollectionString(keys, skin);
   }
 
