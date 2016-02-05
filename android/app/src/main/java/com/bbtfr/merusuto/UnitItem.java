@@ -42,6 +42,7 @@ public class UnitItem {
   public int gender; // 性别
   public int age; // 年龄
   public int server; // 服务器
+  public int exchange; // 交换所
   public String career; // 职业
   public String interest; // 兴趣
   public String nature; // 性格
@@ -49,10 +50,13 @@ public class UnitItem {
 
   // =====
   // 魔宠
-  public int skin; // 皮肤 1坚硬 2常规 3柔软
+  public int skin; // 皮肤 1坚硬 2常规 3柔软 4极软 5极硬
   public int sklsp; // 技能消耗SP
   public int sklcd; // 技能CD
+  public float sklmax; // 技能最大数值
   public String skill; // 技能描述
+  public int sarea; // 溅射范围
+  public int parts; // 多部位
   // =====
 
   public UnitItem(JSONObject json) {
@@ -82,6 +86,7 @@ public class UnitItem {
 
     this.gender = getIntValue(json, "gender");
     this.server = getIntValue(json, "server");
+    this.exchange = getIntValue(json, "exchange");
     this.age = getIntValue(json, "age");
     this.career = getString(json, "career");
     this.interest = getString(json, "interest");
@@ -92,7 +97,7 @@ public class UnitItem {
     this.sklsp = getIntValue(json, "sklsp");
     this.sklcd = getIntValue(json, "sklcd");
     this.skill = getString(json, "skill");
-
+    this.sklmax = getFloatValue(json, "sklmax");
 
     this.obtain = getString(json, "obtain");
     this.remark = getString(json, "remark");
@@ -129,7 +134,7 @@ public class UnitItem {
   }
 
   public String getRareString() {
-    String[] keys = {"★", "★★", "★★★", "★★★★", "★★★★★"};
+    String[] keys = {"★", "★★", "★★★", "★★★★", "★★★★★", "★★★★★★"};
     return getCollectionString(keys, rare);
   }
 
@@ -163,24 +168,24 @@ public class UnitItem {
 
   // 零觉满级
   private int calcMaxLv(int value) {
-    return (int) (value * calcF());
+    return Math.round (value * calcF());
   }
 
   // 满觉满级
   private int calcMaxLvAndGrow(int value) {
     float f = calcF();
     int levelPart = (int) (value * f);
-    int growPart = ((int) (value * (f - 1) / (19 + 10 * rare))) *
-        5 * (rare == 1 ? 5 : 15);
+    int growPart = ( (int)( (value * (f - 1) / (19 + 10 * rare)))) *
+            5 * (rare == 1 ? 5 : 15);
     return levelPart + growPart;
   }
 
   private int calcBySize(int value, float size, int mode) {
     switch (mode) {
       case 1:
-        return (int) (value * Math.pow(size, 2.36f));
+        return (int)Math.round (value * Math.pow(size, 2.36f));
       case 2:
-        return (int) (value * size);
+        return Math.round(value * size);
       default:
         return value;
     }
@@ -195,27 +200,17 @@ public class UnitItem {
         return calcMaxLv(value);
       case R.id.menu_level_max_lv_gr:
         return calcMaxLvAndGrow(value);
-      case R.id.menu_level_sm:
-        return calcBySize(value, 1.0f, extraMode);
-      case R.id.menu_level_md:
-        return calcBySize(value, 1.35f, extraMode);
-      case R.id.menu_level_lg:
-        return calcBySize(value, 1.55f, extraMode);
-      case R.id.menu_level_xl:
-        return calcBySize(value, 1.7f, extraMode);
-      case R.id.menu_level_xxl:
-        return calcBySize(value, 1.8f, extraMode);
       default:
         return value;
     }
   }
 
   public int getAtk(int mode) {
-    return (int) calcByLevel(mode, atk, 1);
+    return Math.round(calcByLevel(mode, atk, 1)) ;
   }
 
   public int getLife(int mode) {
-    return (int) calcByLevel(mode, life, 2);
+    return Math.round(calcByLevel(mode, life, 2)) ;
   }
 
   public float calcDPS(int mode) {
@@ -227,11 +222,11 @@ public class UnitItem {
   }
 
   public int getDPS(int mode) {
-    return (int) calcDPS(mode);
+    return Math.round(calcDPS(mode)) ;
   }
 
   public int getMultDPS(int mode) {
-    return (int) calcDPS(mode) * anum;
+    return Math.round(calcDPS(mode) * anum) ;
   }
   // =====
 
@@ -247,6 +242,9 @@ public class UnitItem {
   }
   // =====
 
+  static public String getSkillString(float sklmax) {
+    return sklmax != 0.0f ? String.format("%.1f%%", sklmax) : "暂缺";
+  }
   public String getContributorsString() {
     return StringUtils.join(contributors, "、");
   }

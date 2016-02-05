@@ -29,7 +29,7 @@ import java.util.List;
 public class UnitListFragment extends Fragment {
 
   private UnitListAdapter mAdapter;
-  private int mRare = 0, mElement = 0, mWeapon = 0, mType = 0, mSkin = 0, mGender = 0, mAarea = 0, mAnum = 0, mAge = 0, mServer = 0;
+  private int mRare = 0, mElement = 0, mWeapon = 0, mType = 0, mSkin = 0, mGender = 0, mAarea = 0, mAnum = 0, mAge = 0, mServer = 0, mExchange = 0;
   private int mSortMode = R.id.menu_sort_rare, mLevelMode = R.id.menu_level_zero;
   private int mTemplate = R.id.menu_template_unit;
   private boolean mLike = false;
@@ -113,6 +113,10 @@ public class UnitListFragment extends Fragment {
     mServer = server;
     mAdapter.search();
   }
+  public void setExchange(int exchange) {
+    mExchange = exchange;
+    mAdapter.search();
+  }
   public void setAge(int age) {
     mAge = age;
     mAdapter.search();
@@ -145,7 +149,7 @@ public class UnitListFragment extends Fragment {
   }
 
   private void resetFilters() {
-    mRare = mElement = mWeapon = mType = mSkin = mGender = mAarea = mAnum = mAge =mServer = 0;
+    mRare = mElement = mWeapon = mType = mSkin = mGender = mAarea = mAnum = mAge =mServer =mExchange = 0;
     mQuery = mCountry = mSkill = null;
     mLike = false;
   }
@@ -176,7 +180,7 @@ public class UnitListFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View rootView = inflater.inflate(R.layout.fragment_unit_list,
-        container, false);
+            container, false);
     mListView = (ListView) rootView.findViewById(R.id.unit_list);
 
     if (savedInstanceState != null) {
@@ -244,6 +248,7 @@ public class UnitListFragment extends Fragment {
     mType = savedInstanceState.getInt("type");
     mAge = savedInstanceState.getInt("age");
     mServer = savedInstanceState.getInt("server");
+    mExchange = savedInstanceState.getInt("exchange");
     mLevelMode = savedInstanceState.getInt("levelMode");
     mSortMode = savedInstanceState.getInt("sortMode");
     mTemplate = savedInstanceState.getInt("template");
@@ -258,6 +263,7 @@ public class UnitListFragment extends Fragment {
     savedInstanceState.putInt("type", mType);
     savedInstanceState.putInt("age", mAge);
     savedInstanceState.putInt("server", mServer);
+    savedInstanceState.putInt("exchange", mExchange);
     savedInstanceState.putInt("levelMode", mLevelMode);
     savedInstanceState.putInt("sortMode", mSortMode);
     savedInstanceState.putInt("template", mTemplate);
@@ -345,43 +351,44 @@ public class UnitListFragment extends Fragment {
 
       for (UnitItem item : mAllData)
         if (
-            (mRare == 0 || item.rare == mRare ||
-                (mRare == 6 && item.rare > 2) ||
-                (mRare == 7 && item.rare > 3)) &&
-                (mElement == 0 || item.element == mElement ||
-                    (mElement == 6 && item.element > 0 && item.element < 4) ||
-                    (mElement == 7 && item.element > 3 && item.element < 6)) &&
-                (mWeapon == 0 || item.weapon == mWeapon ||
-                    (mWeapon == 8 && item.weapon > 0 && item.weapon < 4) ||
-                    (mWeapon == 9 && item.weapon > 3 && item.weapon < 7)) &&
-                (mType == 0 || item.type == mType) &&
-                (mSkin == 0 || item.skin == mSkin) &&
-                (mGender == 0 || item.gender == mGender) &&
-                (mServer == 0 || item.server == mServer) &&
-                (mAarea == 0 || (mAarea == 1 && item.aarea <= 50) ||
-                    (mAarea == 2 && item.aarea > 50 && item.aarea <= 150) ||
-                    (mAarea == 3 && item.aarea > 150)) &&
-                 (mAge == 0 || (mAge == 1 && item.age <= 0) ||
-                     (mAge == 2 && item.age > 0 && item.age <= 10) ||
-                     (mAge == 3 && item.age > 10 && item.age <= 15) ||
-                     (mAge == 4 && item.age > 15 && item.age <= 20) ||
-                     (mAge == 5 && item.age > 20 && item.age <= 25) ||
-                     (mAge == 6 && item.age > 25 && item.age <= 30) ||
-                     (mAge == 7 && item.age > 30 && item.age <= 35) ||
-                     (mAge == 8 && item.age > 35 && item.age <= 40) ||
-                     (mAge == 9 && item.age > 40)) &&
-                (mAnum == 0 || item.anum == mAnum ||
-                    (mAnum == 6 && item.anum > 1 && item.anum < 4) ||
-                    (mAnum == 7 && item.anum > 3 && item.anum < 6)) &&
-                (mCountry == null || item.country.equals(mCountry)) &&
-                (mSkill == null || item.getSkillShortString().equals(mSkill)) &&
-                (!mLike || DataManager.checkLike(getActivity(), getTemplateString() + " " + item.id)) &&
-                (mQuery == null ||
-                    item.name.contains(mQuery) ||
-                    item.title.contains(mQuery) ||
-                    String.valueOf(item.id).contains(mQuery)
+                (mRare == 0 || item.rare == mRare ||
+                        (mRare == 6 && item.rare > 2) ||
+                        (mRare == 7 && item.rare > 3)) &&
+                        (mElement == 0 || item.element == mElement ||
+                                (mElement == 6 && item.element > 0 && item.element < 4) ||
+                                (mElement == 7 && item.element > 3 && item.element < 6)) &&
+                        (mWeapon == 0 || item.weapon == mWeapon ||
+                                (mWeapon == 8 && item.weapon > 0 && item.weapon < 4) ||
+                                (mWeapon == 9 && item.weapon > 3 && item.weapon < 7)) &&
+                        (mType == 0 || item.type == mType) &&
+                        (mSkin == 0 || item.skin == mSkin) &&
+                        (mGender == 0 || item.gender == mGender) &&
+                        (mServer == 0 || item.server == mServer) &&
+                        (mExchange == 0 || item.exchange == mExchange) &&
+                        (mAarea == 0 || (mAarea == 1 && item.aarea <= 50) ||
+                                (mAarea == 2 && item.aarea > 50 && item.aarea <= 150) ||
+                                (mAarea == 3 && item.aarea > 150)) &&
+                        (mAge == 0 || (mAge == 1 && item.age <= 0) ||
+                                (mAge == 2 && item.age > 0 && item.age <= 10) ||
+                                (mAge == 3 && item.age > 10 && item.age <= 15) ||
+                                (mAge == 4 && item.age > 15 && item.age <= 20) ||
+                                (mAge == 5 && item.age > 20 && item.age <= 25) ||
+                                (mAge == 6 && item.age > 25 && item.age <= 30) ||
+                                (mAge == 7 && item.age > 30 && item.age <= 35) ||
+                                (mAge == 8 && item.age > 35 && item.age <= 40) ||
+                                (mAge == 9 && item.age > 40)) &&
+                        (mAnum == 0 || item.anum == mAnum ||
+                                (mAnum == 6 && item.anum > 1 && item.anum < 4) ||
+                                (mAnum == 7 && item.anum > 3 && item.anum < 6)) &&
+                        (mCountry == null || item.country.equals(mCountry)) &&
+                        (mSkill == null || item.getSkillShortString().equals(mSkill)) &&
+                        (!mLike || DataManager.checkLike(getActivity(), getTemplateString() + " " + item.id)) &&
+                        (mQuery == null ||
+                                item.name.contains(mQuery) ||
+                                item.title.contains(mQuery) ||
+                                String.valueOf(item.id).contains(mQuery)
+                        )
                 )
-            )
           mDisplayedData.add(item);
 
       sort();
@@ -445,6 +452,14 @@ public class UnitListFragment extends Fragment {
               l = lhs.age;
               r = rhs.age;
               break;
+            case R.id.menu_sort_sklmax:
+              l = lhs.sklmax;
+              r = rhs.sklmax;
+              break;
+            case R.id.menu_sort_id:
+              r = rhs.id;
+              l = lhs.id;
+              break;
           }
 
           if (l < r) return 1;
@@ -482,7 +497,7 @@ public class UnitListFragment extends Fragment {
     public View getView(int position, View convertView, ViewGroup parent) {
       if (convertView == null) {
         convertView = LayoutInflater.from(parent.getContext())
-            .inflate(R.layout.cell_unit_item, null);
+                .inflate(R.layout.cell_unit_item, null);
       }
 
       final ImageView thumbnailView = (ImageView) convertView.findViewById(R.id.thumbnail);
@@ -511,34 +526,63 @@ public class UnitListFragment extends Fragment {
       elementView.setElement(item.fire, item.aqua, item.wind, item.light, item.dark);
 
       TextView textView;
-      textView = (TextView) convertView.findViewById(R.id.text_1);
-      textView.setText(String.format("生命: %d\n攻击: %d\n攻距: %d\n攻数: %d",
-          item.getLife(mLevelMode), item.getAtk(mLevelMode), item.aarea, item.anum));
+
+
 
       switch (mTemplate) {
         case R.id.menu_template_unit:
           nameView.setText(item.title + item.name);
+          elementView.setVisibility(View.VISIBLE);
+
+          textView = (TextView) convertView.findViewById(R.id.text_1);
+          textView.setText(String.format("生命: %d\n攻击: %d\n攻距: %d\n攻数: %d",
+                  item.getLife(mLevelMode), item.getAtk(mLevelMode), item.aarea, item.anum));
 
           textView = (TextView) convertView.findViewById(R.id.text_2);
           textView.setText(String.format("攻速: %.2f\n韧性: %d\n移速: %d\n多段: %d",
-              item.aspd, item.tenacity, item.mspd, item.hits));
+                  item.aspd, item.tenacity, item.mspd, item.hits));
 
           textView = (TextView) convertView.findViewById(R.id.text_3);
           textView.setText(String.format("成长: %s\n火: %s\n水: %s\n风: %s",
-              item.getTypeString(),
-              UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
-              UnitItem.getElementString(item.wind)));
+                  item.getTypeString(),
+                  UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
+                  UnitItem.getElementString(item.wind)));
+          textView.setVisibility(View.GONE);
 
           textView = (TextView) convertView.findViewById(R.id.text_4);
           textView.setText(String.format("光: %s\n暗: %s\nDPS: %d\n总DPS: %d",
-              UnitItem.getElementString(item.light), UnitItem.getElementString(item.dark),
-              item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));
+                  UnitItem.getElementString(item.light), UnitItem.getElementString(item.dark),
+                  item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));
+
+          textView = (TextView) convertView.findViewById(R.id.text_9);
+          textView.setVisibility(View.GONE);
 
           break;
 
         case R.id.menu_template_monster:
           nameView.setText(item.name);
 
+          elementView.setVisibility(View.GONE);
+
+          textView = (TextView) convertView.findViewById(R.id.text_1);
+          textView.setText(String.format("攻距: %d\n韧性: %d\n移速: %d\n溅射距离: %d",
+                  item.aarea, item.tenacity,item.mspd,item.sarea));
+
+          textView = (TextView) convertView.findViewById(R.id.text_2);
+          textView.setText(String.format("攻数: %d\n多段: %d\n皮肤: %s\n攻速: %.2f",
+                  item.anum, item.hits, item.getSkinString(), item.aspd));
+
+          textView = (TextView) convertView.findViewById(R.id.text_3);
+          textView.setText(String.format("技能: %s\n极限: %s\n技能CD: %d\n技能SP: %d",
+                  item.getSkillShortString(),  UnitItem.getSkillString(item.sklmax), item.sklcd, item.sklsp));
+          textView.setVisibility(View.VISIBLE);
+		  
+		 /* textView = (TextView) convertView.findViewById(R.id.text_9);
+		  textView.setText(String.format("位置: %s",
+			item.obtain));
+		  textView.setVisibility(View.VISIBLE);*/
+			  
+		  /*
           textView = (TextView) convertView.findViewById(R.id.text_2);
           textView.setText(String.format("攻速: %.2f\n韧性: %d\n移速: %d\n皮肤: %s",
               item.aspd, item.tenacity, item.mspd, item.getSkinString()));
@@ -549,7 +593,7 @@ public class UnitListFragment extends Fragment {
 
           textView = (TextView) convertView.findViewById(R.id.text_4);
           textView.setText(String.format("\n\nDPS: %d\n总DPS: %d",
-              item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));
+              item.getDPS(mLevelMode), item.getMultDPS(mLevelMode)));*/
 
           break;
       }

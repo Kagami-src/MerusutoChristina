@@ -50,15 +50,15 @@ public class ElementView extends View {
     mThirdBoundPath = new Path();
     mElementBoundPath = new Path();
     mElementBoundPointRadio = getContext().getResources()
-        .getDimension(R.dimen.element_bound_point_radio);
+            .getDimension(R.dimen.element_bound_point_radio);
     mElementViewTopPadding = getContext().getResources()
-        .getDimension(R.dimen.element_view_top_padding);
+            .getDimension(R.dimen.element_view_top_padding);
   }
 
   private PointF getPoint(float centerX, float centerY, float r, int i) {
     double th = (Math.PI * 2) / 360;
     PointF point = new PointF((float) (centerX + r * Math.cos((-i * 72 + 90) * th)),
-        (float) (centerY - r * Math.sin((-i * 72 + 90) * th)) + mElementViewTopPadding);
+            (float) (centerY - r * Math.sin((-i * 72 + 90) * th)) + mElementViewTopPadding);
     return point;
   }
 
@@ -148,7 +148,7 @@ public class ElementView extends View {
     for (int i = 0; i < 5; i++) {
       mPaint.setColor(COLORS[i]);
       canvas.drawCircle(mBoundPoints[i].x, mBoundPoints[i].y,
-          mElementBoundPointRadio, mPaint);
+              mElementBoundPointRadio, mPaint);
     }
   }
 }

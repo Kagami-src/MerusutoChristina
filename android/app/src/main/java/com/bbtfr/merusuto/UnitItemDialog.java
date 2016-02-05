@@ -128,7 +128,6 @@ public class UnitItemDialog extends Dialog {
         }
       }
     });
-
     final String key = getTemplateString() + " " + mItem.id;
     mLike = DataManager.checkLike(getContext(), key);
 
@@ -180,10 +179,10 @@ public class UnitItemDialog extends Dialog {
 
         textView = (TextView) detailView.findViewById(R.id.text_4);
         textView.setText(String.format("成长: %s\n火: %s\n水: %s\n风: %s\n光: %s\n暗: %s",
-            item.getTypeString(),
-            UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
-            UnitItem.getElementString(item.wind), UnitItem.getElementString(item.light),
-            UnitItem.getElementString(item.dark)));
+                item.getTypeString(),
+                UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
+                UnitItem.getElementString(item.wind), UnitItem.getElementString(item.light),
+                UnitItem.getElementString(item.dark)));
 
         textView = (TextView) detailView.findViewById(R.id.text_5);
         textView.setText(String.format("国家: %s\n性别: %s\n年龄: %s",
@@ -218,40 +217,27 @@ public class UnitItemDialog extends Dialog {
         nameView.setText(item.name);
 
         textView = (TextView) detailView.findViewById(R.id.text_1);
-        textView.setText(String.format("初始生命: %d\n1.7 生命: %d\n1.8 生命: %d\n初始攻击: %d\n1.7 攻击: %d\n1.8 攻击: %d",
-            item.getLife(R.id.menu_level_sm), item.getLife(R.id.menu_level_xl), item.getLife(R.id.menu_level_xxl),
-            item.getAtk(R.id.menu_level_sm), item.getAtk(R.id.menu_level_xl), item.getAtk(R.id.menu_level_xxl)));
+        textView.setText(String.format("攻距: %d\n韧性: %d\n移速: %d\n溅射距离: %d",
+                item.aarea, item.tenacity, item.mspd, item.sarea));
 
         textView = (TextView) detailView.findViewById(R.id.text_2);
-        textView.setText(String.format("攻距: %d\n攻数: %d\n攻速: %.2f\n韧性: %d\n移速: %d\n成长: %s",
-            item.aarea, item.anum, item.aspd, item.tenacity, item.mspd, item.getTypeString()));
-
-        textView = (TextView) detailView.findViewById(R.id.text_3);
-        textView.setText(String.format("初始DPS: %d\n1.7 DPS: %d\n1.8 DPS: %d\n初始总DPS: %d\n1.7 总DPS: %d\n1.8 总DPS: %d",
-            item.getDPS(R.id.menu_level_sm), item.getDPS(R.id.menu_level_xl), item.getDPS(R.id.menu_level_xxl),
-            item.getMultDPS(R.id.menu_level_sm), item.getMultDPS(R.id.menu_level_xl), item.getMultDPS(R.id.menu_level_xxl)));
-
-        textView = (TextView) detailView.findViewById(R.id.text_4);
-        textView.setText(String.format("火: %s\n水: %s\n风: %s\n光: %s\n暗: %s",
-            UnitItem.getElementString(item.fire), UnitItem.getElementString(item.aqua),
-            UnitItem.getElementString(item.wind), UnitItem.getElementString(item.light),
-            UnitItem.getElementString(item.dark)));
-
+        textView.setText(String.format("攻数: %d\n多段: %d\n皮肤: %s\n攻速: %.2f",
+             item.anum, item.hits, item.getSkinString(), item.aspd));
         detailView.findViewById(R.id.text_layout3).setVisibility(View.GONE);
         detailView.findViewById(R.id.text_7).setVisibility(View.GONE);
 
         textView = (TextView) detailView.findViewById(R.id.text_8);
-        textView.setText(String.format("技能: \n技能SP: %d\n技能CD: %d\n%s",
-            item.sklsp, item.sklcd, item.skill));
+        textView.setText(String.format("技能: %s\n技能SP: %d\n技能CD: %d",
+            item.skill, item.sklsp, item.sklcd));
 
         textView = (TextView) detailView.findViewById(R.id.text_9);
         textView.setText(String.format("获取方式: \n%s", item.obtain));
 
         textView = (TextView) detailView.findViewById(R.id.text_10);
-        if (item.contributors == null || item.contributors.size() == 0) {
+        if (item.remark.equals("暂缺")) {
           textView.setVisibility(View.GONE);
         } else {
-          textView.setText(String.format("数据提供者: %s", item.getContributorsString()));
+          textView.setText(String.format("简介: %s", item.remark));
         }
 
         break;

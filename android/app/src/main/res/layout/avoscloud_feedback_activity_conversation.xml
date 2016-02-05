@@ -2,9 +2,17 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:orientation="vertical">
+  android:orientation="vertical"
+    android:background="#bc00a9ff">
   <!-- android:background="#fff" -->
-
+  <ImageView
+      android:id="@+id/logo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/top"
+      android:adjustViewBounds="false"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true" />
   <RelativeLayout
     android:id="@+id/avoscloud_feedback_input_wrapper"
     android:layout_width="match_parent"
@@ -26,7 +34,6 @@
         android:layout_marginLeft="5dp"
         android:background="@color/avoscloud_feedback_input_wrap_background"
         android:padding="10dp"
-
         android:src="@drawable/ic_action_picture"></ImageView>
 
       <Button

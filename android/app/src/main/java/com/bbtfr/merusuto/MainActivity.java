@@ -1,5 +1,6 @@
 package com.bbtfr.merusuto;
 
+import android.net.Uri;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -22,10 +23,16 @@ import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.drawable.Drawable;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface.OnClickListener;
+import android.content.DialogInterface;
 
 import com.avos.avoscloud.feedback.FeedbackAgent;
-
 import java.util.ArrayList;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
 
@@ -36,6 +43,7 @@ public class MainActivity extends Activity {
   private ArrayList<String> mCountries, mSkills;
   private boolean mCountryFilterUpdated = false, mSkillFilterUpdated = false;
   private FeedbackAgent mAgent;
+  private Context context;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +67,12 @@ public class MainActivity extends Activity {
     for (int i = 0; i < menu.size(); i++) {
       menuItem = menu.getItem(i);
       adapter.addItem(new DrawerItem(menuItem.getItemId(),
-              menuItem.getTitle(), true));
+              menuItem.getTitle(), true, menuItem.getIcon()));
       SubMenu subMenu = menuItem.getSubMenu();
       for (int j = 0; j < subMenu.size(); j++) {
         menuItem = subMenu.getItem(j);
         adapter.addItem(new DrawerItem(menuItem.getItemId(),
-                menuItem.getTitle(), false));
+                menuItem.getTitle(), false, menuItem.getIcon()));
       }
     }
 
@@ -93,18 +101,67 @@ public class MainActivity extends Activity {
               intent.setType("file/*");
               startActivityForResult(intent, R.id.menu_load_zip_data);
             } catch(Exception e) {
-              Toast.makeText(MainActivity.this, "未找到内置文件浏览器...",
-                      Toast.LENGTH_SHORT).show();
+              Toast mToast = Toast.makeText(MainActivity.this, "   未找到内置文件浏览器...", Toast.LENGTH_LONG);
+              LinearLayout toastView = (LinearLayout) mToast.getView();
+              toastView.setOrientation(LinearLayout.HORIZONTAL);
+              ImageView imageCodeProject = new ImageView(getApplicationContext());
+              imageCodeProject.setImageResource(R.drawable.warning);
+              toastView.addView(imageCodeProject, 0);
+              mToast.show();
             }
             break;
           case R.id.menu_user_feedback:
             mAgent.startDefaultThreadActivity();
             break;
           case R.id.menu_check_update:
-            Toast.makeText(MainActivity.this, "检查版本更新...",
-                    Toast.LENGTH_SHORT).show();
+            Toast mToast = Toast.makeText(MainActivity.this, "   检查版本更新... ", Toast.LENGTH_LONG);
+            LinearLayout toastView = (LinearLayout) mToast.getView();
+            toastView.setOrientation(LinearLayout.HORIZONTAL);
+            ImageView imageCodeProject = new ImageView(getApplicationContext());
+            imageCodeProject.setImageResource(R.drawable.loading);
+            toastView.addView(imageCodeProject, 0);
+            mToast.show();
             Utils.checkUpdate(MainActivity.this, true);
             mUnitListFragment.updateJSONData(true);
+            break;
+          case R.id.menu_clouddisk_url:
+            try {
+              String url = "http://bbtfr.github.io/MerusutoChristina/jump/clouddisk.html";
+              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+              MainActivity.this.startActivity(intent);
+            } catch (Exception e) {
+              Toast.makeText(MainActivity.this, "未找到内置网页浏览器...",
+                      Toast.LENGTH_SHORT).show();
+            }
+            break;
+          case R.id.menu_about:
+            try {
+              String url = "http://bbtfr.github.io/MerusutoChristina/jump/about.html";
+              Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+              MainActivity.this.startActivity(intent);
+            } catch (Exception e) {
+              Toast.makeText(MainActivity.this, "未找到内置网页浏览器...",
+                      Toast.LENGTH_SHORT).show();
+            }
+            break;
+          case R.id.menu_delete_data:
+            AlertDialog.Builder builder = new Builder(MainActivity.this);
+            builder.setMessage("确认清除所有立绘文件吗？");
+            builder.setTitle("提示");
+            builder.setPositiveButton("确认", new OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                Utils.createDeleteMeruDirTask(MainActivity.this);
+              }
+            });
+            builder.setNegativeButton("取消", new OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+              }
+            });
+            builder.create().show();
             break;
         }
       }
@@ -342,6 +399,15 @@ public class MainActivity extends Activity {
         mUnitListFragment.setServer(item.getOrder());
         setMenuItemEnabledEx(R.id.menu_server, item);
         break;
+      case R.id.menu_exchange_0:
+        mUnitListFragment.setExchange(0);
+        setMenuItemEnabledEx(R.id.menu_exchange);
+        break;
+      case R.id.menu_exchange_1:
+      case R.id.menu_exchange_2:
+        mUnitListFragment.setExchange(item.getOrder());
+        setMenuItemEnabledEx(R.id.menu_exchange, item);
+        break;
       case R.id.menu_skin_0:
         mUnitListFragment.setSkin(0);
         setMenuItemEnabledEx(R.id.menu_skin);
@@ -402,6 +468,7 @@ public class MainActivity extends Activity {
         break;
       case R.id.menu_sort_rare:
       case R.id.menu_sort_dps:
+      case R.id.menu_sort_sklmax:
       case R.id.menu_sort_mult_dps:
       case R.id.menu_sort_life:
       case R.id.menu_sort_atk:
@@ -419,11 +486,6 @@ public class MainActivity extends Activity {
       case R.id.menu_level_zero:
       case R.id.menu_level_max_lv:
       case R.id.menu_level_max_lv_gr:
-      case R.id.menu_level_sm:
-      case R.id.menu_level_md:
-      case R.id.menu_level_lg:
-      case R.id.menu_level_xl:
-      case R.id.menu_level_xxl:
         mUnitListFragment.setLevelMode(itemId);
         setMenuItemEnabled(R.id.menu_level_mode, item);
         break;
@@ -444,7 +506,6 @@ public class MainActivity extends Activity {
 
     return super.onOptionsItemSelected(item);
   }
-
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (resultCode != Activity.RESULT_OK) {
@@ -510,11 +571,13 @@ public class MainActivity extends Activity {
     public int id;
     public String title;
     public boolean separator = false;
+	public Drawable icon;
 
-    public DrawerItem(int id, CharSequence title, boolean separator) {
+    public DrawerItem(int id, CharSequence title, boolean separator, Drawable icon) {
       this.id = id;
       this.title = title.toString();
       this.separator = separator;
+	  this.icon = icon;
     }
   }
 
@@ -558,6 +621,11 @@ public class MainActivity extends Activity {
         textView = (TextView) convertView.findViewById(R.id.text);
       }
       textView.setText(mData.get(position).title);
+      Drawable icon = mData.get(position).icon;
+      if (icon != null) {
+        icon.setBounds(0, 0, 35, 35);
+        textView.setCompoundDrawables(icon, null, null, null);
+      }
 
       return convertView;
     }

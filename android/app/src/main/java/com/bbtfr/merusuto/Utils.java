@@ -126,8 +126,73 @@ public class Utils {
     }
   }
 
+  static private class DeleteMeruDirTask extends AsyncTask<Integer, Integer, Void> {
+
+    private ProgressDialog mProgressDialog = null;
+    private Context mContext;
+    private int mProgress = 0;
+
+    public DeleteMeruDirTask(Context context) {
+      mContext = context;
+    }
+
+    @Override
+    protected void onPreExecute() {
+      /*try {
+        int size = new ZipFile(mFilename).size();
+        System.out.println("Delete file: " + mFilename);
+
+        mProgressDialog = new ProgressDialog(mContext);
+        mProgressDialog.setButton("取消", new DialogInterface.OnClickListener() {
+
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+          }
+        });
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setTitle("数据删除");
+        mProgressDialog.setMessage("正在删除数据，请稍后...");
+        mProgressDialog.setMax(1);
+        mProgressDialog.show();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }*/
+    }
+
+    @Override
+    protected Void doInBackground(Integer... param) {
+      try {
+        File location = new File(Environment.getExternalStorageDirectory(),
+                ".merusuto");
+        deleteFile(location);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+      /*if (mProgressDialog != null)
+        mProgressDialog.setProgress(mProgress);*/
+    }
+
+    @Override
+    protected void onPostExecute(Void result) {
+      /*if (mProgressDialog != null)
+        mProgressDialog.dismiss();*/
+    }
+  }
+
   static public void createDecompressTask(Context context, String filename) {
     new DecompressTask(context, filename).execute();
+  }
+
+  static public void createDeleteMeruDirTask(Context context) {
+    new DeleteMeruDirTask(context).execute();
   }
 
   static public void checkUpdate(final Context context, boolean force) {
@@ -168,13 +233,14 @@ public class Utils {
           int remoteVersion = 0;
           try {
             remoteVersion = Integer.parseInt(new String(data).trim());
-          } catch (Exception e) {}
+          } catch (Exception e) {
+          }
           System.out.println("Local apk version: " + localVersion + ", remote apk version: " + remoteVersion + ".");
           DataManager.saveLocalData(context, key + ".version", new byte[0]);
 
           if (remoteVersion > localVersion) {
             Toast.makeText(context, "检测到应用更新，正在下载，请稍候...",
-              Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show();
 
             DataManager.loadRemoteData(context, key, new DataManager.DataHandler() {
               @Override
@@ -184,30 +250,58 @@ public class Utils {
                   final File file = DataManager.getLocalFile(key);
 
                   new AlertDialog.Builder(context)
-                      .setTitle("应用更新")
-                      .setMessage("检测到新版本梅露可图鉴，是否更新？")
-                      .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                          .setTitle("应用更新")
+                          .setMessage("检测到新版本梅露可图鉴，是否更新？")
+                          .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                          Intent intent = new Intent(Intent.ACTION_VIEW);
-                          intent.setDataAndType(Uri.fromFile(file),
-                              "application/vnd.android.package-archive");
-                          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                          context.startActivity(intent);
-                        }
-                      })
-                      .setNegativeButton(android.R.string.no, null)
-                      .show();
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                              Intent intent = new Intent(Intent.ACTION_VIEW);
+                              intent.setDataAndType(Uri.fromFile(file),
+                                      "application/vnd.android.package-archive");
+                              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                              context.startActivity(intent);
+                            }
+                          })
+                          .setNegativeButton(android.R.string.no, null)
+                          .show();
 
                 }
               }
             });
           }
-        } catch(Exception e) {
+        } catch (Exception e) {
           e.printStackTrace();
         }
       }
     });
+  }
+
+  static public void deleteFile(File file) {
+    if (file.exists() == false) {
+      return;
+    } else {
+      if (file.isFile()) {
+        file.delete();
+        return;
+      }
+      if (file.isDirectory()) {
+        File[] childFile = file.listFiles();
+        if (childFile == null || childFile.length == 0) {
+          file.delete();
+          return;
+        }
+        for (File f : childFile) {
+          deleteFile(f);
+        }
+        file.delete();
+      }
+    }
+  }
+
+  static public void deleteMeruDir() {
+    File location = new File(Environment.getExternalStorageDirectory(),
+            ".merusuto");
+    deleteFile(location);
   }
 }

@@ -60,6 +60,9 @@
       <item
           android:id="@+id/menu_sort_age"
           android:title="年龄" />
+      <item
+          android:id="@+id/menu_sort_id"
+          android:title="ID" />
     </menu>
   </item>
   <item
@@ -272,6 +275,16 @@
         </menu>
       </item>
       <item
+          android:id="@+id/menu_country"
+          android:showAsAction="withText"
+          android:title="国别">
+        <menu>
+          <item
+              android:id="@+id/menu_country_0"
+              android:title="全部" />
+        </menu>
+      </item>
+      <item
         android:id="@+id/menu_gender"
         android:showAsAction="withText"
         android:title="性别">
@@ -340,16 +353,6 @@
         </menu>
       </item>
       <item
-        android:id="@+id/menu_country"
-        android:showAsAction="withText"
-        android:title="国别">
-        <menu>
-          <item
-            android:id="@+id/menu_country_0"
-            android:title="全部" />
-        </menu>
-      </item>
-      <item
           android:id="@+id/menu_server"
           android:showAsAction="withText"
           android:title="新品上架">
@@ -368,6 +371,24 @@
         </menu>
       </item>
       <item
+          android:id="@+id/menu_exchange"
+          android:showAsAction="withText"
+          android:title="交换所">
+        <menu>
+          <item
+              android:id="@+id/menu_exchange_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_exchange_1"
+              android:orderInCategory="1"
+              android:title="历代交换所人物" />
+          <item
+              android:id="@+id/menu_exchange_2"
+              android:orderInCategory="2"
+              android:title="历代活动人物" />
+        </menu>
+      </item>
+      <item
         android:id="@+id/menu_like"
         android:title="收藏">
       </item>
@@ -378,9 +399,9 @@
   </item>
   <item
     android:id="@+id/menu_search"
+    android:showAsAction="collapseActionView|always"
     android:title="搜索"
     android:icon="@drawable/ic_action_search"
-    android:showAsAction="collapseActionView|always"
     android:actionViewClass="android.widget.SearchView" />
   <item
     android:id="@+id/menu_close_search"

@@ -72,8 +72,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         style="@style/ListText" />
-
+		
     </LinearLayout>
+	
+	<TextView
+		android:id="@+id/text_9"
+		android:visibility="gone"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/text_layout"
+		android:layout_alignLeft="@+id/thumbnail"
+		style="@style/ListText" />
 
     <com.bbtfr.merusuto.ElementView
       android:id="@+id/element"

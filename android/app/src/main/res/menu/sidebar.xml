@@ -1,4 +1,4 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+﻿<menu xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   tools:context="com.bbtfr.merusuto.MainActivity">
   <item
@@ -7,11 +7,13 @@
     android:title="类别">
     <menu>
       <item
-        android:id="@+id/menu_template_unit"
-        android:title="同伴"></item>
+          android:id="@+id/menu_template_unit"
+          android:icon="@drawable/units64"
+          android:title="     同伴"></item>
       <item
-        android:id="@+id/menu_template_monster"
-        android:title="魔宠"></item>
+          android:id="@+id/menu_template_monster"
+          android:icon="@drawable/monster"
+          android:title="     魔宠"></item>
     </menu>
   </item>
   <item
@@ -20,14 +22,29 @@
     android:title="设置">
     <menu>
       <item
-        android:id="@+id/menu_load_zip_data"
-        android:title="加载图包"></item>
+          android:id="@+id/menu_load_zip_data"
+          android:icon="@drawable/files64"
+          android:title="     加载图包"></item>
       <item
-        android:id="@+id/menu_user_feedback"
-        android:title="用户反馈"></item>
+          android:id="@+id/menu_user_feedback"
+          android:icon="@drawable/bubble64"
+          android:title="     用户反馈"></item>
       <item
-        android:id="@+id/menu_check_update"
-        android:title="检查更新"></item>
+          android:id="@+id/menu_check_update"
+          android:icon="@drawable/download64"
+          android:title="     检查更新"></item>
+	  <item
+          android:id="@+id/menu_clouddisk_url"
+          android:icon="@drawable/cloud64"
+          android:title="     网盘地址"></item>
+      <item
+          android:id="@+id/menu_delete_data"
+          android:icon="@drawable/delete64"
+          android:title="     清除立绘文件"></item>
+      <item
+          android:id="@+id/menu_about"
+          android:icon="@drawable/about64"
+          android:title="     帮助"></item>
     </menu>
   </item>
 </menu>

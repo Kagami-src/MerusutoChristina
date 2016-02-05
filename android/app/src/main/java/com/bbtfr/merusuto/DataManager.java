@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -19,6 +20,9 @@ import org.apache.http.Header;
 
 import java.io.File;
 import java.io.InputStream;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
 
 public class DataManager {
 
@@ -91,27 +95,48 @@ public class DataManager {
       @Override
       public void onSuccess(final byte[] version) {
         if (version != null) {
-          Toast.makeText(context, "检测到数据更新，正在下载，请稍候...",
-                  Toast.LENGTH_SHORT).show();
+          Toast mToast = Toast.makeText(context, "   检测到数据更新，正在下载，请稍候... ", Toast.LENGTH_LONG);
+          LinearLayout toastView = (LinearLayout) mToast.getView();
+          toastView.setOrientation(LinearLayout.HORIZONTAL);
+          ImageView imageCodeProject = new ImageView(context);
+          imageCodeProject.setImageResource(R.drawable.loading);
+          toastView.addView(imageCodeProject, 0);
+          mToast.show();
           loadRemoteData(context, key, new DataHandler() {
             @Override
             public void onSuccess(byte[] data) {
               if (data != null) {
-                Toast.makeText(context, "数据已更新，重新加载界面...",
-                        Toast.LENGTH_SHORT).show();
+                Toast mToast = Toast.makeText(context, "   数据已更新，重新加载界面... ", Toast.LENGTH_LONG);
+                LinearLayout toastView = (LinearLayout) mToast.getView();
+                toastView.setOrientation(LinearLayout.HORIZONTAL);
+                ImageView imageCodeProject = new ImageView(context);
+                imageCodeProject.setImageResource(R.drawable.ok);
+                toastView.addView(imageCodeProject, 0);
+                mToast.show();
                 try {
                   handler.onSuccess(JSON.parse(data));
                   saveLocalData(context, key, data);
                   saveLocalData(context, key + ".version", version);
                 } catch (Exception e) {}
               } else {
-                Toast.makeText(context, "网络错误，请稍候重试...",
-                        Toast.LENGTH_SHORT).show();
+                Toast mToast = Toast.makeText(context, "   网络错误，请稍候重试... ", Toast.LENGTH_LONG);
+                LinearLayout toastView = (LinearLayout) mToast.getView();
+                toastView.setOrientation(LinearLayout.HORIZONTAL);
+                ImageView imageCodeProject = new ImageView(context);
+                imageCodeProject.setImageResource(R.drawable.warning);
+                toastView.addView(imageCodeProject, 0);
+                mToast.show();
               }
             }
           });
         } else if (force) {
-          Toast.makeText(context, "已经是最新版本!", Toast.LENGTH_SHORT).show();
+          Toast mToast = Toast.makeText(context, "   已经是最新版本 ", Toast.LENGTH_LONG);
+          LinearLayout toastView = (LinearLayout) mToast.getView();
+          toastView.setOrientation(LinearLayout.HORIZONTAL);
+          ImageView imageCodeProject = new ImageView(context);
+          imageCodeProject.setImageResource(R.drawable.ok);
+          toastView.addView(imageCodeProject, 0);
+          mToast.show();
         }
       }
     });

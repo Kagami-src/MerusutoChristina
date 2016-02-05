@@ -2,29 +2,6 @@
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="com.bbtfr.merusuto.MainActivity" >
   <item
-    android:id="@+id/menu_level_mode"
-    android:showAsAction="always|withText"
-    android:title="体型">
-    <menu>
-      <item
-        android:id="@+id/menu_level_sm"
-        android:enabled="false"
-        android:title="幼年期（1.0）" />
-      <item
-        android:id="@+id/menu_level_md"
-        android:title="成长期（1.35）" />
-      <item
-        android:id="@+id/menu_level_lg"
-        android:title="成熟期（1.55）" />
-      <item
-        android:id="@+id/menu_level_xl"
-        android:title="完全体（1.7）" />
-      <item
-        android:id="@+id/menu_level_xxl"
-        android:title="天然完全体（1.8）" />
-    </menu>
-  </item>
-  <item
     android:id="@+id/menu_sort_mode"
     android:showAsAction="always|withText"
     android:title="排序">
@@ -34,17 +11,8 @@
         android:enabled="false"
         android:title="稀有度" />
       <item
-        android:id="@+id/menu_sort_dps"
-        android:title="单体DPS" />
-      <item
-        android:id="@+id/menu_sort_mult_dps"
-        android:title="多体DPS" />
-      <item
-        android:id="@+id/menu_sort_life"
-        android:title="生命力" />
-      <item
-        android:id="@+id/menu_sort_atk"
-        android:title="攻击" />
+          android:id="@+id/menu_sort_sklmax"
+          android:title="极限值" />
       <item
         android:id="@+id/menu_sort_aarea"
         android:title="攻击距离" />
@@ -60,9 +28,6 @@
       <item
         android:id="@+id/menu_sort_mspd"
         android:title="移动速度" />
-      <item
-        android:id="@+id/menu_sort_id"
-        android:title="新品上架" />
     </menu>
   </item>
   <item
@@ -176,6 +141,24 @@
           <item
             android:id="@+id/menu_skill_0"
             android:title="全部" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_server"
+          android:showAsAction="withText"
+          android:title="新品上架">
+        <menu>
+          <item
+              android:id="@+id/menu_server_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_server_1"
+              android:orderInCategory="1"
+              android:title="日服" />
+          <item
+              android:id="@+id/menu_server_2"
+              android:orderInCategory="2"
+              android:title="国服" />
         </menu>
       </item>
       <item
