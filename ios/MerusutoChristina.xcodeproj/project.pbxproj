@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9608662D1AA2DC0500837F95 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9608662C1AA2DC0500837F95 /* Reachability.swift */; };
+		3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFA8C51C7AB7860002344A /* RootViewController.swift */; };
+		3DCFA8CA1C7ABB7B0002344A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */; };
+		92F4CE197586164E0E9D94A3 /* Pods_MerusutoChristina.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */; };
 		9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6561AA30B2400827D0C /* AVOSCloud.framework */; };
 		9615C6591AA30E9F00827D0C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */; };
 		9615C65B1AA30EB000827D0C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */; };
@@ -23,10 +25,8 @@
 		9692F10E1A9C7E8A00190CD4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10D1A9C7E8A00190CD4 /* Images.xcassets */; };
 		9692F1111A9C7E8A00190CD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */; };
 		9692F11D1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */; };
-		96C756071A9E022600F608C3 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C756061A9E022600F608C3 /* SwiftyJSON.swift */; };
 		96C756091A9E033500F608C3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C756081A9E033500F608C3 /* DataManager.swift */; };
 		96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C7560A1A9EB2F100F608C3 /* ElementView.swift */; };
-		E5928BBE964B32EE2ACE41A3 /* libPods-MerusutoChristina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3DCFA8C51C7AB7860002344A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.release.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.release.xcconfig"; sourceTree = "<group>"; };
-		9608662C1AA2DC0500837F95 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		9615C6561AA30B2400827D0C /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = MerusutoChristina/AVOSCloud.framework; sourceTree = "<group>"; };
 		9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -56,16 +57,15 @@
 		96819A0A1AA0A307009DFF6A /* UnitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitItem.swift; sourceTree = "<group>"; };
 		9692F1051A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9692F1081A9C7E8A00190CD4 /* UnitListController.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = UnitListController.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
+		9692F1081A9C7E8A00190CD4 /* UnitListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = UnitListController.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		9692F10B1A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9692F10D1A9C7E8A00190CD4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9692F1101A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9692F11B1A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerusutoChristinaTests.swift; sourceTree = "<group>"; };
-		96C756061A9E022600F608C3 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		96C756081A9E033500F608C3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		96C7560A1A9EB2F100F608C3 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
-		CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MerusutoChristina.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MerusutoChristina.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +80,7 @@
 				9615C65B1AA30EB000827D0C /* SystemConfiguration.framework in Frameworks */,
 				9615C6591AA30E9F00827D0C /* MobileCoreServices.framework in Frameworks */,
 				9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */,
-				E5928BBE964B32EE2ACE41A3 /* libPods-MerusutoChristina.a in Frameworks */,
+				92F4CE197586164E0E9D94A3 /* Pods_MerusutoChristina.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,14 +111,14 @@
 			children = (
 				963D1B9D1AD0234000BDD532 /* BridgingHeader.h */,
 				9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */,
-				96C756061A9E022600F608C3 /* SwiftyJSON.swift */,
-				9608662C1AA2DC0500837F95 /* Reachability.swift */,
 				96C756081A9E033500F608C3 /* DataManager.swift */,
 				96819A0A1AA0A307009DFF6A /* UnitItem.swift */,
 				9692F1081A9C7E8A00190CD4 /* UnitListController.swift */,
 				9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */,
 				965E74611AA00D3D00536285 /* UnitItemController.swift */,
 				96C7560A1A9EB2F100F608C3 /* ElementView.swift */,
+				3DCFA8C51C7AB7860002344A /* RootViewController.swift */,
+				3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */,
 				9692F10A1A9C7E8A00190CD4 /* Main.storyboard */,
 				9692F10D1A9C7E8A00190CD4 /* Images.xcassets */,
 				9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */,
@@ -170,7 +170,7 @@
 				9615C65A1AA30EB000827D0C /* SystemConfiguration.framework */,
 				9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */,
 				9615C6561AA30B2400827D0C /* AVOSCloud.framework */,
-				CD18C32E801FC6B87A2E052D /* libPods-MerusutoChristina.a */,
+				CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,6 +187,7 @@
 				9692F0FE1A9C7E8900190CD4 /* Frameworks */,
 				9692F0FF1A9C7E8900190CD4 /* Resources */,
 				8D532CFDD3C319C9A72980BB /* Copy Pods Resources */,
+				5DC820F2FBAA97F9847D1777 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,12 +222,13 @@
 		9692F0F91A9C7E8900190CD4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = bbtfr;
 				TargetAttributes = {
 					9692F1001A9C7E8900190CD4 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = Y3VGK35SR6;
+						DevelopmentTeam = 7827DZ9F2C;
 					};
 					9692F1151A9C7E8A00190CD4 = {
 						CreatedOnToolsVersion = 6.1;
@@ -274,6 +276,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5DC820F2FBAA97F9847D1777 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6459593A9FCD482B44334B19 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,13 +329,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				96819A0B1AA0A307009DFF6A /* UnitItem.swift in Sources */,
+				3DCFA8CA1C7ABB7B0002344A /* MenuViewController.swift in Sources */,
 				96C756091A9E033500F608C3 /* DataManager.swift in Sources */,
 				9692F1091A9C7E8A00190CD4 /* UnitListController.swift in Sources */,
 				9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */,
-				96C756071A9E022600F608C3 /* SwiftyJSON.swift in Sources */,
 				965E74621AA00D3D00536285 /* UnitItemController.swift in Sources */,
-				9608662D1AA2DC0500837F95 /* Reachability.swift in Sources */,
 				9615C6751AA320FC00827D0C /* UnitListPickerItem.swift in Sources */,
+				3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */,
 				96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,17 +462,22 @@
 			baseConfigurationReference = F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MerusutoChristina",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = MerusutoChristina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
@@ -466,17 +488,22 @@
 			baseConfigurationReference = 6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MerusutoChristina",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = MerusutoChristina/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};

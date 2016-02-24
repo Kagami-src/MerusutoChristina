@@ -8,17 +8,22 @@
 
 import UIKit
 import AVOSCloud
+import Reachability
+import SwiftyJSON
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
   
+    
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
-    AVOSCloud.setApplicationId("ixeo5jke9wy1vvvl3lr06uqy528y1qtsmmgsiknxdbt2xalg",
-      clientKey: "hwud6pxjjr8s46s9vuix0o8mk0b5l8isvofomjwb5prqyyjg")
+//    AVOSCloud.setApplicationId("ixeo5jke9wy1vvvl3lr06uqy528y1qtsmmgsiknxdbt2xalg",
+//      clientKey: "hwud6pxjjr8s46s9vuix0o8mk0b5l8isvofomjwb5prqyyjg")
     
     return true
   }

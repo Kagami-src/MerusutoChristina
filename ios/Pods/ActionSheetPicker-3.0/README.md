@@ -1,8 +1,9 @@
 [![Version](http://img.shields.io/cocoapods/v/ActionSheetPicker-3.0.svg)](http://cocoadocs.org/docsets/ActionSheetPicker-3.0)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/skywinder/ActionSheetPicker-3.0.svg?branch=master)](https://travis-ci.org/skywinder/ActionSheetPicker-3.0)
+[![Issues](http://img.shields.io/github/issues/skywinder/ActionSheetPicker-3.0.svg)](https://github.com/skywinder/ActionSheetPicker-3.0/issues?state=open)
 [![License](https://img.shields.io/cocoapods/l/ActionSheetPicker-3.0.svg)](http://cocoadocs.org/docsets/ActionSheetPicker-3.0)
 [![Platform](https://img.shields.io/cocoapods/p/ActionSheetPicker-3.0.svg)](http://cocoadocs.org/docsets/ActionSheetPicker-3.0)
-[![Issues](http://img.shields.io/github/issues/skywinder/ActionSheetPicker-3.0.svg)](https://github.com/skywinder/ActionSheetPicker-3.0/issues?state=open)
 
 ActionSheetPicker-3.0
 ==================
@@ -21,11 +22,7 @@ ActionSheetPicker-3.0
 
 Please welcome: **ActionSheetPicker-3.0**!
 
-`pod 'ActionSheetPicker-3.0', '~> 1.5.1'` (**iOS 6-7-8** compatible!)
-
-Improvements more than welcome - they are kindly requested :)
-
-_Regards, Petr Korolev_
+`pod 'ActionSheetPicker-3.0', '~> 2.0.4'` (**iOS 5.1.1-8.x** compatible!)
 
 ##ActionSheetPicker = UIPickerView + UIActionSheet ##
 
@@ -54,7 +51,14 @@ There are 4 distinct picker view options: `ActionSheetStringPicker`, `ActionShee
 
 ### Basic Usage ##
 
-For detailed examples, please look [Wiki-page](https://github.com/skywinder/ActionSheetPicker-3.0/wiki/Basic-Usage) and check [Example Projects](#example-projects) in this repo.
+**For detailed info about customisations, please look  [BASIC USAGE](https://github.com/skywinder/ActionSheetPicker-3.0/blob/master/BASIC-USAGE.md)**
+
+- custom buttons view
+- custom buttons callbacks
+- Action by clicking outside of the picker
+- Other customisations
+
+**For detailed examples, please check [Example Projects](#example-projects) in this repo.**
 
 ```obj-c
 // Inside a IBAction method:
@@ -66,9 +70,8 @@ NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange"
                                         rows:colors
                             initialSelection:0
                                    doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                      NSLog(@"Picker: %@", picker);
-                                      NSLog(@"Selected Index: %@", selectedIndex);
-                                      NSLog(@"Selected Value: %@", selectedValue);
+                                      NSLog(@"Picker: %@, Index: %@, value: %@", 
+                                      picker, selectedIndex, selectedValue);
                                     }
                                  cancelBlock:^(ActionSheetStringPicker *picker) {
                                       NSLog(@"Block Picker Canceled");
@@ -80,14 +83,85 @@ NSArray *colors = [NSArray arrayWithObjects:@"Red", @"Green", @"Blue", @"Orange"
  
 ##Installation##
 
--  The most easiest way is through [Cocoapods](http://cocoapods.org/).
-Just add to your Podfile string: `pod 'ActionSheetPicker-3.0'`
+### CocoaPods
 
--  The "old school" way is manually add to your project all from [Pickers](/Pickers) folder and import necessary headers.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects.
+
+You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate ActionSheetPicker-3.0 into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+pod 'ActionSheetPicker-3.0'
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Import to project
+
+To import pod you should add string:
+
+- For `Obj-c` projects:
+
+        #import "ActionSheetPicker.h"
+
+- For `Swift` projects:
+
+
+        import ActionSheetPicker_3_0
+
+### Carthage
+
+Carthage is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate ActionSheetPicker-3.0 into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "skywinder/ActionSheetPicker-3.0"
+```
+
+### Manually
+
+If you prefer not to use either of the aforementioned dependency managers, you can integrate ActionSheetPicker-3.0 into your project manually.
+
+The "old school" way is manually add to your project all from [Pickers](/Pickers) folder.
+
+### Embedded Framework
+
+- Add ActionSheetPicker-3.0 as a [submodule](http://git-scm.com/docs/git-submodule) by opening the Terminal, `cd`-ing into your top-level project directory, and entering the following command:
+
+```bash
+$ git submodule add https://github.com/skywinder/ActionSheetPicker-3.0.git
+```
+
+- Open the `ActionSheetPicker-3.0` folder, and drag `CoreActionSheetPicker.xcodeproj` into the file navigator of your app project.
+- In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
+- Ensure that the deployment target of CoreActionSheetPicker.framework matches that of the application target.
+- In the tab bar at the top of that window, open the "Build Phases" panel.
+- Expand the "Target Dependencies" group, and add `CoreActionSheetPicker.framework`.
+- Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `CoreActionSheetPicker.framework`.
 
 ## Example Projects##
 
-`open Example.xcworkspace`
+`open ActionSheetPicker-3.0.xcworkspace`
 
 Here is 4 projects:
 
@@ -106,6 +180,9 @@ Here is 4 projects:
 
 
 ## [Apps using this library](https://github.com/skywinder/ActionSheetPicker-3.0/wiki/Apps-using-ActionSheetPicker-3.0) 
+
+If you've used this project in a live app, please let me know! Nothing makes me happier than seeing someone else take my work and go wild with it.
+
 *If you are using `ActionSheetPicker-3.0` in your app or know of an app that uses it, please add it to [this] (https://github.com/skywinder/ActionSheetPicker-3.0/wiki/Apps-using-ActionSheetPicker-3.0) list.*
 
 ## Maintainer and Contributor
@@ -130,7 +207,3 @@ Here is 4 projects:
 **Bug reports, feature requests, patches, well-wishes, and rap demo tapes are always welcome.**
 
 [![Analytics](https://ga-beacon.appspot.com/UA-52127948-3/ActionSheetPicker-3.0/readme)](https://ga-beacon.appspot.com/UA-52127948-3/ActionSheetPicker-3.0/readme)
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/skywinder/actionsheetpicker-3.0/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

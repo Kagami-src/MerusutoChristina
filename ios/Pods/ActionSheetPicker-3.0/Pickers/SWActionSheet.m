@@ -218,8 +218,4 @@ static const enum UIViewAnimationOptions options = UIViewAnimationOptionCurveEas
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskAll;
-}
-
 @end

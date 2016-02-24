@@ -16,18 +16,18 @@ class ElementView: UIView {
     }
   }
   
-  required init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-  }
+//  required init(coder aDecoder: NSCoder) {
+//    super.init(coder: aDecoder)
+//  }
   
   override func drawRect(rect: CGRect) {
     let context = UIGraphicsGetCurrentContext()
     let radius = min(rect.width, rect.height) / 2 - 5
-    drawPentagonPointsTo(context, boundedBy: rect, radius: radius, circleRadius: 3)
-    drawPentagonTo(context, boundedBy: rect, radius: radius, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
-    drawPentagonTo(context, boundedBy: rect, radius: radius * 2 / 3, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
-    drawPentagonTo(context, boundedBy: rect, radius: radius / 3, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
-    drawElementTo(context, boundedBy: rect, radius: radius)
+    drawPentagonPointsTo(context!, boundedBy: rect, radius: radius, circleRadius: 3)
+    drawPentagonTo(context!, boundedBy: rect, radius: radius, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
+    drawPentagonTo(context!, boundedBy: rect, radius: radius * 2 / 3, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
+    drawPentagonTo(context!, boundedBy: rect, radius: radius / 3, color: UIColor(red:0,green:0,blue:0,alpha:0.05))
+    drawElementTo(context!, boundedBy: rect, radius: radius)
   }
   
   func drawPentagonTo(context: CGContextRef, boundedBy rect: CGRect, radius: CGFloat, color: UIColor) {
