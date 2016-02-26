@@ -52,8 +52,6 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.tableView?.scrollEnabled = false
 
 		self.view.addSubview(self.tableView!)
-
-		print(10)
 	}
 
 	// MARK:UITableViewDelegate
@@ -92,26 +90,21 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 
 		switch (clickMenu) {
 			case MenuList.Character:
-				print(123)
 				mainController.switchToController(0)
 
 			case MenuList.Monster:
-				print(123)
 				mainController.switchToController(1)
 
 			case MenuList.Simulator:
-				print(123)
 				mainController.switchToController(2)
 
 			case MenuList.Download:
-				print(123)
 				mainController.downloadAllResource()
 
 			case MenuList.Help:
-				print(123)
-
+                break
 			default:
-				print(321)
+                break
 		}
 	}
 }

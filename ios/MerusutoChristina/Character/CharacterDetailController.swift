@@ -26,6 +26,8 @@ class CharacterDetailController: UIViewController {
 	var maxZoomScale: CGFloat?
 	var zoomEnabled = true
 
+	var pageBeforeRotate: Int = 0
+
 	func CGFloatInLine(value: Float) -> Float
 	{
 		let scale: Float = Float(UIScreen.mainScreen().bounds.size.width) / 375
@@ -41,15 +43,16 @@ class CharacterDetailController: UIViewController {
 		scrollView.frame = CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 20)
 		scrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width * 2, 0)
 		scrollView.backgroundColor = UIColor.greenColor()
-		scrollView.clipsToBounds = true
+//		scrollView.clipsToBounds = true
+
+		print("scrollview frame:\(scrollView.frame)")
 
 		let detailController = storyboard?.instantiateViewControllerWithIdentifier("Character Property Detail View Controller") as! CharacterPropertyDetailController
-
-		print(self.item)
 		detailController.item = item
 
 		detailView = detailController.view
 		scrollView.addSubview(detailView)
+
 		calculateDetailViewFrame()
 
 		pageViews = [imageView, detailView]
@@ -99,13 +102,28 @@ class CharacterDetailController: UIViewController {
 		print("unit item dealloc")
 	}
 
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+	}
+
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		print("scrollView frame after layout:\(scrollView.frame)")
+
+        calculateImageViewFrame()
+        calculateDetailViewFrame()
+	}
+
 	func calculateImageViewFrame() {
+
 		let frameSize = scrollView.frame.size
 		let contentSize = imageView.bounds.size
 		let scaleWidth = frameSize.width / contentSize.width
 		let scaleHeight = frameSize.height / contentSize.height
 		minZoomScale = min(scaleWidth, scaleHeight)
-
+		print("scrollView frame:\(scrollView.frame)")
+		print("contentSize frame:\(contentSize)")
+		print("min zoom:\(minZoomScale)")
 		scrollView.minimumZoomScale = minZoomScale!
 		scrollView.zoomScale = minZoomScale!
 
@@ -120,20 +138,25 @@ class CharacterDetailController: UIViewController {
 	}
 
 	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-		UIView.animateWithDuration(0.25, animations: {
+        
+		pageBeforeRotate = pageControl.currentPage
+        
+		UIView.animateWithDuration(0.15, animations: {
 			self.imageView.alpha = 0
 			self.detailView.alpha = 0
 		})
 	}
 
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        
+		self.pageControl.currentPage = self.pageBeforeRotate
+		self.scrollView.setContentOffset(CGPointMake(self.scrollView.frame.width * CGFloat(self.pageBeforeRotate), 0), animated: false)
+
 		UIView.animateWithDuration(0.25, animations: {
 			self.imageView.alpha = 1
 			self.detailView.alpha = 1
 		})
 
-		calculateImageViewFrame()
-		calculateDetailViewFrame()
 	}
 
 	func loadVisiblePages() {
@@ -149,10 +172,7 @@ class CharacterDetailController: UIViewController {
 		scrollView.pagingEnabled = true
 
 		let frameSize = scrollView.frame.size
-		scrollView.contentSize = CGSizeMake(frameSize.width * CGFloat(pageViews.count),
-			frameSize.height)
-
-		print("__func__ \(frameSize)")
+		scrollView.contentSize = CGSizeMake(frameSize.width * CGFloat(pageViews.count), frameSize.height)
 
 		detailView.alpha = 0
 		UIView.animateWithDuration(0.25, animations: {
@@ -222,16 +242,17 @@ class CharacterDetailController: UIViewController {
 		if contentsFrame.size.width < boundsSize.width {
 			contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
 		} else {
-			contentsFrame.origin.x = 0.0
+			contentsFrame.origin.x = 0
 		}
 
 		if contentsFrame.size.height < boundsSize.height {
 			contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
 		} else {
-			contentsFrame.origin.y = 0.0
+			contentsFrame.origin.y = 0
 		}
 
 		imageView.frame = contentsFrame
+		print("imageView frame:\(imageView.frame)")
 	}
 
 	func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
@@ -240,9 +261,8 @@ class CharacterDetailController: UIViewController {
 
 	func scrollViewDidZoom(scrollView: UIScrollView!) {
 
-        centerScrollViewContents()
+		centerScrollViewContents()
 
-		print(scrollView.contentOffset)
 		if scrollView.zoomScale == scrollView.minimumZoomScale {
 			enablePaging()
 		} else {

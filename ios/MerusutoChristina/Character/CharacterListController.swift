@@ -182,7 +182,6 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 					case 0:
 						return lhs.rare > rhs.rare
 					case 1:
-						print("\(lhs.dps) and \(rhs.dps)")
 						return lhs.dps > rhs.dps
 					case 2:
 						return lhs.mdps > rhs.mdps
