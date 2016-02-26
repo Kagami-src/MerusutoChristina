@@ -7,10 +7,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Unit List Controller-->
+        <!--人物图鉴-->
         <scene sceneID="IsB-7q-Ivd">
             <objects>
-                <viewController id="0Bc-aP-IkL" customClass="UnitListController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="人物图鉴" id="0Bc-aP-IkL" customClass="CharacterListController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mhn-hM-Jue"/>
                         <viewControllerLayoutGuide type="bottom" id="5QY-Jz-yQm"/>
@@ -32,7 +32,7 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="Unit Item Cell" id="Ph5-Rh-Def" customClass="UnitItemCell" customModule="MerusutoChristina" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="Unit Item Cell" id="Ph5-Rh-Def" customClass="CharacterListCell" customModule="MerusutoChristina" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="600" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ph5-Rh-Def" id="bdU-xn-s2A">
@@ -151,6 +151,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="736"/>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="0Bc-aP-IkL" id="5eH-6Z-w1A"/>
                                     <outlet property="delegate" destination="0Bc-aP-IkL" id="pcJ-LC-LnG"/>
@@ -164,6 +167,9 @@
                                 <state key="normal" title="回到顶部">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="304" y="762" width="80" height="30"/>
+                                </variation>
                                 <connections>
                                     <action selector="scrollToTopButtonTapped" destination="0Bc-aP-IkL" eventType="touchDown" id="VBu-IM-IEG"/>
                                 </connections>
@@ -275,12 +281,112 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-1049" y="-1072"/>
+            <point key="canvasLocation" x="-792" y="-1801"/>
         </scene>
-        <!--Unit Item Controller-->
+        <!--魔宠图鉴-->
+        <scene sceneID="fYf-BH-aoP">
+            <objects>
+                <tableViewController title="魔宠图鉴" id="wxg-SN-RVT" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vsq-dx-ogd">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4Hq-Fp-RXw">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Hq-Fp-RXw" id="6dS-fB-XaG">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wxg-SN-RVT" id="hB5-jF-KSg"/>
+                            <outlet property="delegate" destination="wxg-SN-RVT" id="A4S-bF-PhI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="f8U-xy-2w4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNw-1k-74S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-792" y="-879.75"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Z8p-Xe-vqP">
+            <objects>
+                <tabBarController storyboardIdentifier="contentController" id="Y6x-vZ-CeY" sceneMemberID="viewController">
+                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" id="VAh-7l-YbR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Qff-8c-4kZ" kind="relationship" relationship="viewControllers" id="QmF-GW-FUK"/>
+                        <segue destination="3Ak-gs-pKh" kind="relationship" relationship="viewControllers" id="m8V-w0-0E1"/>
+                        <segue destination="WWU-fK-Vvy" kind="relationship" relationship="viewControllers" id="RSR-3c-djk"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WqF-TO-EQi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3741" y="-982.5"/>
+        </scene>
+        <!--模拟抽卡导航条-->
+        <scene sceneID="Zx9-SY-dsc">
+            <objects>
+                <navigationController title="模拟抽卡导航条" id="WWU-fK-Vvy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="7gS-TA-MRg"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jLv-uE-2hU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9fi-zm-iIF" kind="relationship" relationship="rootViewController" id="jbp-SK-mOV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A7i-2r-gsb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1610" y="169"/>
+        </scene>
+        <!--模拟抽卡-->
+        <scene sceneID="c5S-Eu-mxF">
+            <objects>
+                <viewController title="模拟抽卡" id="9fi-zm-iIF" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JVx-Lk-s5j"/>
+                        <viewControllerLayoutGuide type="bottom" id="tLt-HU-9zf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y0j-jn-c1A">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="2M1-Wg-ZIJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KsC-S2-spX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-804" y="169"/>
+        </scene>
+        <!--魔宠图鉴导航条-->
+        <scene sceneID="jNC-AR-9IJ">
+            <objects>
+                <navigationController title="魔宠图鉴导航条" id="3Ak-gs-pKh" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="4xq-T4-inh"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6nP-Gi-yaI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wxg-SN-RVT" kind="relationship" relationship="rootViewController" id="O3x-cm-cTZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EC6-qa-ieo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1597.5" y="-879.75"/>
+        </scene>
+        <!--人物图鉴详情-->
         <scene sceneID="4QP-n5-Nv5">
             <objects>
-                <viewController id="ERq-NL-0vH" customClass="UnitItemController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="人物图鉴详情" id="ERq-NL-0vH" customClass="CharacterDetailController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="BUu-cd-ihG"/>
                         <viewControllerLayoutGuide type="bottom" id="gEh-ZW-UNl"/>
@@ -380,12 +486,12 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="XTV-bh-zGm"/>
             </objects>
-            <point key="canvasLocation" x="-271" y="-1072"/>
+            <point key="canvasLocation" x="46" y="-1801"/>
         </scene>
-        <!--Unit Item Detail Controller-->
+        <!--人物图鉴属性页-->
         <scene sceneID="jz6-Fv-NNT">
             <objects>
-                <viewController storyboardIdentifier="Detail View Controller" id="u3U-Vy-qXu" customClass="UnitItemDetailController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Character Property Detail View Controller" title="人物图鉴属性页" id="u3U-Vy-qXu" customClass="CharacterPropertyDetailController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ioC-UE-a6W"/>
                         <viewControllerLayoutGuide type="bottom" id="KpY-PN-TbK"/>
@@ -608,12 +714,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="glS-cJ-uEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-263" y="-251"/>
+            <point key="canvasLocation" x="1001" y="-1780"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--人物图鉴导航条-->
         <scene sceneID="VdZ-B6-obf">
             <objects>
-                <navigationController storyboardIdentifier="contentController" id="Qff-8c-4kZ" sceneMemberID="viewController">
+                <navigationController title="人物图鉴导航条" id="Qff-8c-4kZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="nXN-Cb-aD6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bZ4-MK-JUe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -624,12 +731,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="enp-N1-cF8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1831" y="-1072"/>
+            <point key="canvasLocation" x="-1598" y="-1801"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="MHe-UT-cTg">
             <objects>
-                <viewController storyboardIdentifier="rootController" id="zeu-aB-B0V" customClass="RootViewController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zeu-aB-B0V" customClass="RootViewController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2b7-SA-iAE"/>
                         <viewControllerLayoutGuide type="bottom" id="hGH-Ax-kvY"/>
@@ -644,7 +751,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6fj-O2-znt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3546" y="-1053.75"/>
+            <point key="canvasLocation" x="-4684.5" y="-180.75"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="HcU-LH-3Vw">
@@ -655,13 +762,119 @@
                         <viewControllerLayoutGuide type="bottom" id="gkn-hs-khl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4ly-zJ-H42">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="644-PX-g4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2731.5" y="-831"/>
+            <point key="canvasLocation" x="-4789.5" y="-1257"/>
+        </scene>
+        <!--魔宠图鉴详情-->
+        <scene sceneID="0CH-eu-jeg">
+            <objects>
+                <viewController title="魔宠图鉴详情" id="gLJ-rv-eHG" customClass="CharacterDetailController" customModule="MerusutoChristina" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WCy-yy-5Oc"/>
+                        <viewControllerLayoutGuide type="bottom" id="cil-3y-5nD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ufq-SL-a3O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="v7h-eB-dEG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5XH-Sj-dHo">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="dark"/>
+                            </visualEffectView>
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="4zb-ye-P2F">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="F3I-yj-7L4" userLabel="Loading">
+                                        <rect key="frame" x="250" y="265" width="100" height="49"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="立绘加载中..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AvL-2z-xRo">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="21"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
+                                            </label>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="JF2-Xx-d5o">
+                                                <rect key="frame" x="40" y="29" width="20" height="20"/>
+                                            </activityIndicatorView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="BNy-bi-JqC"/>
+                                            <constraint firstAttribute="height" constant="49" id="b8W-u2-t43"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="F3I-yj-7L4" secondAttribute="centerX" id="gHV-HC-F4J"/>
+                                    <constraint firstAttribute="centerY" secondItem="F3I-yj-7L4" secondAttribute="centerY" constant="0.5" id="iiX-CO-cOU"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="F3I-yj-7L4"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
+                                </variation>
+                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="gLJ-rv-eHG" id="Yoo-VF-JnE"/>
+                                    <outletCollection property="gestureRecognizers" destination="8d7-sF-GhJ" appends="YES" id="Vlw-yO-P8v"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="mRe-kA-Ohg">
+                                <rect key="frame" x="288" y="543" width="23" height="37"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4zb-ye-P2F" firstAttribute="top" secondItem="WCy-yy-5Oc" secondAttribute="bottom" id="8Jx-pO-1eA"/>
+                            <constraint firstAttribute="trailing" secondItem="4zb-ye-P2F" secondAttribute="trailing" id="Gri-qq-sGE"/>
+                            <constraint firstItem="v7h-eB-dEG" firstAttribute="top" secondItem="WCy-yy-5Oc" secondAttribute="bottom" constant="-20" id="Mp8-x9-odB"/>
+                            <constraint firstItem="cil-3y-5nD" firstAttribute="top" secondItem="4zb-ye-P2F" secondAttribute="bottom" id="PMV-Gs-tDk"/>
+                            <constraint firstAttribute="trailing" secondItem="v7h-eB-dEG" secondAttribute="trailing" id="WVR-IT-r1E"/>
+                            <constraint firstItem="cil-3y-5nD" firstAttribute="top" secondItem="mRe-kA-Ohg" secondAttribute="bottom" constant="20" id="dAi-zI-duh"/>
+                            <constraint firstAttribute="centerX" secondItem="mRe-kA-Ohg" secondAttribute="centerX" constant="0.5" id="hG2-Xc-ztG"/>
+                            <constraint firstItem="cil-3y-5nD" firstAttribute="top" secondItem="v7h-eB-dEG" secondAttribute="bottom" id="nI3-CD-L0f"/>
+                            <constraint firstItem="4zb-ye-P2F" firstAttribute="leading" secondItem="Ufq-SL-a3O" secondAttribute="leading" id="ohG-pY-NaH"/>
+                            <constraint firstItem="v7h-eB-dEG" firstAttribute="leading" secondItem="Ufq-SL-a3O" secondAttribute="leading" id="wZF-9a-ynE"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="aqR-rb-XyN" appends="YES" id="uiV-Z7-SOx"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="loadingView" destination="F3I-yj-7L4" id="5sN-oF-13x"/>
+                        <outlet property="pageControl" destination="mRe-kA-Ohg" id="t12-ta-5gp"/>
+                        <outlet property="scrollView" destination="4zb-ye-P2F" id="SON-NS-5b7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jhz-N0-GLg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aqR-rb-XyN">
+                    <connections>
+                        <action selector="viewTapped" destination="gLJ-rv-eHG" id="y9d-Vc-dil"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="8d7-sF-GhJ"/>
+            </objects>
+            <point key="canvasLocation" x="46.5" y="-879.75"/>
         </scene>
     </scenes>
     <resources>

@@ -7,8 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D3C73B71C7DE20200213B19 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73B61C7DE20200213B19 /* MenuViewController.swift */; };
+		3D3C73C01C7DE23700213B19 /* CharacterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */; };
+		3D3C73C11C7DE23700213B19 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */; };
+		3D3C73C21C7DE23700213B19 /* CharacterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */; };
+		3D3C73C31C7DE23700213B19 /* CharacterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */; };
+		3D3C73C41C7DE23700213B19 /* CharacterListPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */; };
+		3D3C73C51C7DE23700213B19 /* CharacterPropertyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */; };
+		3D3C73C61C7DE23700213B19 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BF1C7DE23700213B19 /* ElementView.swift */; };
+		3D3C73C91C7DE23F00213B19 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73C81C7DE23F00213B19 /* DataManager.swift */; };
 		3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFA8C51C7AB7860002344A /* RootViewController.swift */; };
-		3DCFA8CA1C7ABB7B0002344A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */; };
 		92F4CE197586164E0E9D94A3 /* Pods_MerusutoChristina.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */; };
 		9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6561AA30B2400827D0C /* AVOSCloud.framework */; };
 		9615C6591AA30E9F00827D0C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */; };
@@ -16,17 +24,11 @@
 		9615C65D1AA30EB900827D0C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65C1AA30EB900827D0C /* CoreTelephony.framework */; };
 		9615C65F1AA30EC100827D0C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C65E1AA30EC100827D0C /* CoreLocation.framework */; };
 		9615C6611AA30ECA00827D0C /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6601AA30ECA00827D0C /* libicucore.dylib */; };
-		9615C6751AA320FC00827D0C /* UnitListPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */; };
-		965E74621AA00D3D00536285 /* UnitItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965E74611AA00D3D00536285 /* UnitItemController.swift */; };
-		96819A0B1AA0A307009DFF6A /* UnitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96819A0A1AA0A307009DFF6A /* UnitItem.swift */; };
 		9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */; };
-		9692F1091A9C7E8A00190CD4 /* UnitListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F1081A9C7E8A00190CD4 /* UnitListController.swift */; };
 		9692F10C1A9C7E8A00190CD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10A1A9C7E8A00190CD4 /* Main.storyboard */; };
 		9692F10E1A9C7E8A00190CD4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10D1A9C7E8A00190CD4 /* Images.xcassets */; };
 		9692F1111A9C7E8A00190CD4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */; };
 		9692F11D1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */; };
-		96C756091A9E033500F608C3 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C756081A9E033500F608C3 /* DataManager.swift */; };
-		96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C7560A1A9EB2F100F608C3 /* ElementView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D3C73B61C7DE20200213B19 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailController.swift; sourceTree = "<group>"; };
+		3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
+		3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListCell.swift; sourceTree = "<group>"; };
+		3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListController.swift; sourceTree = "<group>"; };
+		3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListPickerItem.swift; sourceTree = "<group>"; };
+		3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPropertyDetailController.swift; sourceTree = "<group>"; };
+		3D3C73BF1C7DE23700213B19 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
+		3D3C73C81C7DE23F00213B19 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		3DCFA8C51C7AB7860002344A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.release.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.release.xcconfig"; sourceTree = "<group>"; };
 		9615C6561AA30B2400827D0C /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = MerusutoChristina/AVOSCloud.framework; sourceTree = "<group>"; };
 		9615C6581AA30E9F00827D0C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -49,22 +59,16 @@
 		9615C65C1AA30EB900827D0C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		9615C65E1AA30EC100827D0C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9615C6601AA30ECA00827D0C /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitListPickerItem.swift; sourceTree = "<group>"; };
 		963D1B9D1AD0234000BDD532 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = ../BridgingHeader.h; sourceTree = "<group>"; };
 		9659BA1E1AD020BA00C0EB8F /* MerusutoChristina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MerusutoChristina.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9659BA1F1AD020BA00C0EB8F /* MerusutoChristinaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MerusutoChristinaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		965E74611AA00D3D00536285 /* UnitItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitItemController.swift; sourceTree = "<group>"; };
-		96819A0A1AA0A307009DFF6A /* UnitItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitItem.swift; sourceTree = "<group>"; };
 		9692F1051A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9692F1081A9C7E8A00190CD4 /* UnitListController.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = UnitListController.swift; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		9692F10B1A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9692F10D1A9C7E8A00190CD4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9692F1101A9C7E8A00190CD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		9692F11B1A9C7E8A00190CD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9692F11C1A9C7E8A00190CD4 /* MerusutoChristinaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerusutoChristinaTests.swift; sourceTree = "<group>"; };
-		96C756081A9E033500F608C3 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		96C7560A1A9EB2F100F608C3 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
 		CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MerusutoChristina.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5431E33461A21B4592B257E /* Pods-MerusutoChristina.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +98,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D3C73AD1C7DDCB600213B19 /* Monster */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Monster;
+			sourceTree = "<group>";
+		};
+		3D3C73AE1C7DDCBF00213B19 /* Simulator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Simulator;
+			sourceTree = "<group>";
+		};
+		3D3C73B51C7DE20200213B19 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				3D3C73B61C7DE20200213B19 /* MenuViewController.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		3D3C73B81C7DE23700213B19 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */,
+				3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */,
+				3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */,
+				3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */,
+				3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */,
+				3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */,
+				3D3C73BF1C7DE23700213B19 /* ElementView.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		3D3C73C71C7DE23F00213B19 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				3D3C73C81C7DE23F00213B19 /* DataManager.swift */,
+			);
+			path = Units;
+			sourceTree = "<group>";
+		};
 		9692F0F81A9C7E8900190CD4 = {
 			isa = PBXGroup;
 			children = (
@@ -109,16 +157,13 @@
 		9692F1031A9C7E8A00190CD4 /* MerusutoChristina */ = {
 			isa = PBXGroup;
 			children = (
-				963D1B9D1AD0234000BDD532 /* BridgingHeader.h */,
+				3D3C73C71C7DE23F00213B19 /* Units */,
+				3D3C73B81C7DE23700213B19 /* Character */,
+				3D3C73B51C7DE20200213B19 /* Menu */,
+				3D3C73AE1C7DDCBF00213B19 /* Simulator */,
+				3D3C73AD1C7DDCB600213B19 /* Monster */,
 				9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */,
-				96C756081A9E033500F608C3 /* DataManager.swift */,
-				96819A0A1AA0A307009DFF6A /* UnitItem.swift */,
-				9692F1081A9C7E8A00190CD4 /* UnitListController.swift */,
-				9615C6741AA320FC00827D0C /* UnitListPickerItem.swift */,
-				965E74611AA00D3D00536285 /* UnitItemController.swift */,
-				96C7560A1A9EB2F100F608C3 /* ElementView.swift */,
 				3DCFA8C51C7AB7860002344A /* RootViewController.swift */,
-				3DCFA8C91C7ABB7B0002344A /* MenuViewController.swift */,
 				9692F10A1A9C7E8A00190CD4 /* Main.storyboard */,
 				9692F10D1A9C7E8A00190CD4 /* Images.xcassets */,
 				9692F10F1A9C7E8A00190CD4 /* LaunchScreen.xib */,
@@ -130,6 +175,7 @@
 		9692F1041A9C7E8A00190CD4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				963D1B9D1AD0234000BDD532 /* BridgingHeader.h */,
 				9692F1051A9C7E8A00190CD4 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -223,7 +269,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = bbtfr;
 				TargetAttributes = {
 					9692F1001A9C7E8900190CD4 = {
@@ -328,15 +374,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96819A0B1AA0A307009DFF6A /* UnitItem.swift in Sources */,
-				3DCFA8CA1C7ABB7B0002344A /* MenuViewController.swift in Sources */,
-				96C756091A9E033500F608C3 /* DataManager.swift in Sources */,
-				9692F1091A9C7E8A00190CD4 /* UnitListController.swift in Sources */,
+				3D3C73C31C7DE23700213B19 /* CharacterListController.swift in Sources */,
 				9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */,
-				965E74621AA00D3D00536285 /* UnitItemController.swift in Sources */,
-				9615C6751AA320FC00827D0C /* UnitListPickerItem.swift in Sources */,
+				3D3C73C11C7DE23700213B19 /* CharacterItem.swift in Sources */,
+				3D3C73B71C7DE20200213B19 /* MenuViewController.swift in Sources */,
+				3D3C73C21C7DE23700213B19 /* CharacterListCell.swift in Sources */,
+				3D3C73C01C7DE23700213B19 /* CharacterDetailController.swift in Sources */,
+				3D3C73C51C7DE23700213B19 /* CharacterPropertyDetailController.swift in Sources */,
+				3D3C73C41C7DE23700213B19 /* CharacterListPickerItem.swift in Sources */,
+				3D3C73C91C7DE23F00213B19 /* DataManager.swift in Sources */,
 				3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */,
-				96C7560B1A9EB2F200F608C3 /* ElementView.swift in Sources */,
+				3D3C73C61C7DE23700213B19 /* ElementView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +446,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -476,6 +525,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bbtfr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -502,6 +552,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				New_Setting = "";
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bbtfr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BridgingHeader.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -523,6 +574,7 @@
 				);
 				INFOPLIST_FILE = MerusutoChristinaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bbtfr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MerusutoChristina.app/MerusutoChristina";
 			};
@@ -538,6 +590,7 @@
 				);
 				INFOPLIST_FILE = MerusutoChristinaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bbtfr.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MerusutoChristina.app/MerusutoChristina";
 			};
