@@ -33,7 +33,6 @@ class CharacterListCell: UITableViewCell {
             elementView.item = item
             
             let imageUrl = DataManager.getGithubURL("units/thumbnail/\(item.id).png")
-            print("load image with url \(imageUrl)")
             thumbImageView.sd_setImageWithURL(imageUrl, placeholderImage: UIImage(named: "thumbnail"), options: SDWebImageOptions.RetryFailed)
         }
     }

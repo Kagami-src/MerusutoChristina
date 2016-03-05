@@ -138,6 +138,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		actionSheetPicker.setCancelButton(cancelButton)
 		actionSheetPicker.addCustomButtonWithTitle("重置", actionBlock: {
 			self.resetBarButtonItemTapped()
+            self.actionSheetPickerShown = false
 		})
 		resetPath(rootPicker.child(sender.tag))
 		actionSheetPicker.showActionSheetPicker()
@@ -174,7 +175,6 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 	}
 
 	func sort(var items: [CharacterItem]) -> [CharacterItem] {
-//		print("in fun:\(unsafeAddressOf(items))")
 
 		items.sortInPlace { (lhs: CharacterItem, rhs: CharacterItem) -> Bool in
 			switch sortPicker.value
@@ -210,6 +210,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 	}
 
 	func filter(items: [CharacterItem]) -> [CharacterItem] {
+        
 		return items.filter({ (item: CharacterItem) -> Bool in
 			if rarePicker.check(item.rare) ||
 			elementPicker.check(item.element) ||
@@ -217,7 +218,10 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 			typePicker.check(item.type) ||
 			aareaPicker.check(item.aarea) ||
 			anumPicker.check(item.anum) ||
-			genderPicker.check(item.gender)
+			genderPicker.check(item.gender) ||
+            serverPicker.check(item.server) ||
+            exchangePicker.check(item.exchange) ||
+            countryPicker.checkString(item.country)
 			{
 				return false
 			}

@@ -24,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Override point for customization after application launch.
 //    AVOSCloud.setApplicationId("ixeo5jke9wy1vvvl3lr06uqy528y1qtsmmgsiknxdbt2xalg",
 //      clientKey: "hwud6pxjjr8s46s9vuix0o8mk0b5l8isvofomjwb5prqyyjg")
-    
+//         [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+
     return true
   }
   
@@ -36,10 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidEnterBackground(application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    print("applicationDidEnterBackground")
   }
   
   func applicationWillEnterForeground(application: UIApplication) {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    print("applicationWillEnterForeground")
   }
   
   func applicationDidBecomeActive(application: UIApplication) {

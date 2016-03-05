@@ -41,7 +41,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.tableView = UITableView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width * 0.6, UIScreen.mainScreen().bounds.height), style: UITableViewStyle.Plain)
 		self.tableView?.center = CGPointMake(tableView!.center.x, UIScreen.mainScreen().bounds.height / 2 + 20)
 
-		self.titles = [[title1, title2], [title3, title4, title5]]
+		// self.titles = [[title1, title2], [title3, title4, title5]]
+		self.titles = [[title1], [title4, title5]]
 
 		self.tableView?.delegate = self
 		self.tableView?.dataSource = self
@@ -102,9 +103,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 				mainController.downloadAllResource()
 
 			case MenuList.Help:
-                break
+				UIApplication.sharedApplication().openURL(NSURL(string: "http://merusuto.gq/jump/about.html")!)
+
 			default:
-                break
+				break
 		}
 	}
 }

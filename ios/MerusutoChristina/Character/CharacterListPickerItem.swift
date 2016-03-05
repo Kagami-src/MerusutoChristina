@@ -53,11 +53,11 @@ class CharacterListPickerItem {
 	}
 
 	func check(value: Int) -> Bool {
-		if self.value == 0 || self.value == value {
-			return false
+		if (self.value == 0 || self.value == value) {
+			return false // return false代表符合条件
 		}
 		let current = child(self.value)
-		if current.range {
+		if (current.range) {
 			if let min = current.min {
 				if min > value {
 					return true
@@ -68,6 +68,13 @@ class CharacterListPickerItem {
 					return true
 				}
 			}
+			return false
+		}
+		return true
+	}
+
+	func checkString(value: String) -> Bool {
+		if (self.value == 0 || child(self.value).title == value) {
 			return false
 		}
 		return true
@@ -173,15 +180,62 @@ let genderPicker = CharacterListPickerItem(title: "性别", children: [
 	CharacterListPickerItem(title: "女")
 ])
 
+let serverPicker = CharacterListPickerItem(title: "新品上架", children: [
+	CharacterListPickerItem(title: "全部"),
+	CharacterListPickerItem(title: "日服"),
+	CharacterListPickerItem(title: "国服"),
+])
+
+let exchangePicker = CharacterListPickerItem(title: "交换所", children: [
+	CharacterListPickerItem(title: "全部"),
+	CharacterListPickerItem(title: "历代交换所人物"),
+	CharacterListPickerItem(title: "历代活动人物"),
+	CharacterListPickerItem(title: "其他")
+])
+
 let countryPicker = CharacterListPickerItem(title: "国别", children: [
-	CharacterListPickerItem(title: "全部")
+	CharacterListPickerItem(title: "全部"),
+	CharacterListPickerItem(title: "沙漠之国"),
+	CharacterListPickerItem(title: "电之国"),
+	CharacterListPickerItem(title: "科学之国"),
+	CharacterListPickerItem(title: "空之国"),
+	CharacterListPickerItem(title: "常夏之国"),
+	CharacterListPickerItem(title: "魔法之国"),
+	CharacterListPickerItem(title: "妖精之国"),
+	CharacterListPickerItem(title: "王国"),
+	CharacterListPickerItem(title: "死者の国"),
+	CharacterListPickerItem(title: "和之国"),
+	CharacterListPickerItem(title: "动物之国"),
+	CharacterListPickerItem(title: "机械之国"),
+	CharacterListPickerItem(title: "异邦"),
+	CharacterListPickerItem(title: "雪之国"),
+	CharacterListPickerItem(title: "植物之国"),
+	CharacterListPickerItem(title: "西部之国"),
+	CharacterListPickerItem(title: "点心之国"),
+	CharacterListPickerItem(title: "恐龙之国"),
+	CharacterListPickerItem(title: "死者之国"),
+	CharacterListPickerItem(title: "崩坏之国"),
+	CharacterListPickerItem(title: "华夏之国"),
+	CharacterListPickerItem(title: "ドラポの国"),
+	CharacterListPickerItem(title: "アスタリアの世界"),
+	CharacterListPickerItem(title: "お菓子の国"),
+	CharacterListPickerItem(title: "科学の国"),
+	CharacterListPickerItem(title: "弹幕之国"),
+	CharacterListPickerItem(title: "漫画之国"),
+	CharacterListPickerItem(title: "魔女之国"),
+	CharacterListPickerItem(title: "喵之国"),
+	CharacterListPickerItem(title: "女生重奏曲之国"),
+	CharacterListPickerItem(title: "千メモの国"),
+	CharacterListPickerItem(title: "聖剣伝説の国"),
+	CharacterListPickerItem(title: "サモンズの国"),
+	CharacterListPickerItem(title: "常夏の国"),
+	CharacterListPickerItem(title: "暂缺")
 ])
 
 let filterPicker = CharacterListPickerItem(title: "筛选", depth: 2, children: [
-	rarePicker, elementPicker, weaponPicker, typePicker, aareaPicker, anumPicker, genderPicker
+	rarePicker, elementPicker, weaponPicker, typePicker, aareaPicker, anumPicker, genderPicker, serverPicker, exchangePicker, countryPicker
 ])
 
 let rootPicker = CharacterListPickerItem(title: "", children: [
 	levelPicker, sortPicker, filterPicker
 ])
-

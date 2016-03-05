@@ -58,6 +58,9 @@ class CharacterItem {
 	var obtain: String // 获取方式
 	var remark: String // 备注
 	var contributors: [JSON]? // 数据提供者
+    var server: Int //新品上架 1日服 2国服
+    var exchange: Int //交换所 1历代交换所人物 2历代活动人物 3其他
+    
 
 	var originalAtk, originalLife: Int
 	var dps: Int = 0
@@ -109,6 +112,8 @@ class CharacterItem {
 		obtain = data["obtain"].stringValue // 获取方式
 		remark = data["remark"].stringValue // 备注
 		contributors = data["contributors"].array // 数据提供者
+        server = data["server"].intValue  //新品上架 1日服 2国服
+        exchange = data["exchange"].intValue == 0 ? 3 : data["exchange"].intValue  //交换所 1历代交换所人物 2历代活动人物 3其他
 
 		levelMode = 0
 		originalAtk = atk

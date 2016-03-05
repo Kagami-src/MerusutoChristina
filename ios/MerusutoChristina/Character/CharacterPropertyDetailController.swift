@@ -41,8 +41,8 @@ class CharacterPropertyDetailController: UIViewController {
 			let dps2 = item.calcDPS(atk2)
 			let mdps2 = item.calcMDPS(atk2)
 
-			rareLabel.text = item.rareString
-			titleLabel.text = "\(item.title)\(item.name) ID: \(item.id)"
+			rareLabel.text = item.rareString + "  \(item.title)\(item.name) ID: \(item.id)"
+//			titleLabel.text =
 
 			detailLabel1.text = "初始生命: \(life0)\n满级生命: \(life1)\n满觉生命: \(life2)\n初始攻击: \(atk0)\n满级攻击: \(atk1)\n满觉攻击: \(atk2)"
 			detailLabel2.text = "攻距: \(item.aarea)\n攻数: \(item.anum)\n攻速: \(item.aspd)\n韧性: \(item.tenacity)\n移速: \(item.mspd)\n成长: \(item.typeString)"
@@ -53,25 +53,11 @@ class CharacterPropertyDetailController: UIViewController {
 			detailLabel7.text = item.obtain.characters.count > 0 ? "获取方式: \(item.obtain)" : ""
 			detailLabel8.text = item.remark.characters.count > 0 ? "备注: \(item.remark)" : ""
 			detailLabel9.text = item.contributorsString.characters.count > 0 ? "数据提供者: \(item.contributorsString)" : ""
-
-//			print(rareLabel.text)
-//			print(titleLabel.text)
-//			print(detailLabel1.text)
-//			print(detailLabel2.text)
-//			print(detailLabel3.text)
-//            print(detailLabel4.text)
-//            
-//			print(detailLabel5.text)
-//            print(detailLabel6.text)
-//			print(detailLabel7.text)
-//            print(detailLabel8.text)
-//			print(detailLabel9.text)
-
-		
 		}
 	}
 
 	func setFontSize(value: CGFloat) {
+        print("set font size:\(value)")
 		let font: UIFont = UIFont.boldSystemFontOfSize(value)
 
 		rareLabel.font = font
@@ -86,20 +72,5 @@ class CharacterPropertyDetailController: UIViewController {
 		detailLabel7.font = font
 		detailLabel8.font = font
 		detailLabel9.font = font
-	}
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		print(self.detailLabel1.frame)
-	}
-
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-		print("333333\(self.rareLabel.frame)")
-	}
-
-	override func layoutSublayersOfLayer(layer: CALayer) {
-		super.layoutSublayersOfLayer(layer)
-		print("44444")
 	}
 }

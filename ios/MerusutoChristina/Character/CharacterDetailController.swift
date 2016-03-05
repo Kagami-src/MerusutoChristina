@@ -17,6 +17,7 @@ class CharacterDetailController: UIViewController {
 	@IBOutlet var scrollView: UIScrollView!
 	@IBOutlet var pageControl: UIPageControl!
 	@IBOutlet var loadingView: UIView!
+	var detailController: CharacterPropertyDetailController?
 
 	var detailView: UIView!
 	var imageView: UIImageView!
@@ -28,29 +29,21 @@ class CharacterDetailController: UIViewController {
 
 	var pageBeforeRotate: Int = 0
 
-	func CGFloatInLine(value: Float) -> Float
-	{
-		let scale: Float = Float(UIScreen.mainScreen().bounds.size.width) / 375
-		return scale * value
-	}
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		AVAnalytics.event("Open", label: "0 \(item.id)")
 
-//		scrollView.frame = view.frame
 		scrollView.frame = CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 20)
 		scrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width * 2, 0)
-		scrollView.backgroundColor = UIColor.greenColor()
-//		scrollView.clipsToBounds = true
+		scrollView.backgroundColor = UIColor(red: 0.139, green: 0.137, blue: 0.142, alpha: 0.9)
+		scrollView.clipsToBounds = true
 
-		print("scrollview frame:\(scrollView.frame)")
+		self.detailController = storyboard?.instantiateViewControllerWithIdentifier("Character Property Detail View Controller") as? CharacterPropertyDetailController
+		self.detailController!.item = item
+		setDetailFontSize()
 
-		let detailController = storyboard?.instantiateViewControllerWithIdentifier("Character Property Detail View Controller") as! CharacterPropertyDetailController
-		detailController.item = item
-
-		detailView = detailController.view
+		detailView = self.detailController!.view
 		scrollView.addSubview(detailView)
 
 		calculateDetailViewFrame()
@@ -86,7 +79,6 @@ class CharacterDetailController: UIViewController {
 			self.scrollView.addSubview(self.imageView)
 			self.scrollView.contentSize = image.size
 			self.imageView.alpha = 0
-			self.imageView.backgroundColor = UIColor.redColor()
 
 			UIView.animateWithDuration(0.25, animations: { () -> Void in
 				self.imageView.alpha = 1
@@ -95,6 +87,7 @@ class CharacterDetailController: UIViewController {
 			hud.hide(true)
 
 			self.calculateImageViewFrame()
+            self.calculateDetailViewFrame()
 		})
 	}
 
@@ -102,16 +95,11 @@ class CharacterDetailController: UIViewController {
 		print("unit item dealloc")
 	}
 
-	override func viewWillLayoutSubviews() {
-		super.viewWillLayoutSubviews()
-	}
-
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
-		print("scrollView frame after layout:\(scrollView.frame)")
 
-        calculateImageViewFrame()
-        calculateDetailViewFrame()
+		calculateImageViewFrame()
+		calculateDetailViewFrame()
 	}
 
 	func calculateImageViewFrame() {
@@ -121,9 +109,7 @@ class CharacterDetailController: UIViewController {
 		let scaleWidth = frameSize.width / contentSize.width
 		let scaleHeight = frameSize.height / contentSize.height
 		minZoomScale = min(scaleWidth, scaleHeight)
-		print("scrollView frame:\(scrollView.frame)")
-		print("contentSize frame:\(contentSize)")
-		print("min zoom:\(minZoomScale)")
+
 		scrollView.minimumZoomScale = minZoomScale!
 		scrollView.zoomScale = minZoomScale!
 
@@ -135,12 +121,14 @@ class CharacterDetailController: UIViewController {
 		var frame = view.frame
 		frame.origin.x = frame.width
 		detailView.frame = frame
+        
+        self.setDetailFontSize()
 	}
 
 	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        
+
 		pageBeforeRotate = pageControl.currentPage
-        
+
 		UIView.animateWithDuration(0.15, animations: {
 			self.imageView.alpha = 0
 			self.detailView.alpha = 0
@@ -148,7 +136,7 @@ class CharacterDetailController: UIViewController {
 	}
 
 	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-        
+		print("did:\(UIScreen.mainScreen().bounds)")
 		self.pageControl.currentPage = self.pageBeforeRotate
 		self.scrollView.setContentOffset(CGPointMake(self.scrollView.frame.width * CGFloat(self.pageBeforeRotate), 0), animated: false)
 
@@ -157,6 +145,19 @@ class CharacterDetailController: UIViewController {
 			self.detailView.alpha = 1
 		})
 
+		setDetailFontSize()
+	}
+
+	func setDetailFontSize() {
+        
+        let screenWidth:CGFloat = CGFloat(UIScreen.mainScreen().bounds.width)
+		if (UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait) {
+			self.detailController?.setFontSize(screenWidth / 414.0 * 18.0)
+            
+		}
+		else {
+			self.detailController?.setFontSize(screenWidth / 736 * 17)
+		}
 	}
 
 	func loadVisiblePages() {
@@ -252,7 +253,6 @@ class CharacterDetailController: UIViewController {
 		}
 
 		imageView.frame = contentsFrame
-		print("imageView frame:\(imageView.frame)")
 	}
 
 	func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
@@ -284,4 +284,3 @@ class CharacterDetailController: UIViewController {
 		dismissViewControllerAnimated(true, completion: nil)
 	}
 }
-

@@ -19,6 +19,8 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 
 	var mainTabBarController: UITabBarController?
 	var hud: MBProgressHUD?
+	var isBackgroundDownloading = false
+	var isDownloading = false
 	typealias MyBlock = () -> Void
 
 	override func awakeFromNib()
@@ -42,12 +44,45 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 		self.contentViewScaleValue = 1;
 		self.scaleMenuView = false
 
+		// 定义 hud
 		hud = MBProgressHUD(view: self.view)
 		hud?.userInteractionEnabled = true
 //        hud?.removeFromSuperViewOnHide = true
+		let tap = UITapGestureRecognizer(target: self, action: Selector("hud_clickHandler:"))
+		hud?.addGestureRecognizer(tap)
 		self.view.addSubview(hud!)
+
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("background_handler:"), name: UIApplicationWillEnterForegroundNotification, object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("background_handler:"), name: UIApplicationDidEnterBackgroundNotification, object: nil)
 	}
 
+	func background_handler(sender: AnyObject) {
+
+		if (sender.name == UIApplicationDidEnterBackgroundNotification) {
+			SDWebImagePrefetcher.sharedImagePrefetcher().cancelPrefetching()
+			self.hud?.hide(false)
+
+			self.isBackgroundDownloading = false
+		}
+		else {
+			if (self.isDownloading) {
+				downloadAllResource()
+			}
+		}
+	}
+
+	deinit {
+
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
+	}
+
+	func hud_clickHandler(sender: UITapGestureRecognizer) {
+//		print(123111)
+		self.isBackgroundDownloading = true
+		self.hud?.hide(true)
+		self.hud?.userInteractionEnabled = false
+		self.panGestureEnabled = true
+	}
 
 	func switchToController(let index : Int)
 	{
@@ -59,8 +94,16 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 	func downloadAllResource() {
 
 		self.hideMenuViewController()
-        self.panGestureEnabled = false
-        
+
+		self.hud?.userInteractionEnabled = true
+		self.panGestureEnabled = false
+
+		if (self.isBackgroundDownloading) {
+			self.hud?.show(true)
+			self.isBackgroundDownloading = false
+			return;
+		}
+
 		if (Reachability.reachabilityForLocalWiFi().currentReachabilityStatus() != NetworkStatus.ReachableViaWiFi) {
 			print("not wifi")
 			self.hud?.show(true)
@@ -71,17 +114,18 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 		}
 
 		// for test
-//		SDImageCache.sharedImageCache().clearDisk()
-//		SDImageCache.sharedImageCache().clearMemory()
+		SDImageCache.sharedImageCache().clearDisk()
+		SDImageCache.sharedImageCache().clearMemory()
 
-		SDWebImagePrefetcher.sharedImagePrefetcher().delegate = self
-		SDWebImagePrefetcher.sharedImagePrefetcher().options = [SDWebImageOptions.HighPriority, SDWebImageOptions.ProgressiveDownload]
+//		SDWebImagePrefetcher.sharedImagePrefetcher().delegate = self
+		SDWebImagePrefetcher.sharedImagePrefetcher().options = [SDWebImageOptions.LowPriority, SDWebImageOptions.ProgressiveDownload, SDWebImageOptions.ContinueInBackground]
 
 		var thumbnails: Array<NSURL> = Array() // 人物小图
 		var originals: Array<NSURL> = Array() // 人物原图
 
 		self.hud?.show(true)
-		self.hud?.labelText = "正在统计需要下载的文件"
+		self.hud?.labelText = "优君正在统计后宫名单..."
+		self.isDownloading = true;
 
 		DataManager.loadJSONWithSuccess("units", success: { (data) -> Void in
 			for (_, each) in data {
@@ -98,17 +142,19 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 				}
 			}
 			dispatch_async(dispatch_get_main_queue(), { () -> Void in
-				self.prefetchImage("正在下载人物小图", target: thumbnails, backFun: { () -> Void in
+				self.prefetchImage("下载小图，主人请耐心等待", target: thumbnails, backFun: { () -> Void in
 
-					self.prefetchImage("正在下载人物原图", target: originals, backFun: { () -> Void in
+					self.prefetchImage("下载原图，主人请耐心等待", target: originals, backFun: { () -> Void in
 
 						self.hud?.mode = MBProgressHUDMode.Text
 						self.hud?.labelText = "下载完毕！"
 						self.hud?.detailsLabelText = ""
 
 						self.hud?.hide(true, afterDelay: 1.0)
-                        
-                        self.panGestureEnabled = true
+
+						self.panGestureEnabled = true
+						self.isBackgroundDownloading = false
+						self.isDownloading = false
 					})
 				})
 			})
@@ -144,7 +190,7 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 			}
 
 			self.hud?.progress = Float(bytesLoad) / Float(totalBytes)
-			self.hud?.detailsLabelText = "\(bytesLoad) / \(totalBytes)"
+			self.hud?.detailsLabelText = "\(bytesLoad) / \(totalBytes)（点击后台下载）"
 		}) { (value1: UInt, value2: UInt) -> Void in
 			if (backFun != nil) {
 				dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -155,19 +201,13 @@ class RootViewController: RESideMenu, SDWebImagePrefetcherDelegate {
 	}
 
 	func isNetworkFail() -> Bool {
-//
-//		let gitReach = Reachability(hostName: "bbtfr.github.io")
-//        let test = gitReach.currentReachabilityStatus()
-//		let req = gitReach.connectionRequired()
-//		print("req:\(req)")
-
 		return Reachability.reachabilityForLocalWiFi().currentReachabilityStatus() != NetworkStatus.ReachableViaWiFi
 	}
 
-	func imagePrefetcher(imagePrefetcher: SDWebImagePrefetcher!, didPrefetchURL imageURL: NSURL!, finishedCount: UInt, totalCount: UInt) {
-//		print("finish \(imageURL) \(finishedCount) \(totalCount)")
-	}
-
-	func imagePrefetcher(imagePrefetcher: SDWebImagePrefetcher!, didFinishWithTotalCount totalCount: UInt, skippedCount: UInt) {
-	}
+//	func imagePrefetcher(imagePrefetcher: SDWebImagePrefetcher!, didPrefetchURL imageURL: NSURL!, finishedCount: UInt, totalCount: UInt) {
+////		print("finish \(imageURL) \(finishedCount) \(totalCount)")
+//	}
+//
+//	func imagePrefetcher(imagePrefetcher: SDWebImagePrefetcher!, didFinishWithTotalCount totalCount: UInt, skippedCount: UInt) {
+//	}
 }
