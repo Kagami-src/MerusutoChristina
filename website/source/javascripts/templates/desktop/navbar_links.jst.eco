@@ -1,0 +1,5 @@
+<li <%= "class='active'" if location.hash.startsWith('#units') %>><a href="#units">同伴</a></li>
+<li <%= "class='active'" if location.hash.startsWith('#monsters') %>><a href="#monsters">魔宠</a></li>
+<li><a href="../gacha/">模拟抽卡</a></li>
+<li><a href="../mobile/">手机版</a></li>
+<li><a href="../readme/">关于</a></li>

@@ -1,0 +1,498 @@
+@-webkit-keyframes brightness-blink {
+  0% { -webkit-filter: brightness(1); }
+  50% { -webkit-filter: brightness(100); }
+  100% { -webkit-filter: brightness(0.5); }
+}
+
+@-webkit-keyframes brightness-blink-2 {
+  0% { -webkit-filter: brightness(0.5); }
+  50% { -webkit-filter: brightness(100); }
+  100% { -webkit-filter: brightness(0.5); }
+}
+
+@-webkit-keyframes zoom-in {
+  0% { opacity: 0; -webkit-transform: scale3d(5, 5, 5); }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes zoom-out {
+  0% { opacity: 1; -webkit-transform: scale3d(0.1, 0.1, 0.1); }
+  100% { opacity: 0; -webkit-transform: scale3d(3, 3, 3); }
+}
+
+@-webkit-keyframes bounce-in {
+  0% { opacity: 0; -webkit-transform: scale3d(10, 10, 10); -webkit-filter: brightness(0); }
+  70% { opacity: 1; }
+  80% { -webkit-filter: brightness(0); }
+  100% { -webkit-filter: brightness(1); }
+}
+
+@-webkit-keyframes bounce-shadow {
+  0% { opacity: 0.8; }
+  100% { opacity: 0; -webkit-transform: scale3d(1.5, 1.5, 1.5); }
+}
+
+@-webkit-keyframes fade-in {
+  0% { opacity: 0; -webkit-transform: scale3d(0.5, 0.5, 0.5); }
+  80% { opacity: 1; -webkit-transform: scale3d(1.3, 1.3, 1.3); }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@-webkit-keyframes floating {
+  0% { -webkit-transform: translate(0, 0); }
+  65% { -webkit-transform: translate(0, 10px); }
+  100% { -webkit-transform: translate(0, 0); }
+}
+
+@-webkit-keyframes arrowing {
+  0% { -webkit-transform: translate(0, 0); }
+  10% { -webkit-transform: translate(0, 0); }
+  13% { -webkit-transform: translate(10px, 10px); }
+  16% { -webkit-transform: translate(0, 0); }
+  19% { -webkit-transform: translate(10px, 10px); }
+  22% { -webkit-transform: translate(0, 0); }
+  54% { -webkit-transform: translate(0, 0); }
+  57% { -webkit-transform: translate(10px, 10px); }
+  60% { -webkit-transform: translate(0, 0); }
+  100% { -webkit-transform: translate(0, 0); }
+}
+
+@-webkit-keyframes spin {
+  0% { opacity: 0.7; -webkit-transform: rotate(0deg); }
+  33% { opacity: 1; }
+  66% { opacity: 0.3; }
+  100% { opacity: 0.7; -webkit-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes spin-2 {
+  0% { opacity: 0; -webkit-transform: rotate(360deg); }
+  33% { opacity: 1; }
+  66% { opacity: 0;  -webkit-transform: rotate(0deg); }
+  100% { opacity: 0; -webkit-transform: rotate(0deg); }
+}
+
+@mixin fullscreen($margin: 0) {
+  top: $margin;
+  left: $margin;
+  right: $margin;
+  bottom: $margin;
+}
+
+@mixin center {
+  position: absolute;
+  @include fullscreen;
+  margin: auto;
+}
+
+@mixin center-image {
+  position: absolute;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+body {
+  background-color: black;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+#preload {
+  display: none;
+}
+
+#background {
+  position: fixed;
+  @include fullscreen;
+
+  .loading-bar {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    max-width: 20%;
+    min-width: 150px;
+    opacity: 0.9;
+  }
+
+  .image {
+    @include center;
+  }
+
+  #gacha-background {
+    -webkit-filter: blur(5px);
+  }
+
+  .spin {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    display: none;
+
+    .spin-1 {
+      @include center;
+      left: 5%;
+      right: -5%;
+      height: 150%;
+      opacity: 0.7;
+
+      -webkit-transform-origin: 40% 50%;
+    }
+
+    .spin-2 {
+      @include center;
+      height: 50%;
+      opacity: 0.7;
+      top: -45%;
+      bottom: 45%;
+      left: 10%;
+      right: -10%;
+
+      -webkit-transform-origin: 5% 150%;
+    }
+  }
+
+  .effect {
+    display: none;
+
+    .effect-1 {
+      @include center-image;
+      @include fullscreen;
+      background-image: url("../images/gacha/effect_1.png");
+    }
+
+    .effect-2 {
+      @include center-image;
+      @include fullscreen;
+      background-image: url("../images/gacha/effect_2.png");
+    }
+  }
+}
+
+#foreground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  .pick {
+    .button-group-gacha {
+      display: none;
+
+      position: absolute;
+      top: 0;
+      left: 50%;
+      bottom: 0;
+    }
+
+    .button-gacha-1, .button-gacha-2, .button-gacha-3 {
+      display: block;
+      height: 15%;
+      max-height: 80px;
+      margin-left: -50%;
+      margin-bottom: 10%;
+    }
+
+    .button-gacha-1 {
+      margin-top: 75%;
+    }
+  }
+
+  .welcome {
+    .button-statistics {
+      display: none;
+
+      position: absolute;
+      height: 15%;
+      max-height: 80px;
+      right: 5%;
+      bottom: 5%;
+    }
+  }
+
+  .ready {
+    display: none;
+
+    .scout-book {
+      @include center-image;
+      @include fullscreen(10%);
+      background-image: url("../images/gacha/scout_book.png");
+    }
+
+    .click {
+      position: absolute;
+      height: 6%;
+      top: 8%;
+      left: 18%;
+      opacity: 0;
+    }
+
+    .arrow {
+      position: absolute;
+      height: 10%;
+      top: 15%;
+      left: 25%;
+      opacity: 0;
+    }
+  }
+
+  .gacha {
+    display: none;
+
+    .unit {
+      @include center-image;
+      @include fullscreen(5%);
+    }
+
+    .unit-shadow {
+      @include center-image;
+      @include fullscreen(5%);
+      opacity: 0;
+    }
+
+    .new {
+      position: absolute;
+      height: 12%;
+      top: 15%;
+      left: 30%;
+      opacity: 0;
+    }
+
+    .skip {
+      position: absolute;
+      height: 15%;
+      top: 77.5%;
+      right: 10%;
+      opacity: 0;
+      z-index: 1;
+    }
+
+
+    .stars {
+      @include center;
+      text-align: center;
+      height: 10%;
+      top: 70%;
+
+      .star {
+        height: 100%;
+        opacity: 0;
+      }
+    }
+  }
+
+  .finish {
+    display: none;
+
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 87%;
+    height: 83%;
+
+    .unit {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      display: none;
+      width: 15%;
+      height: 45%;
+      margin-right: 4%;
+      margin-bottom: 2%;
+      float: left;
+    }
+  }
+}
+
+#page.ready {
+  #background {
+    -webkit-animation: brightness-in 0.5s linear;
+
+    .loading {
+      -webkit-animation: fade-out 0.2s linear;
+      opacity: 0;
+    }
+
+    .effect {
+      display: block;
+
+      .effect-1 {
+        -webkit-animation: zoom-out 0.3s linear;
+        -webkit-animation-delay: 0.2s;
+        opacity: 0;
+      }
+
+      .effect-2 {
+        -webkit-animation: zoom-out 0.7s linear;
+        opacity: 0;
+      }
+    }
+  }
+
+  #foreground {
+    .ready {
+      display: block;
+
+      .scout-book {
+        -webkit-animation: zoom-in 0.5s linear;
+      }
+
+      &.active-300 {
+        .click {
+          -webkit-animation: fade-in 0.2s linear;
+          opacity: 1;
+        }
+
+        .arrow {
+          -webkit-animation: fade-in 0.2s linear;
+          opacity: 1;
+        }
+      }
+
+      &.active-500 {
+        .scout-book {
+          -webkit-animation: floating 5s ease-in-out;
+          -webkit-animation-iteration-count: infinite;
+        }
+
+        .arrow {
+          -webkit-animation: arrowing 5s ease-in-out;
+          -webkit-animation-iteration-count: infinite;
+        }
+      }
+    }
+  }
+}
+
+#page.gacha {
+  #background {
+    -webkit-animation: brightness-blink 1s linear;
+    -webkit-filter: brightness(0.5);
+
+    .spin {
+      display: block;
+
+      .spin-1 {
+        -webkit-animation: spin 3s linear;
+        -webkit-animation-iteration-count: infinite;
+      }
+
+      .spin-2 {
+        -webkit-animation: spin-2 5s linear;
+        -webkit-animation-iteration-count: infinite;
+      }
+    }
+  }
+
+  #foreground {
+    .gacha {
+      &.active {
+        display: block;
+
+        .unit {
+          -webkit-animation: bounce-in 0.8s ease-in;
+        }
+
+        .unit-shadow {
+          -webkit-animation: bounce-shadow 0.2s linear;
+          -webkit-animation-delay: 0.8s;
+        }
+      }
+
+      &.active-1000 {
+        .new, .skip, .text, .star.active {
+          -webkit-animation: fade-in 0.1s linear;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+#page.finish {
+  #foreground {
+    .finish {
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
+
+.background-image {
+  @include center-image;
+  @include fullscreen;
+  background-size: cover;
+}
+
+.background-image.morning {
+  background-color: black;
+  background-image: url("../images/gacha/background_morning.png");
+}
+.background-image.evening {
+  background-image: url("../images/gacha/background_evening.png");
+}
+.background-image.night {
+  background-image: url("../images/gacha/background_night.png");
+}
+
+@media (max-aspect-ratio: 3/4) {
+  #foreground {
+    .ready {
+      .click {
+        left: 5%;
+      }
+
+      .arrow {
+        left: 15%;
+      }
+    }
+
+    .gacha {
+      .new {
+        top: 25%;
+        left: 10%;
+      }
+
+      .skip {
+        top: 80%;
+        right: 5%;
+      }
+
+      .stars {
+        top: 55%;
+      }
+    }
+  }
+}
+
+@media (max-aspect-ratio: 1/1) {
+  #foreground .finish {
+    width: 87%;
+    height: 83%;
+
+    .unit {
+      width: 29%;
+      height: 25%;
+    }
+  }
+}
+
+@media (min-aspect-ratio: 1/1) and (max-aspect-ratio: 4/3) {
+  #foreground .finish {
+    width: 87%;
+    height: 83%;
+
+    .unit {
+      width: 20%;
+      height: 33%;
+    }
+  }
+}

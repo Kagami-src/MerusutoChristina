@@ -1,0 +1,6 @@
+framework module Pods_MerusutoChristina {
+  umbrella header "Pods-MerusutoChristina-umbrella.h"
+
+  export *
+  module * { export * }
+}

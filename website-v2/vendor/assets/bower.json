@@ -1,0 +1,12 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "react": "latest",
+    "react-router": "latest",
+    "reflux": "latest",
+    "react-list": "latest",
+    "fetch": "latest",
+    "classnames": "latest",
+    "ratchet": "latest"
+  }
+}

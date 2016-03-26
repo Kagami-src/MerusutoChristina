@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <item name="light_blue" type="color">#33B5E5</item>
+  <item name="drawer_background" type="color">#333</item>
+  <item name="drawer_divider" type="color">#555</item>
+</resources>

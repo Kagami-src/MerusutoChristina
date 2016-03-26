@@ -1,0 +1,411 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.bbtfr.merusuto.MainActivity">
+  <item
+    android:id="@+id/menu_level_mode"
+    android:showAsAction="always|withText"
+    android:title="等级">
+    <menu>
+      <item
+        android:id="@+id/menu_level_zero"
+        android:enabled="false"
+        android:title="零觉零级" />
+      <item
+        android:id="@+id/menu_level_max_lv"
+        android:title="零觉满级" />
+      <item
+        android:id="@+id/menu_level_max_lv_gr"
+        android:title="满觉满级" />
+    </menu>
+  </item>
+  <item
+    android:id="@+id/menu_sort_mode"
+    android:showAsAction="always|withText"
+    android:title="排序">
+    <menu>
+      <item
+        android:id="@+id/menu_sort_rare"
+        android:enabled="false"
+        android:title="稀有度" />
+      <item
+        android:id="@+id/menu_sort_dps"
+        android:title="单体DPS" />
+      <item
+        android:id="@+id/menu_sort_mult_dps"
+        android:title="多体DPS" />
+      <item
+        android:id="@+id/menu_sort_life"
+        android:title="生命力" />
+      <item
+        android:id="@+id/menu_sort_atk"
+        android:title="攻击" />
+      <item
+        android:id="@+id/menu_sort_aarea"
+        android:title="攻击距离" />
+      <item
+        android:id="@+id/menu_sort_anum"
+        android:title="攻击数量" />
+      <item
+        android:id="@+id/menu_sort_aspd"
+        android:title="攻击速度" />
+      <item
+        android:id="@+id/menu_sort_tenacity"
+        android:title="韧性" />
+      <item
+        android:id="@+id/menu_sort_mspd"
+        android:title="移动速度" />
+      <item
+        android:id="@+id/menu_sort_hits"
+        android:title="多段攻击" />
+      <item
+          android:id="@+id/menu_sort_age"
+          android:title="年龄" />
+      <item
+          android:id="@+id/menu_sort_id"
+          android:title="ID" />
+    </menu>
+  </item>
+  <item
+    android:id="@+id/menu_filters"
+    android:showAsAction="always"
+    android:title="筛选">
+    <menu>
+      <item
+        android:id="@+id/menu_rare"
+        android:showAsAction="always|withText"
+        android:title="稀有度">
+        <menu>
+          <item
+            android:id="@+id/menu_rare_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_rare_1"
+            android:orderInCategory="1"
+            android:title="★" />
+          <item
+            android:id="@+id/menu_rare_2"
+            android:orderInCategory="2"
+            android:title="★★" />
+          <item
+            android:id="@+id/menu_rare_3"
+            android:orderInCategory="3"
+            android:title="★★★" />
+          <item
+            android:id="@+id/menu_rare_4"
+            android:orderInCategory="4"
+            android:title="★★★★" />
+          <item
+            android:id="@+id/menu_rare_5"
+            android:orderInCategory="5"
+            android:title="★★★★★" />
+          <item
+            android:id="@+id/menu_rare_6"
+            android:orderInCategory="6"
+            android:title="★★★以上" />
+          <item
+            android:id="@+id/menu_rare_7"
+            android:orderInCategory="7"
+            android:title="★★★★以上" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_element"
+        android:showAsAction="withText"
+        android:title="元素">
+        <menu>
+          <item
+            android:id="@+id/menu_element_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_element_1"
+            android:orderInCategory="1"
+            android:title="火" />
+          <item
+            android:id="@+id/menu_element_2"
+            android:orderInCategory="2"
+            android:title="水" />
+          <item
+            android:id="@+id/menu_element_3"
+            android:orderInCategory="3"
+            android:title="风" />
+          <item
+            android:id="@+id/menu_element_4"
+            android:orderInCategory="4"
+            android:title="光" />
+          <item
+            android:id="@+id/menu_element_5"
+            android:orderInCategory="5"
+            android:title="暗" />
+          <item
+            android:id="@+id/menu_element_6"
+            android:orderInCategory="6"
+            android:title="火/水/风" />
+          <item
+            android:id="@+id/menu_element_7"
+            android:orderInCategory="7"
+            android:title="光/暗" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_weapon"
+        android:showAsAction="withText"
+        android:title="武器">
+        <menu>
+          <item
+            android:id="@+id/menu_weapon_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_weapon_1"
+            android:orderInCategory="1"
+            android:title="斩击" />
+          <item
+            android:id="@+id/menu_weapon_2"
+            android:orderInCategory="2"
+            android:title="突击" />
+          <item
+            android:id="@+id/menu_weapon_3"
+            android:orderInCategory="3"
+            android:title="打击" />
+          <item
+            android:id="@+id/menu_weapon_4"
+            android:orderInCategory="4"
+            android:title="弓箭" />
+          <item
+            android:id="@+id/menu_weapon_5"
+            android:orderInCategory="5"
+            android:title="魔法" />
+          <item
+            android:id="@+id/menu_weapon_6"
+            android:orderInCategory="6"
+            android:title="铳弹" />
+          <item
+            android:id="@+id/menu_weapon_7"
+            android:orderInCategory="7"
+            android:title="回复" />
+          <item
+            android:id="@+id/menu_weapon_8"
+            android:orderInCategory="8"
+            android:title="斩/突/打" />
+          <item
+            android:id="@+id/menu_weapon_9"
+            android:orderInCategory="9"
+            android:title="弓/魔/铳" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_type"
+        android:showAsAction="withText"
+        android:title="成长">
+        <menu>
+          <item
+            android:id="@+id/menu_type_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_type_1"
+            android:orderInCategory="1"
+            android:title="早熟" />
+          <item
+            android:id="@+id/menu_type_2"
+            android:orderInCategory="2"
+            android:title="平均" />
+          <item
+            android:id="@+id/menu_type_3"
+            android:orderInCategory="3"
+            android:title="晚成" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_aarea"
+        android:showAsAction="withText"
+        android:title="攻击距离">
+        <menu>
+          <item
+            android:id="@+id/menu_aarea_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_aarea_1"
+            android:orderInCategory="1"
+            android:title="近程" />
+          <item
+            android:id="@+id/menu_aarea_2"
+            android:orderInCategory="2"
+            android:title="中程" />
+          <item
+            android:id="@+id/menu_aarea_3"
+            android:orderInCategory="3"
+            android:title="远程" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_anum"
+        android:showAsAction="withText"
+        android:title="攻击数量">
+        <menu>
+          <item
+            android:id="@+id/menu_anum_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_anum_1"
+            android:orderInCategory="1"
+            android:title="1体" />
+          <item
+            android:id="@+id/menu_anum_2"
+            android:orderInCategory="2"
+            android:title="2体" />
+          <item
+            android:id="@+id/menu_anum_3"
+            android:orderInCategory="3"
+            android:title="3体" />
+          <item
+            android:id="@+id/menu_anum_4"
+            android:orderInCategory="4"
+            android:title="4体" />
+          <item
+            android:id="@+id/menu_anum_5"
+            android:orderInCategory="5"
+            android:title="5体" />
+          <item
+            android:id="@+id/menu_anum_6"
+            android:orderInCategory="6"
+            android:title="2/3体" />
+          <item
+            android:id="@+id/menu_anum_7"
+            android:orderInCategory="7"
+            android:title="4/5体" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_country"
+          android:showAsAction="withText"
+          android:title="国别">
+        <menu>
+          <item
+              android:id="@+id/menu_country_0"
+              android:title="全部" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_gender"
+        android:showAsAction="withText"
+        android:title="性别">
+        <menu>
+          <item
+            android:id="@+id/menu_gender_0"
+            android:title="全部" />
+          <item
+            android:id="@+id/menu_gender_1"
+            android:orderInCategory="1"
+            android:title="不明" />
+          <item
+            android:id="@+id/menu_gender_2"
+            android:orderInCategory="2"
+            android:title="男" />
+          <item
+            android:id="@+id/menu_gender_3"
+            android:orderInCategory="3"
+            android:title="女" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_age"
+          android:showAsAction="withText"
+          android:title="年龄">
+        <menu>
+          <item
+              android:id="@+id/menu_age_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_age_1"
+              android:orderInCategory="1"
+              android:title="暂无" />
+          <item
+              android:id="@+id/menu_age_2"
+              android:orderInCategory="2"
+              android:title="10岁以下" />
+          <item
+              android:id="@+id/menu_age_3"
+              android:orderInCategory="3"
+              android:title="11至15岁" />
+          <item
+              android:id="@+id/menu_age_4"
+              android:orderInCategory="4"
+              android:title="16至20岁" />
+          <item
+              android:id="@+id/menu_age_5"
+              android:orderInCategory="5"
+              android:title="21至25岁" />
+          <item
+              android:id="@+id/menu_age_6"
+              android:orderInCategory="6"
+              android:title="26至30岁" />
+          <item
+              android:id="@+id/menu_age_7"
+              android:orderInCategory="7"
+              android:title="31至35岁" />
+          <item
+              android:id="@+id/menu_age_8"
+              android:orderInCategory="8"
+              android:title="35至40岁" />
+          <item
+              android:id="@+id/menu_age_9"
+              android:orderInCategory="9"
+              android:title="41岁以上" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_server"
+          android:showAsAction="withText"
+          android:title="新品上架">
+        <menu>
+          <item
+              android:id="@+id/menu_server_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_server_1"
+              android:orderInCategory="1"
+              android:title="日服" />
+          <item
+              android:id="@+id/menu_server_2"
+              android:orderInCategory="2"
+              android:title="国服" />
+        </menu>
+      </item>
+      <item
+          android:id="@+id/menu_exchange"
+          android:showAsAction="withText"
+          android:title="交换所">
+        <menu>
+          <item
+              android:id="@+id/menu_exchange_0"
+              android:title="全部" />
+          <item
+              android:id="@+id/menu_exchange_1"
+              android:orderInCategory="1"
+              android:title="历代交换所人物" />
+          <item
+              android:id="@+id/menu_exchange_2"
+              android:orderInCategory="2"
+              android:title="历代活动人物" />
+        </menu>
+      </item>
+      <item
+        android:id="@+id/menu_like"
+        android:title="收藏">
+      </item>
+      <item
+        android:id="@+id/menu_reset"
+        android:title="重置" />
+    </menu>
+  </item>
+  <item
+    android:id="@+id/menu_search"
+    android:showAsAction="collapseActionView|always"
+    android:title="搜索"
+    android:icon="@drawable/ic_action_search"
+    android:actionViewClass="android.widget.SearchView" />
+  <item
+    android:id="@+id/menu_close_search"
+    android:visible="false"
+    android:title="取消"
+    android:showAsAction="always" />
+</menu>

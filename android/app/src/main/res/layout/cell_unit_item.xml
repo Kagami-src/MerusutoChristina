@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/fragment_small_margin">
+
+    <TextView
+      android:id="@+id/rare"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="left"
+      android:minWidth="80dp" />
+
+    <TextView
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/fragment_medium_margin"
+      android:layout_toRightOf="@+id/rare" />
+
+    <ImageView
+      android:id="@+id/thumbnail"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/name"
+      android:layout_alignBottom="@+id/text_layout"
+      android:layout_marginTop="@dimen/fragment_small_margin"
+      android:layout_marginLeft="@dimen/fragment_small_margin"
+      android:minWidth="55dp"
+      android:scaleType="fitCenter" />
+
+    <LinearLayout
+      android:id="@+id/text_layout"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_below="@+id/name"
+      android:layout_marginTop="@dimen/fragment_small_margin"
+      android:layout_marginLeft="@dimen/fragment_small_margin"
+      android:layout_toLeftOf="@+id/element"
+      android:layout_toRightOf="@+id/thumbnail">
+
+      <TextView
+        android:id="@+id/text_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ListText" />
+
+      <TextView
+        android:id="@+id/text_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ListText" />
+
+      <TextView
+        android:id="@+id/text_3"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ListText" />
+
+      <TextView
+        android:id="@+id/text_4"
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/ListText" />
+		
+    </LinearLayout>
+	
+	<TextView
+		android:id="@+id/text_9"
+		android:visibility="gone"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/text_layout"
+		android:layout_alignLeft="@+id/thumbnail"
+		style="@style/ListText" />
+
+    <com.bbtfr.merusuto.ElementView
+      android:id="@+id/element"
+      android:layout_width="@dimen/element_view_width"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/element_view_top_padding"
+      android:layout_marginRight="@dimen/fragment_small_margin"
+      android:layout_alignBottom="@+id/text_layout"
+      android:layout_alignParentTop="true"
+      android:layout_alignParentRight="true" />
+
+  </RelativeLayout>
+
+</FrameLayout>

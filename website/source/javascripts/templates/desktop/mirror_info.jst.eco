@@ -1,0 +1,22 @@
+<% unless location.href.includes("gitcafe") || location.href.includes("coding") || localStorage?["mirror-info-disabled"]: %>
+  <div class="container-fluid">
+    <div class="alert alert-info alert-dismissible fade in" id="mirror-alert">
+      <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+      <h4>梅露可图鉴 国内镜像</h4>
+      <p>为保证服务质量，梅露可图鉴在国内服务器上部属了一份镜像网站，国内用户访问更快更稳定，避免网站偶尔由于不可抗力访问不到！</p>
+      <p>
+        <a href="http://merusuto.gitcafe.io/readme/" class="btn btn-info">访问国内镜像</a>
+        <button type="button" class="btn btn-default" id="mirror-disable-button">不再显示这条消息</button>
+      </p>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $("#mirror-disable-button").click(function() {
+      $("#mirror-alert").alert("close");
+      if (_.isObject(localStorage)) {
+        localStorage["mirror-info-disabled"] = true
+      }
+    })
+  </script>
+<% end %>

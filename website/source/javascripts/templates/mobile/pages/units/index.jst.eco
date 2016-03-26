@@ -1,0 +1,7 @@
+<%- _.renderTemplate("templates/mobile/pages/units/header") %>
+<div class="content">
+  <ul class="table-view"></ul>
+</div>
+<a class="btn btn-lg scroll-to-top">
+  <span class="icon icon-up"></span>
+</a>

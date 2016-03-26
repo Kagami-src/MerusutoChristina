@@ -1,0 +1,38 @@
+<sidebar class="content sidebar">
+  <ul class="table-view">
+    <li class="table-view-cell media">
+      <a class="navigate-right" href="#units">
+        <span class="media-object pull-left icon icon-person"></span>
+        <div class="media-body">
+          同伴
+        </div>
+      </a>
+    </li>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href="#monsters">
+        <span class="media-object pull-left icon icon-gear"></span>
+        <div class="media-body">
+          魔宠
+        </div>
+      </a>
+    </li>
+  </ul>
+  <ul class="table-view">
+    <li class="table-view-cell media">
+      <a class="navigate-right" href="../gacha/">
+        <span class="media-object pull-left icon icon-pages"></span>
+        <div class="media-body">
+          模拟抽卡
+        </div>
+      </a>
+    </li>
+    <li class="table-view-cell media">
+      <a class="navigate-right" href="../desktop/">
+        <span class="media-object pull-left icon icon-home"></span>
+        <div class="media-body">
+          桌面版
+        </div>
+      </a>
+    </li>
+  </ul>
+</sidebar>

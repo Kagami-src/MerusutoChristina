@@ -1,0 +1,27 @@
+PODS:
+  - ActionSheetPicker-3.0 (2.0.4)
+  - MBProgressHUD (0.9.1)
+  - Reachability (3.2)
+  - RESideMenu (4.0.7)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - SwiftyJSON (2.3.2)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 2.0.4)
+  - MBProgressHUD (~> 0.9.1)
+  - Reachability (~> 3.2)
+  - RESideMenu (~> 4.0.7)
+  - SDWebImage (~> 3.7.3)
+  - SwiftyJSON (~> 2.3.2)
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: 860466cb4a66854e6acb590071ecee404b48f49d
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+
+COCOAPODS: 0.39.0

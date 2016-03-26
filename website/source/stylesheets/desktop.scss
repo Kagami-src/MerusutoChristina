@@ -1,0 +1,150 @@
+//= require bootstrap/dist/css/bootstrap
+//= require dataTables.bootstrap
+
+@import "bourbon";
+@import "structure/dropdown_submenu";
+
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+view {
+  display: block;
+}
+
+.loading {
+  color: #AAA;
+  text-align: center;
+  margin-top: 150px;
+}
+
+.dropdown-menu > li > label {
+  display: block;
+  padding: 3px 20px;
+  margin: 0;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+
+  span {
+    margin-left: 10px;
+  }
+}
+
+.dropdown-menu > li > label:hover,
+.dropdown-menu > li > label:focus {
+  color: #262626;
+  text-decoration: none;
+  background-color: #f5f5f5;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  vertical-align: middle;
+}
+
+.datatable {
+  .icon {
+    width: 40px;
+    margin: -5px;
+  }
+  .glyphicon {
+    text-decoration: none;
+    margin-right: 5px;
+  }
+}
+
+.detail, .editor {
+  .links {
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-header {
+    margin-top: 20px;
+  }
+}
+
+.detail, .compare {
+  p {
+    font-size: 1.2em;
+  }
+
+  .image {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.compare {
+  .text-danger:after {
+    content: ' ▲';
+  }
+  .text-success:after {
+    content: ' ▼';
+  }
+}
+
+.jumbotron {
+  .btn {
+    margin-bottom: 6px;
+  }
+}
+
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+@media (min-width: 992px) {
+  .detail-body {
+    display: table;
+    width: 100%;
+
+    .left-side {
+      float: none;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .right-side {
+      float: none;
+      display: table-cell;
+      vertical-align: top;
+    }
+  }
+}
+
+#changelog-md {
+  height: 450px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+#editing-warning {
+  display: none;
+}

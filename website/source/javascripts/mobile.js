@@ -1,0 +1,19 @@
+//= require zepto
+//= require zepto/data
+//= require underscore
+//= require underscore/extra
+//= require backbone
+//= require backbone/template
+//= require backbone/view/extensions
+//= require backbone/collection/where
+
+//= require app
+//= require keymap
+//= require_tree ./bindings
+//= require utils/svg
+//= require utils/scrolltotop
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./templates/mobile
+//= require_tree ./views/mobile
+//= require routers/mobile

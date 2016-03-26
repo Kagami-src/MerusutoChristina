@@ -1,0 +1,12 @@
+platform :ios, ‘8.0’
+
+use_frameworks!
+
+target 'MerusutoChristina' do
+  pod 'ActionSheetPicker-3.0', '~> 2.0.4’
+  pod 'SwiftyJSON', '~> 2.3.2'
+  pod 'Reachability', '~> 3.2'
+  pod 'SDWebImage', '~> 3.7.3'
+  pod 'MBProgressHUD', '~> 0.9.1'
+  pod 'RESideMenu', '~> 4.0.7'
+end

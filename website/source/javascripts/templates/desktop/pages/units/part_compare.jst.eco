@@ -1,0 +1,66 @@
+<% compareValue = (v1, v2) -> if v1?.toString() == "NaN" && v2?.toString() == "NaN" || v1 == v2 then 'text-default' else if v2?.toString() == "NaN" || !v2? || v1 > v2 then 'text-danger' else 'text-success' %>
+<% compareObject = (o1, o2, func, args) -> compareValue(o1[func].call(o1, args), o2[func].call(o2, args)) %>
+
+<div class="row">
+  <p class="col-sm-6">
+    <span class="<%= compareValue(@model.origin.life, @other_model.origin.life) %>">初始生命：<%= @model.origin.life %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLv", "life") %>">满级生命：<%= @model.calcMaxLv("life") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLvAndGrow", "life") %>">满觉生命：<%= @model.calcMaxLvAndGrow("life") %></span><br>
+    <span class="<%= compareValue(@model.origin.atk, @other_model.origin.atk) %>">初始攻击：<%= @model.origin.atk %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLv", "atk") %>">满级攻击：<%= @model.calcMaxLv("atk") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLvAndGrow", "atk") %>">满觉攻击：<%= @model.calcMaxLvAndGrow("atk") %></span><br>
+  </p>
+  <p class="col-sm-6">
+    <span class="<%= compareObject(@model, @other_model, "get", "aarea") %>">攻距：<%= @model.getString("aarea") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "anum") %>">攻数：<%= @model.getString("anum") %></span><br>
+    <span class="<%= compareObject(@other_model, @model, "get", "aarea") %>">攻速：<%= @model.getString("aspd") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "tenacity") %>">韧性：<%= @model.getString("tenacity") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "mspd") %>">移速：<%= @model.getString("mspd") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "hits") %>">多段：<%= @model.getString("hits") %></span><br>
+  </p>
+</div>
+<div class="row">
+  <p class="col-sm-6">
+    <span class="<%= compareValue(@model.origin.dps, @other_model.origin.dps) %>">初始DPS：<%= Math.round(@model.origin.dps) %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLv", "dps") %>">满级DPS：<%= Math.round(@model.calcMaxLv("dps")) %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLvAndGrow", "dps") %>">满觉DPS：<%= Math.round(@model.calcMaxLvAndGrow("dps")) %></span><br>
+    <span class="<%= compareValue(@model.origin.mdps, @other_model.origin.mdps) %>">初始总DPS：<%= Math.round(@model.origin.mdps) %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLv", "mdps") %>">满级总DPS：<%= Math.round(@model.calcMaxLv("mdps")) %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "calcMaxLvAndGrow", "mdps") %>">满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrow("mdps")) %></span><br>
+  </p>
+  <p class="col-sm-6">
+    <span class="<%= compareObject(@model, @other_model, "get", "type") %>">成长：<%= @model.getTypeString() %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "fire") %>">火：<%= @model.getElementPercentString("fire") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "aqua") %>">水：<%= @model.getElementPercentString("aqua") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "wind") %>">风：<%= @model.getElementPercentString("wind") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "light") %>">光：<%= @model.getElementPercentString("light") %></span><br>
+    <span class="<%= compareObject(@model, @other_model, "get", "dark") %>">暗：<%= @model.getElementPercentString("dark") %></span><br>
+  </p>
+</div>
+<div class="row">
+  <p class="col-sm-6">
+    国家：<%= @model.getString('country') %><br>
+    性别：<%= @model.getGenderString() %><br>
+    年龄：<%= @model.getAgeString() %><br>
+  </p>
+  <p class="col-sm-6">
+    职业：<%= @model.getString('career') %><br>
+    兴趣：<%= @model.getString('interest') %><br>
+    性格：<%= @model.getString('nature') %><br>
+  </p>
+</div>
+<div class="row">
+  <p class="col-sm-12">
+    获取方式：<%- @model.getFormatString('obtain') %><br>
+    <% if @model.get('remark'): %>
+      备注：<%- @model.getFormatString('remark') %><br>
+    <% end %>
+  </p>
+</div>
+<% if @model.get('contributors'): %>
+  <div class="row">
+    <p class="col-sm-12">
+      数据提供者：<%= @model.get('contributors').join("、") %><br>
+    </p>
+  </div>
+<% end %>

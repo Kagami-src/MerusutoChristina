@@ -1,0 +1,99 @@
+<div class="detail">
+  <ul class="list-inline pull-right links">
+    <li><a href="#monsters/<%= @model.id %>/edit">数据补全 / 报错</a></li>
+    <li><a href="#monsters">返回列表页</a></li>
+  </ul>
+
+  <div class="row detail-body">
+    <div class="col-md-5 left-side image">
+      <img src="<%= @model.originalUrl() %>">
+    </div>
+
+    <div class="col-md-7 right-side">
+      <div class="page-header">
+        <h2>
+          <%= @model.getTitleString() %>
+          <small><%= @model.getRareString() %></small>
+          <small>ID: <%= @model.get("id") %></small>
+        </h2>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          幼年期生命：<%= @model.origin.life %><br>
+          成长期生命：<%= @model.calcBySize(@model.origin.life, 1.35, 2) %><br>
+          成熟期生命：<%= @model.calcBySize(@model.origin.life, 1.55, 2) %><br>
+          完全体生命：<%= @model.calcBySize(@model.origin.life, 1.7, 2) %><br>
+          天然完全体生命：<%= @model.calcBySize(@model.origin.life, 1.8, 2) %><br>
+        </p>
+        <p class="col-xs-6">
+          攻距：<%= @model.getString("aarea") %><br>
+          攻数：<%= @model.getString("anum") %><br>
+          攻速：<%= @model.getString("aspd") %><br>
+          韧性：<%= @model.getString("tenacity") %><br>
+          移速：<%= @model.getString("mspd") %><br>
+          皮肤：<%= @model.getSkinString() %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          幼年期攻击：<%= @model.origin.atk %><br>
+          成长期攻击：<%= @model.calcBySize(@model.origin.atk, 1.35, 1) %><br>
+          成熟期攻击：<%= @model.calcBySize(@model.origin.atk, 1.55, 1) %><br>
+          完全体攻击：<%= @model.calcBySize(@model.origin.atk, 1.7, 1) %><br>
+          天然完全体攻击：<%= @model.calcBySize(@model.origin.atk, 1.8, 1) %><br>
+        </p>
+        <p class="col-xs-6">
+          幼年期DPS：<%= Math.round(@model.origin.dps) %><br>
+          成长期DPS：<%= Math.round(@model.calcBySize(@model.origin.dps, 1.35, 1)) %><br>
+          成熟期DPS：<%= Math.round(@model.calcBySize(@model.origin.dps, 1.55, 1)) %><br>
+          完全体DPS：<%= Math.round(@model.calcBySize(@model.origin.dps, 1.7, 1)) %><br>
+          天然完全体DPS：<%= Math.round(@model.calcBySize(@model.origin.dps, 1.8, 1)) %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-6">
+          幼年期总DPS：<%= Math.round(@model.origin.mdps) %><br>
+          成长期总DPS：<%= Math.round(@model.calcBySize(@model.origin.mdps, 1.35, 1)) %><br>
+          成熟期总DPS：<%= Math.round(@model.calcBySize(@model.origin.mdps, 1.55, 1)) %><br>
+          完全体总DPS：<%= Math.round(@model.calcBySize(@model.origin.mdps, 1.7, 1)) %><br>
+          天然完全体总DPS：<%= Math.round(@model.calcBySize(@model.origin.mdps, 1.8, 1)) %><br>
+        </p>
+        <p class="col-xs-6">
+          火：<%= @model.getElementPercentString("fire") %><br>
+          水：<%= @model.getElementPercentString("aqua") %><br>
+          风：<%= @model.getElementPercentString("wind") %><br>
+          光：<%= @model.getElementPercentString("light") %><br>
+          暗：<%= @model.getElementPercentString("dark") %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-12">
+          技能：<%= @model.getString("skill") %><br>
+          技能消耗：<%= @model.getString("sklsp") %><br>
+          技能CD：<%= @model.getString("sklcd") %><br>
+        </p>
+      </div>
+      <div class="row">
+        <p class="col-xs-12">
+          获取方式：<%= @model.getString('obtain') %><br>
+          <% if @model.get('remark'): %>
+            备注：<%= @model.get('remark') %><br>
+          <% end %>
+        </p>
+      </div>
+      <% if @model.get('contributors'): %>
+        <div class="row">
+          <p class="col-xs-12">
+            数据提供者：<%= @model.get('contributors').join("、") %><br>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-offset-5 col-md-5">
+      <%- _.renderTemplate("templates/desktop/pages/disqus", model: @model) %>
+    </div>
+  </div>
+</div>

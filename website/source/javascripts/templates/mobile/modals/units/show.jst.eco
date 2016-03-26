@@ -1,0 +1,96 @@
+<%- _.renderTemplate("templates/mobile/modals/header") %>
+<div class="content">
+  <div class="slider">
+    <div class="slide-group">
+      <div class="slide">
+        <img class="image" src="<%= @model.originalUrl() %>">
+      </div>
+      <div class="slide media">
+        <div class="media-body">
+          <h4 class="media-title media-info-group">
+            <%= @model.getTitleString() %>
+            <small><%= @model.getRareString() %></small>
+            <br>
+            <small>ID: <%= @model.getString("id") %></small>
+          </h4>
+          <div class="media-info-group">
+            <p class="media-info">
+              初始生命：<%= @model.origin.life %><br>
+              满级生命：<%= @model.calcMaxLv('life') %><br>
+              满觉生命：<%= @model.calcMaxLvAndGrow('life') %><br>
+              初始攻击：<%= @model.origin.atk %><br>
+              满级攻击：<%= @model.calcMaxLv('atk') %><br>
+              满觉攻击：<%= @model.calcMaxLvAndGrow('atk') %><br>
+            </p>
+            <p class="media-info">
+              攻距：<%= @model.getString("aarea") %><br>
+              攻数：<%= @model.getString("anum") %><br>
+              攻速：<%= @model.getString("aspd") %><br>
+              韧性：<%= @model.getString("tenacity") %><br>
+              移速：<%= @model.getString("mspd") %><br>
+              多段：<%= @model.getString("hits") %><br>
+            </p>
+          </div>
+          <div class="media-info-group">
+            <p class="media-info">
+              初始DPS：<%= Math.round(@model.origin.dps) %><br>
+              满级DPS：<%= Math.round(@model.calcMaxLv('dps')) %><br>
+              满觉DPS：<%= Math.round(@model.calcMaxLvAndGrowDPS()) %><br>
+              初始总DPS：<%= Math.round(@model.origin.mdps) %><br>
+              满级总DPS：<%= Math.round(@model.calcMaxLv('mdps')) %><br>
+              满觉总DPS：<%= Math.round(@model.calcMaxLvAndGrowMDPS()) %><br>
+            </p>
+            <p class="media-info">
+              成长：<%= @model.getTypeString() %><br>
+              火：<%= @model.getElementPercentString("fire") %><br>
+              水：<%= @model.getElementPercentString("aqua") %><br>
+              风：<%= @model.getElementPercentString("wind") %><br>
+              光：<%= @model.getElementPercentString("light") %><br>
+              暗：<%= @model.getElementPercentString("dark") %><br>
+            </p>
+          </div>
+          <div class="media-info-group">
+            <p class="media-info">
+              国家：<%= @model.getString('country') %><br>
+              性别：<%= @model.getGenderString() %><br>
+              年龄：<%= @model.getString('age') %><br>
+            </p>
+            <p class="media-info">
+              职业：<%= @model.getString('career') %><br>
+              兴趣：<%= @model.getString('interest') %><br>
+              性格：<%= @model.getString('nature') %><br>
+            </p>
+          </div>
+
+          <div class="media-info-title">获取方式</div>
+          <p class="media-info">
+            <%= @model.getString('obtain') %>
+          </p>
+
+          <% if @model.get('remark'): %>
+            <div class="media-info-title">备注</div>
+            <p class="media-info">
+              <%= @model.get("remark") %>
+            </p>
+          <% end %>
+
+          <% if @model.get('contributors'): %>
+            <div class="media-info-title">数据提供者</div>
+            <p class="media-info">
+              <%= @model.get('contributors').join("、") %>
+            </p>
+          <% end %>
+
+          <a class="media-info" href="../desktop/#units/<%= @model.id %>/edit">数据有误？点击这里</a>
+        </div>
+      </div>
+      <!-- <div class="slide disqus">
+        <%#- _.renderTemplate("templates/mobile/modals/disqus", model: @model) %>
+      </div> -->
+    </div>
+    <div class="slide-handler">
+      <span class="icon icon-right-nav slide-next"></span>
+      <span class="icon icon-left-nav slide-prev"></span>
+    </div>
+  </div>
+</div>

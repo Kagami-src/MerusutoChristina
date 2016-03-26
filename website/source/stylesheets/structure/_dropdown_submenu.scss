@@ -1,0 +1,41 @@
+// SubMenu for dropdowns
+.dropdown-submenu {
+  position: relative;
+
+  > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+  }
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+
+
+  position: relative;
+  top: 5px;
+  right: -10px;
+  @include size(0 0);
+
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #ccc;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+
+  > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+  }
+}

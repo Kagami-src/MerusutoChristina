@@ -1,0 +1,90 @@
+<header class="bar bar-nav">
+
+  <div class="input-icon input-search" style="display:none;">
+    <span class="icon icon-search"></span>
+    <input type="search" placeholder="Search">
+    <a class="icon icon-close pull-right search-close"></a>
+  </div>
+
+  <a class="icon icon-bars pull-left" sref="#toggle-sidebar"></a>
+  <a class="icon icon-search pull-right search-open"></a>
+  <div class="dropdown pull-right">
+    <a class="btn btn-link dropdown-toggle">
+      筛选
+    </a>
+    <ul class="dropdown-menu">
+      <li class="dropdown-submenu pull-left">
+        <a class="">稀有度</a>
+        <ul class="dropdown-menu">
+          <li><a class="filter-reset" data-key="rare">全部</a></li>
+          <li><a class="filter" data-key="rare" data-value="1">★</a></li>
+          <li><a class="filter" data-key="rare" data-value="2">★★</a></li>
+          <li><a class="filter" data-key="rare" data-value="3">★★★</a></li>
+          <li><a class="filter" data-key="rare" data-value="4">★★★★</a></li>
+          <li><a class="filter" data-key="rare" data-value="[3,4]">★★★以上</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu pull-left">
+        <a class="">元素</a>
+        <ul class="dropdown-menu">
+          <li><a class="filter-reset" data-key="element">全部</a></li>
+          <li><a class="filter" data-key="element" data-value="1">火</a></li>
+          <li><a class="filter" data-key="element" data-value="2">水</a></li>
+          <li><a class="filter" data-key="element" data-value="3">风</a></li>
+          <li><a class="filter" data-key="element" data-value="4">光</a></li>
+          <li><a class="filter" data-key="element" data-value="5">暗</a></li>
+          <li><a class="filter" data-key="element" data-value="[1,2,3]">火/水/风</a></li>
+          <li><a class="filter" data-key="element" data-value="[4,5]">光/暗</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu pull-left">
+        <a class="">皮肤</a>
+        <ul class="dropdown-menu">
+          <li><a class="filter-reset" data-key="skin">全部</a></li>
+          <li><a class="filter" data-key="skin" data-value="1">坚硬</a></li>
+          <li><a class="filter" data-key="skin" data-value="2">常规</a></li>
+          <li><a class="filter" data-key="skin" data-value="3">柔软</a></li>
+        </ul>
+      </li>
+      <li class="dropdown-submenu pull-left">
+        <a class="">技能</a>
+        <ul class="dropdown-menu" id="skill">
+          <li><a class="filter-reset" data-key="skill-sc">全部</a></li>
+        </ul>
+      </li>
+      <li class="divider"></li>
+      <li><a class="filter-reset">重置</a></li>
+    </ul>
+  </div>
+  <div class="dropdown pull-right">
+    <a class="btn btn-link dropdown-toggle">
+      排序
+    </a>
+    <ul class="dropdown-menu">
+      <li class="active"><a class="sort-mode" data-key="rare">稀有度</a></li>
+      <li><a class="sort-mode" data-key="dps">单体DPS</a></li>
+      <li><a class="sort-mode" data-key="mdps">多体DPS</a></li>
+      <li><a class="sort-mode" data-key="life">生命力</a></li>
+      <li><a class="sort-mode" data-key="atk">攻击</a></li>
+      <li><a class="sort-mode" data-key="aarea">攻击距离</a></li>
+      <li><a class="sort-mode" data-key="anum">攻击数量</a></li>
+      <li><a class="sort-mode" data-key="aspd">攻击速度</a></li>
+      <li><a class="sort-mode" data-key="tenacity">韧性</a></li>
+      <li><a class="sort-mode" data-key="mspd">移动速度</a></li>
+      <li><a class="sort-mode" data-key="id">新品上架</a></li>
+    </ul>
+  </div>
+  <div class="dropdown pull-right">
+    <a class="btn btn-link dropdown-toggle">
+      等级
+    </a>
+    <ul class="dropdown-menu">
+      <li class="active"><a class="level-mode" data-key="sm">幼年期（1.0）</a></li>
+      <li><a class="level-mode" data-key="md">成长期（1.35）</a></li>
+      <li><a class="level-mode" data-key="lg">成熟期（1.55）</a></li>
+      <li><a class="level-mode" data-key="xl">完全体（1.7）</a></li>
+      <li><a class="level-mode" data-key="xxl">天然完全体（1.8）</a></li>
+    </ul>
+  </div>
+  <h1 class="title"><%= @title %></h1>
+</header>
