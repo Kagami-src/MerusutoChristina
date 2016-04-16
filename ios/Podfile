@@ -9,4 +9,5 @@ target 'MerusutoChristina' do
   pod 'SDWebImage', '~> 3.7.3'
   pod 'MBProgressHUD', '~> 0.9.1'
   pod 'RESideMenu', '~> 4.0.7'
+  pod 'SnapKit', '~> 0.19.1'
 end

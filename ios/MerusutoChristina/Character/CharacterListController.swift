@@ -10,34 +10,105 @@ import ActionSheetPicker_3_0
 import SDWebImage
 import RESideMenu
 
-class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate, RESideMenuDelegate {
-
-	@IBOutlet var loadingView: UIView!
+class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate, RESideMenuDelegate, UITableViewDelegate, UITableViewDataSource {
 
 	var allItems = [CharacterItem]()
 	var displayedItems: [CharacterItem]?
 
-	@IBOutlet var tableView: UITableView!
-	@IBOutlet var scrollToTopButton: UIButton!
-	@IBOutlet var actionSheetToolbar: UIToolbar!
+	var tableView: UITableView!
 
 	var actionSheetPicker: ActionSheetCustomPicker!
 	var actionSheetPickerShown: Bool = false
 
 	var scrollToTopButtonHidden = true
 
-	@IBOutlet var rightBarButtonItemsCollection: [UIBarButtonItem]! {
-		didSet {
-			rightBarButtonItemsCollection.sortInPlace {
-				(lhs: UIBarButtonItem, rhs: UIBarButtonItem) -> Bool in
-				return lhs.tag > rhs.tag
-			}
-			navigationItem.rightBarButtonItems = rightBarButtonItemsCollection
-		}
-	}
+	var path: [PickerItem] = []
+	var pickers = [levelPicker, sortPicker, rarePicker, elementPicker, weaponPicker, typePicker]
+	var classRootPicker = rootPicker
+
+	var pickerView: UIPickerView!
+
+	var btnScrollToTop: UIButton!
+
+	// MARK:UIBarButtons
+	var btnMenu: UIBarButtonItem!
+	var btnFilter: UIBarButtonItem!
+	var btnSort: UIBarButtonItem!
+	var btnCancel: UIBarButtonItem!
+	var btnDone: UIBarButtonItem!
+	var btnLevel: UIBarButtonItem!
+
+	var cellIdentifier: String = "Character Cell"
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
+		self.view.backgroundColor = UIColor.clearColor();
+        
+		initTableView()
+		initNavigationBar()
+		initNavigationBarButtonItem()
+		initOtherButton()
+
+		loadData()
+	}
+
+	func initTableView() {
+		self.tableView = UITableView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height), style: UITableViewStyle.Plain)
+		self.tableView.registerClass(CharacterListCell.classForCoder(), forCellReuseIdentifier: cellIdentifier)
+		self.view.addSubview(self.tableView)
+		self.tableView.delegate = self
+		self.tableView.dataSource = self
+		self.tableView.rowHeight = 111;
+
+		self.tableView.backgroundColor = UIColor.clearColor()
+		self.tableView.snp_makeConstraints { (make) -> Void in
+			make.bottom.equalTo(self.view.snp_bottom)
+			make.left.equalTo(self.view.snp_left)
+			make.right.equalTo(self.view.snp_right)
+			make.top.equalTo(self.view.snp_top).offset(0)
+		}
+	}
+
+	func initOtherButton() {
+		self.btnScrollToTop = UIButton(type: UIButtonType.System)
+		self.btnScrollToTop.alpha = 0
+		self.btnScrollToTop.setTitle("回到顶部", forState: UIControlState.Normal)
+		self.btnScrollToTop.addTarget(self, action: Selector("btnScrollToTop_clickHandler:"), forControlEvents: UIControlEvents.TouchUpInside)
+		self.view.addSubview(self.btnScrollToTop)
+		self.btnScrollToTop.snp_makeConstraints { (make) -> Void in
+			make.bottom.equalTo(self.view.snp_bottom).offset(-8)
+			make.right.equalTo(self.view.snp_right).offset(-12)
+			make.width.equalTo(80)
+			make.height.equalTo(30)
+		}
+	}
+
+	func initNavigationBar() {
+		self.automaticallyAdjustsScrollViewInsets = false;
+		self.navigationController?.navigationBar.translucent = false;
+		self.navigationItem.title = ""
+	}
+
+	func initNavigationBarButtonItem() {
+		self.btnLevel = UIBarButtonItem(title: "等级", style: UIBarButtonItemStyle.Plain, target: self, action: "barButton_clickHandler:")
+		self.btnFilter = UIBarButtonItem(title: "筛选", style: UIBarButtonItemStyle.Plain, target: self, action: "barButton_clickHandler:")
+		self.btnSort = UIBarButtonItem(title: "排序", style: UIBarButtonItemStyle.Plain, target: self, action: "barButton_clickHandler:")
+		self.btnCancel = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "btnCancel_handler:")
+		self.btnDone = UIBarButtonItem(title: "确定", style: UIBarButtonItemStyle.Plain, target: self, action: "btnDone_handler:")
+
+		self.btnSort.tag = 1;
+		self.btnLevel.tag = 0;
+		self.btnFilter.tag = 2;
+
+		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_drawer"), style: UIBarButtonItemStyle.Done, target: self, action: "menu_handler:")
+		self.navigationItem.rightBarButtonItems = [self.btnFilter, self.btnSort, self.btnLevel]
+	}
+
+	func loadData() {
+
+		postShowLoading()
 
 		DataManager.loadJSONWithSuccess("units", success: { (data) -> Void in
 			for (_, each) in data {
@@ -45,17 +116,13 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 				self.allItems.append(item)
 			}
 			self.displayedItems = self.sort(self.allItems)
-			dispatch_sync(dispatch_get_main_queue(), {
-				UIView.animateWithDuration(0.25, animations: {
-					self.loadingView.alpha = 0
-					}, completion: { finished in
-					self.loadingView.hidden = true
-				})
+
+			dispatch_async(dispatch_get_main_queue(), { () -> Void in
+
 				self.tableView.reloadData()
+				postHideLoading()
 			})
 		})
-
-		self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_drawer"), style: UIBarButtonItemStyle.Done, target: self, action: "menu_handler:")
 	}
 
 	func menu_handler(sender: AnyObject) {
@@ -69,25 +136,27 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		return self.displayedItems?.count ?? 0
 	}
 
-	var workaroundCell = UITableViewCell()
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let indexPaths = tableView.indexPathsForVisibleRows!
-		if indexPaths.first!.row - 5 > indexPath.row || indexPaths.last!.row + 5 < indexPath.row {
-			return workaroundCell
-		}
 
-		let item = displayedItems![indexPath.row] as CharacterItem
-		let cell = tableView.dequeueReusableCellWithIdentifier("Unit Item Cell", forIndexPath: indexPath) as! CharacterListCell
-		cell.item = item
+		let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! CharacterListCell
+
+		cell.item = displayedItems![indexPath.row] as CharacterItem
 
 		return cell
 	}
 
+	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+		self.performSegueWithIdentifier("Show Detail Segue", sender: displayedItems![indexPath.row])
+        
+	}
+
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
 		if (segue.identifier == "Show Detail Segue") {
+            
 			let controller: CharacterDetailController = segue.destinationViewController as! CharacterDetailController
-			let indexPath = tableView.indexPathForSelectedRow!
-			controller.item = displayedItems![indexPath.row] as CharacterItem
+
+			controller.item = sender as! CharacterItem
 		}
 	}
 
@@ -95,7 +164,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		if scrollToTopButtonHidden {
 			scrollToTopButtonHidden = false
 			UIView.animateWithDuration(0.25, animations: {
-				self.scrollToTopButton.alpha = 0.5
+				self.btnScrollToTop.alpha = 0.5
 			})
 		}
 	}
@@ -104,12 +173,12 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		if !scrollToTopButtonHidden {
 			scrollToTopButtonHidden = true
 			UIView.animateWithDuration(0.25, animations: {
-				self.scrollToTopButton.alpha = 0
+				self.btnScrollToTop.alpha = 0
 			})
 		}
 	}
 
-	func scrollViewDidScroll(scrollView: UIScrollView!) {
+	func scrollViewDidScroll(scrollView: UIScrollView) {
 		if scrollView.contentOffset.y > tableView.rowHeight * 10 {
 			showScrollToTopButton()
 		} else {
@@ -117,13 +186,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		}
 	}
 
-	@IBAction func sidemenuBarButtonItemTapped() {
-	}
-
-	@IBOutlet var doneButton: UIBarButtonItem!
-	@IBOutlet var cancelButton: UIBarButtonItem!
-
-	@IBAction func barButtonItemTapped(sender: UIBarButtonItem) {
+	func barButton_clickHandler(sender: UIBarButtonItem) {
 		for picker in pickers {
 			picker.originalValue = picker.value
 		}
@@ -134,37 +197,31 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		actionSheetPicker = ActionSheetCustomPicker(title: "", delegate: self, showCancelButton: true, origin: sender)
 		actionSheetPicker.hidePickerWithCancelAction()
 		actionSheetPicker.delegate = self
-		actionSheetPicker.setDoneButton(doneButton)
-		actionSheetPicker.setCancelButton(cancelButton)
+		actionSheetPicker.setDoneButton(btnDone)
+		actionSheetPicker.setCancelButton(btnCancel)
 		actionSheetPicker.addCustomButtonWithTitle("重置", actionBlock: {
-			self.resetBarButtonItemTapped()
-            self.actionSheetPickerShown = false
+			self.btnReset_clickHandler(nil)
+			self.actionSheetPickerShown = false
 		})
-		resetPath(rootPicker.child(sender.tag))
+		resetPath(classRootPicker.child(sender.tag))
 		actionSheetPicker.showActionSheetPicker()
 		actionSheetPickerShown = true
 		reloadComponents()
 	}
 
 	func actionSheetPickerDidSucceed(actionSheetPicker: AbstractActionSheetPicker!, origin: AnyObject!) {
-		confirmBarButtonItemTapped()
+		btnDone_handle(nil)
 		actionSheetPickerShown = false
 	}
 
 	func actionSheetPickerDidCancel(actionSheetPicker: AbstractActionSheetPicker!, origin: AnyObject!) {
-		cancelBarButtonItemTapped()
+		btnCancel_handler(nil)
 		actionSheetPickerShown = false
 	}
 
-	@IBAction func scrollToTopButtonTapped() {
+	func btnScrollToTop_clickHandler(sender: AnyObject?) {
 		self.tableView.setContentOffset(CGPointZero, animated: true)
 	}
-
-	var path: [CharacterListPickerItem] = []
-	let pickers = [levelPicker, sortPicker, rarePicker, elementPicker,
-		weaponPicker, typePicker]
-
-	var pickerView: UIPickerView!
 
 	func reloadComponents() {
 		pickerView.reloadAllComponents()
@@ -178,31 +235,33 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 
 		items.sortInPlace { (lhs: CharacterItem, rhs: CharacterItem) -> Bool in
 			switch sortPicker.value
-				{
-					case 0:
-						return lhs.rare > rhs.rare
-					case 1:
-						return lhs.dps > rhs.dps
-					case 2:
-						return lhs.mdps > rhs.mdps
-					case 3:
-						return lhs.life > rhs.life
-					case 4:
-						return lhs.atk > rhs.atk
-					case 5:
-						return lhs.aarea > rhs.aarea
-					case 6:
-						return lhs.anum > rhs.anum
-					case 7:
-						return lhs.aspd < rhs.aspd;
-					case 8:
-						return lhs.tenacity > rhs.tenacity
-					case 9:
-						return lhs.mspd > rhs.mspd
-					case 10:
-						return lhs.id > rhs.id
-					default:
-						return true
+			{
+			case 0:
+				return lhs.rare > rhs.rare
+			case 1:
+				return lhs.dps > rhs.dps
+			case 2:
+				return lhs.mdps > rhs.mdps
+			case 3:
+				return lhs.life > rhs.life
+			case 4:
+				return lhs.atk > rhs.atk
+			case 5:
+				return lhs.aarea > rhs.aarea
+			case 6:
+				return lhs.anum > rhs.anum
+			case 7:
+				return lhs.aspd < rhs.aspd;
+			case 8:
+				return lhs.tenacity > rhs.tenacity
+			case 9:
+				return lhs.mspd > rhs.mspd
+			case 10:
+				return lhs.id > rhs.id
+			case 11:
+				return lhs.hits > rhs.hits
+			default:
+				return true
 			}
 		}
 
@@ -210,7 +269,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 	}
 
 	func filter(items: [CharacterItem]) -> [CharacterItem] {
-        
+
 		return items.filter({ (item: CharacterItem) -> Bool in
 			if rarePicker.check(item.rare) ||
 			elementPicker.check(item.element) ||
@@ -219,9 +278,9 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 			aareaPicker.check(item.aarea) ||
 			anumPicker.check(item.anum) ||
 			genderPicker.check(item.gender) ||
-            serverPicker.check(item.server) ||
-            exchangePicker.check(item.exchange) ||
-            countryPicker.checkString(item.country)
+			serverPicker.check(item.server) ||
+			exchangePicker.check(item.exchange) ||
+			countryPicker.checkString(item.country)
 			{
 				return false
 			}
@@ -237,7 +296,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		}
 	}
 
-	func resetPath(item: CharacterListPickerItem) {
+	func resetPath(item: PickerItem) {
 		path.removeAll(keepCapacity: true)
 		path.append(item)
 	}
@@ -248,7 +307,7 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		}
 	}
 
-	func picker(byComponent component: Int) -> CharacterListPickerItem {
+	func picker(byComponent component: Int) -> PickerItem {
 		if component < path.count {
 			return path[component]
 		} else if component == path.count {
@@ -261,18 +320,18 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		}
 	}
 
-	@IBAction func cancelBarButtonItemTapped() {
+	func btnCancel_handler(sender: AnyObject?) {
 		for picker in pickers {
 			picker.value = picker.originalValue
 		}
 	}
 
-	@IBAction func resetBarButtonItemTapped() {
+	func btnReset_clickHandler(sender: AnyObject?) {
 		picker(byComponent: 0).reset()
-		confirmBarButtonItemTapped()
+		btnDone_handle(nil)
 	}
 
-	@IBAction func confirmBarButtonItemTapped() {
+	func btnDone_handle(sender: AnyObject?) {
 		var items = allItems
 		updateLevelMode(items)
 		items = filter(items)
@@ -309,6 +368,3 @@ class CharacterListController: UIViewController, ActionSheetCustomPickerDelegate
 		reloadComponents()
 	}
 }
-
-var thumbnailCache = [Int: UIImage]()
-var defaultThumbnalCache: UIImage!

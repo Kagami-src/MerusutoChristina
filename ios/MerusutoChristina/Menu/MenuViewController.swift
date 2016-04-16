@@ -14,6 +14,7 @@ public enum MenuList : Int {
 	case Monster // 魔宠图鉴
 	case Simulator // 模拟抽卡
 	case Download // 下载
+	case CleanCache // 清除缓存
 	case Help // 帮助
 }
 
@@ -28,10 +29,11 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 	let title3 = (icon: "icon_simulator.png", name: "模拟抽卡", menuType: MenuList.Simulator)
 	let title4 = (icon: "icon_download.png", name: "下载资源包", menuType: MenuList.Download)
 	let title5 = (icon: "icon_help.png", name: "帮助", menuType: MenuList.Help)
+	let title6 = (icon: "icon_help.png", name: "清除缓存", menuType: MenuList.CleanCache)
 
 	typealias TitleType = (icon: String, name: String, menuType: MenuList)
-	typealias ArrayType = Array < TitleType >
-	var titles: Array < ArrayType >?
+	typealias ArrayType = Array <TitleType>
+	var titles: Array <ArrayType>?
 
 	// MARK:方法
 	override func viewDidLoad()
@@ -41,8 +43,8 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 		self.tableView = UITableView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width * 0.6, UIScreen.mainScreen().bounds.height), style: UITableViewStyle.Plain)
 		self.tableView?.center = CGPointMake(tableView!.center.x, UIScreen.mainScreen().bounds.height / 2 + 20)
 
-		// self.titles = [[title1, title2], [title3, title4, title5]]
-		self.titles = [[title1], [title4, title5]]
+//		self.titles = [[title1, title2], [title3, title4, title5], [title6]]
+		self.titles = [[title1,title2], [title4, title5], [title6]]
 
 		self.tableView?.delegate = self
 		self.tableView?.dataSource = self
@@ -90,23 +92,26 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
 		let mainController = self.sideMenuViewController as! RootViewController
 
 		switch (clickMenu) {
-			case MenuList.Character:
-				mainController.switchToController(0)
+		case MenuList.Character:
+			mainController.switchToController(0)
 
-			case MenuList.Monster:
-				mainController.switchToController(1)
+		case MenuList.Monster:
+			mainController.switchToController(1)
 
-			case MenuList.Simulator:
-				mainController.switchToController(2)
+		case MenuList.Simulator:
+			mainController.switchToController(2)
 
-			case MenuList.Download:
-				mainController.downloadAllResource()
+		case MenuList.Download:
+			mainController.downloadAllResource()
 
-			case MenuList.Help:
-				UIApplication.sharedApplication().openURL(NSURL(string: "http://merusuto.gq/jump/about.html")!)
+		case MenuList.CleanCache:
+			mainController.clearAllResource()
+            
+		case MenuList.Help:
+			UIApplication.sharedApplication().openURL(NSURL(string: "http://bbtfr.github.io/MerusutoChristina/jump/about.html")!)
 
-			default:
-				break
+		default:
+			break
 		}
 	}
 }

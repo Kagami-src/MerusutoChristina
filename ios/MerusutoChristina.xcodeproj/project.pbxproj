@@ -7,15 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D1E17F01C8ACAA8008F808E /* SwiftPerfix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E17EF1C8ACAA8008F808E /* SwiftPerfix.swift */; };
+		3D238F9C1C97DF080003E90E /* PropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D238F9B1C97DF080003E90E /* PropertyDetailView.swift */; };
 		3D3C73B71C7DE20200213B19 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73B61C7DE20200213B19 /* MenuViewController.swift */; };
-		3D3C73C01C7DE23700213B19 /* CharacterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */; };
-		3D3C73C11C7DE23700213B19 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */; };
-		3D3C73C21C7DE23700213B19 /* CharacterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */; };
-		3D3C73C31C7DE23700213B19 /* CharacterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */; };
-		3D3C73C41C7DE23700213B19 /* CharacterListPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */; };
-		3D3C73C51C7DE23700213B19 /* CharacterPropertyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */; };
-		3D3C73C61C7DE23700213B19 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73BF1C7DE23700213B19 /* ElementView.swift */; };
 		3D3C73C91C7DE23F00213B19 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3C73C81C7DE23F00213B19 /* DataManager.swift */; };
+		3DAFF5B81C91009D0035B7D9 /* CharacterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B01C91009D0035B7D9 /* CharacterDetailController.swift */; };
+		3DAFF5B91C91009D0035B7D9 /* CharacterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B11C91009D0035B7D9 /* CharacterListController.swift */; };
+		3DAFF5BA1C91009D0035B7D9 /* CharacterPropertyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B21C91009D0035B7D9 /* CharacterPropertyView.swift */; };
+		3DAFF5BB1C91009D0035B7D9 /* CharacterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B41C91009D0035B7D9 /* CharacterItem.swift */; };
+		3DAFF5BC1C91009D0035B7D9 /* CharacterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B61C91009D0035B7D9 /* CharacterListCell.swift */; };
+		3DAFF5BD1C91009D0035B7D9 /* ElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5B71C91009D0035B7D9 /* ElementView.swift */; };
+		3DAFF5BF1C9100A60035B7D9 /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5BE1C9100A60035B7D9 /* PickerItem.swift */; };
+		3DAFF5C61C9100B20035B7D9 /* MonsterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5C21C9100B20035B7D9 /* MonsterItem.swift */; };
+		3DAFF5C71C9100B20035B7D9 /* MonsterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5C31C9100B20035B7D9 /* MonsterListController.swift */; };
+		3DAFF5C81C9100B20035B7D9 /* MonsterListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFF5C51C9100B20035B7D9 /* MonsterListCell.swift */; };
+		3DCB3A111C93C4070057CE66 /* MonsterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB3A101C93C4070057CE66 /* MonsterDetailController.swift */; };
+		3DCB3A151C93FDC10057CE66 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB3A141C93FDC10057CE66 /* ImageViewer.swift */; };
+		3DCB3A171C9646740057CE66 /* MonsterPropertyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCB3A161C9646740057CE66 /* MonsterPropertyDetailView.swift */; };
 		3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFA8C51C7AB7860002344A /* RootViewController.swift */; };
 		92F4CE197586164E0E9D94A3 /* Pods_MerusutoChristina.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAA2C623A14C44A52D92EDD8 /* Pods_MerusutoChristina.framework */; };
 		9615C6571AA30B2400827D0C /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9615C6561AA30B2400827D0C /* AVOSCloud.framework */; };
@@ -42,15 +50,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D1E17EF1C8ACAA8008F808E /* SwiftPerfix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftPerfix.swift; sourceTree = "<group>"; };
+		3D238F9B1C97DF080003E90E /* PropertyDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PropertyDetailView.swift; path = ../Monster/View/PropertyDetailView.swift; sourceTree = "<group>"; };
 		3D3C73B61C7DE20200213B19 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailController.swift; sourceTree = "<group>"; };
-		3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
-		3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListCell.swift; sourceTree = "<group>"; };
-		3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListController.swift; sourceTree = "<group>"; };
-		3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListPickerItem.swift; sourceTree = "<group>"; };
-		3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPropertyDetailController.swift; sourceTree = "<group>"; };
-		3D3C73BF1C7DE23700213B19 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
 		3D3C73C81C7DE23F00213B19 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		3DAFF5B01C91009D0035B7D9 /* CharacterDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterDetailController.swift; sourceTree = "<group>"; };
+		3DAFF5B11C91009D0035B7D9 /* CharacterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListController.swift; sourceTree = "<group>"; };
+		3DAFF5B21C91009D0035B7D9 /* CharacterPropertyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CharacterPropertyView.swift; path = ../CharacterPropertyView.swift; sourceTree = "<group>"; };
+		3DAFF5B41C91009D0035B7D9 /* CharacterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterItem.swift; sourceTree = "<group>"; };
+		3DAFF5B61C91009D0035B7D9 /* CharacterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterListCell.swift; sourceTree = "<group>"; };
+		3DAFF5B71C91009D0035B7D9 /* ElementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementView.swift; sourceTree = "<group>"; };
+		3DAFF5BE1C9100A60035B7D9 /* PickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerItem.swift; sourceTree = "<group>"; };
+		3DAFF5C21C9100B20035B7D9 /* MonsterItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterItem.swift; sourceTree = "<group>"; };
+		3DAFF5C31C9100B20035B7D9 /* MonsterListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterListController.swift; sourceTree = "<group>"; };
+		3DAFF5C51C9100B20035B7D9 /* MonsterListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterListCell.swift; sourceTree = "<group>"; };
+		3DCB3A101C93C4070057CE66 /* MonsterDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterDetailController.swift; sourceTree = "<group>"; };
+		3DCB3A141C93FDC10057CE66 /* ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageViewer.swift; path = ../Monster/View/ImageViewer.swift; sourceTree = "<group>"; };
+		3DCB3A161C9646740057CE66 /* MonsterPropertyDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterPropertyDetailView.swift; sourceTree = "<group>"; };
 		3DCFA8C51C7AB7860002344A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6D812E9921A0793DF4EF4299 /* Pods-MerusutoChristina.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MerusutoChristina.release.xcconfig"; path = "Pods/Target Support Files/Pods-MerusutoChristina/Pods-MerusutoChristina.release.xcconfig"; sourceTree = "<group>"; };
 		9615C6561AA30B2400827D0C /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVOSCloud.framework; path = MerusutoChristina/AVOSCloud.framework; sourceTree = "<group>"; };
@@ -98,11 +114,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3D3C73AD1C7DDCB600213B19 /* Monster */ = {
+		3D1E17EC1C8AC054008F808E /* BaseClass */ = {
 			isa = PBXGroup;
 			children = (
+				3DCB3A141C93FDC10057CE66 /* ImageViewer.swift */,
+				3D238F9B1C97DF080003E90E /* PropertyDetailView.swift */,
+				3DAFF5BE1C9100A60035B7D9 /* PickerItem.swift */,
 			);
-			path = Monster;
+			path = BaseClass;
 			sourceTree = "<group>";
 		};
 		3D3C73AE1C7DDCBF00213B19 /* Simulator */ = {
@@ -120,26 +139,69 @@
 			path = Menu;
 			sourceTree = "<group>";
 		};
-		3D3C73B81C7DE23700213B19 /* Character */ = {
-			isa = PBXGroup;
-			children = (
-				3D3C73B91C7DE23700213B19 /* CharacterDetailController.swift */,
-				3D3C73BA1C7DE23700213B19 /* CharacterItem.swift */,
-				3D3C73BB1C7DE23700213B19 /* CharacterListCell.swift */,
-				3D3C73BC1C7DE23700213B19 /* CharacterListController.swift */,
-				3D3C73BD1C7DE23700213B19 /* CharacterListPickerItem.swift */,
-				3D3C73BE1C7DE23700213B19 /* CharacterPropertyDetailController.swift */,
-				3D3C73BF1C7DE23700213B19 /* ElementView.swift */,
-			);
-			path = Character;
-			sourceTree = "<group>";
-		};
 		3D3C73C71C7DE23F00213B19 /* Units */ = {
 			isa = PBXGroup;
 			children = (
 				3D3C73C81C7DE23F00213B19 /* DataManager.swift */,
 			);
 			path = Units;
+			sourceTree = "<group>";
+		};
+		3DAFF5AF1C91009D0035B7D9 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5B51C91009D0035B7D9 /* View */,
+				3DAFF5B31C91009D0035B7D9 /* Modal */,
+				3DAFF5B01C91009D0035B7D9 /* CharacterDetailController.swift */,
+				3DAFF5B11C91009D0035B7D9 /* CharacterListController.swift */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		3DAFF5B31C91009D0035B7D9 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5B41C91009D0035B7D9 /* CharacterItem.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		3DAFF5B51C91009D0035B7D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5B21C91009D0035B7D9 /* CharacterPropertyView.swift */,
+				3DAFF5B61C91009D0035B7D9 /* CharacterListCell.swift */,
+				3DAFF5B71C91009D0035B7D9 /* ElementView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DAFF5C01C9100B20035B7D9 /* Monster */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5C41C9100B20035B7D9 /* View */,
+				3DAFF5C11C9100B20035B7D9 /* Modal */,
+				3DAFF5C31C9100B20035B7D9 /* MonsterListController.swift */,
+				3DCB3A101C93C4070057CE66 /* MonsterDetailController.swift */,
+			);
+			path = Monster;
+			sourceTree = "<group>";
+		};
+		3DAFF5C11C9100B20035B7D9 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5C21C9100B20035B7D9 /* MonsterItem.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		3DAFF5C41C9100B20035B7D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3DAFF5C51C9100B20035B7D9 /* MonsterListCell.swift */,
+				3DCB3A161C9646740057CE66 /* MonsterPropertyDetailView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9692F0F81A9C7E8900190CD4 = {
@@ -157,12 +219,14 @@
 		9692F1031A9C7E8A00190CD4 /* MerusutoChristina */ = {
 			isa = PBXGroup;
 			children = (
+				3DAFF5C01C9100B20035B7D9 /* Monster */,
+				3DAFF5AF1C91009D0035B7D9 /* Character */,
+				3D1E17EC1C8AC054008F808E /* BaseClass */,
 				3D3C73C71C7DE23F00213B19 /* Units */,
-				3D3C73B81C7DE23700213B19 /* Character */,
 				3D3C73B51C7DE20200213B19 /* Menu */,
 				3D3C73AE1C7DDCBF00213B19 /* Simulator */,
-				3D3C73AD1C7DDCB600213B19 /* Monster */,
 				9692F1061A9C7E8A00190CD4 /* AppDelegate.swift */,
+				3D1E17EF1C8ACAA8008F808E /* SwiftPerfix.swift */,
 				3DCFA8C51C7AB7860002344A /* RootViewController.swift */,
 				9692F10A1A9C7E8A00190CD4 /* Main.storyboard */,
 				9692F10D1A9C7E8A00190CD4 /* Images.xcassets */,
@@ -374,17 +438,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D3C73C31C7DE23700213B19 /* CharacterListController.swift in Sources */,
+				3DAFF5B81C91009D0035B7D9 /* CharacterDetailController.swift in Sources */,
 				9692F1071A9C7E8A00190CD4 /* AppDelegate.swift in Sources */,
-				3D3C73C11C7DE23700213B19 /* CharacterItem.swift in Sources */,
+				3DAFF5BA1C91009D0035B7D9 /* CharacterPropertyView.swift in Sources */,
+				3DAFF5BD1C91009D0035B7D9 /* ElementView.swift in Sources */,
+				3D1E17F01C8ACAA8008F808E /* SwiftPerfix.swift in Sources */,
+				3DAFF5BF1C9100A60035B7D9 /* PickerItem.swift in Sources */,
 				3D3C73B71C7DE20200213B19 /* MenuViewController.swift in Sources */,
-				3D3C73C21C7DE23700213B19 /* CharacterListCell.swift in Sources */,
-				3D3C73C01C7DE23700213B19 /* CharacterDetailController.swift in Sources */,
-				3D3C73C51C7DE23700213B19 /* CharacterPropertyDetailController.swift in Sources */,
-				3D3C73C41C7DE23700213B19 /* CharacterListPickerItem.swift in Sources */,
+				3DCB3A111C93C4070057CE66 /* MonsterDetailController.swift in Sources */,
+				3D238F9C1C97DF080003E90E /* PropertyDetailView.swift in Sources */,
 				3D3C73C91C7DE23F00213B19 /* DataManager.swift in Sources */,
+				3DAFF5BC1C91009D0035B7D9 /* CharacterListCell.swift in Sources */,
+				3DAFF5C81C9100B20035B7D9 /* MonsterListCell.swift in Sources */,
+				3DCB3A151C93FDC10057CE66 /* ImageViewer.swift in Sources */,
+				3DCB3A171C9646740057CE66 /* MonsterPropertyDetailView.swift in Sources */,
+				3DAFF5C61C9100B20035B7D9 /* MonsterItem.swift in Sources */,
+				3DAFF5C71C9100B20035B7D9 /* MonsterListController.swift in Sources */,
+				3DAFF5BB1C91009D0035B7D9 /* CharacterItem.swift in Sources */,
 				3DCFA8C61C7AB7860002344A /* RootViewController.swift in Sources */,
-				3D3C73C61C7DE23700213B19 /* ElementView.swift in Sources */,
+				3DAFF5B91C91009D0035B7D9 /* CharacterListController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

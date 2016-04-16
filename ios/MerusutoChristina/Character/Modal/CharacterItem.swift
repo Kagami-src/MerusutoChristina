@@ -33,6 +33,7 @@ class CharacterItem {
 	var mspd: Int // 移动速度
 	var tenacity: Int // 韧性
 	var aspd: Float // 攻击速度
+	var hits: Int // 攻击段数
 	var country: String // 国家
 
 	var weapon: Int // 武器 1斩击 2突击 3打击 4弓箭 5魔法 6铳弹 7回复
@@ -49,18 +50,17 @@ class CharacterItem {
 
 	// =====
 	// 魔宠
-	var skin: Int // 皮肤 1坚硬 2常规 3柔软
-	var sklsp: Int // 技能消耗SP
-	var sklcd: Int // 技能CD
-	var skill: String // 技能描述
+//	var skin: Int // 皮肤 1坚硬 2常规 3柔软
+//	var sklsp: Int // 技能消耗SP
+//	var sklcd: Int // 技能CD
+//	var skill: String // 技能描述
 	// =====
 
 	var obtain: String // 获取方式
 	var remark: String // 备注
 	var contributors: [JSON]? // 数据提供者
-    var server: Int //新品上架 1日服 2国服
-    var exchange: Int //交换所 1历代交换所人物 2历代活动人物 3其他
-    
+	var server: Int // 新品上架 1日服 2国服
+	var exchange: Int // 交换所 1历代交换所人物 2历代活动人物 3其他
 
 	var originalAtk, originalLife: Int
 	var dps: Int = 0
@@ -86,6 +86,7 @@ class CharacterItem {
 		mspd = data["mspd"].intValue // 移动速度
 		tenacity = data["tenacity"].intValue // 韧性
 		aspd = data["aspd"].floatValue // 攻击速度
+		hits = data["hits"].intValue == 0 ? 1 : data["hits"].intValue // 攻击段数
 		country = data["country"].stringValue // 国家
 
 		weapon = data["weapon"].intValue // 武器 1斩击 2突击 3打击 4弓箭 5魔法 6铳弹 7回复
@@ -103,17 +104,28 @@ class CharacterItem {
 
 		// =====
 		// 魔宠
-		skin = data["skin"].intValue // 皮肤 1坚硬 2常规 3柔软
-		sklsp = data["sklsp"].intValue // 技能消耗SP
-		sklcd = data["sklcd"].intValue // 技能CD
-		skill = data["skill"].stringValue // 技能描述
+//		skin = data["skin"].intValue // 皮肤 1坚硬 2常规 3柔软
+//		sklsp = data["sklsp"].intValue // 技能消耗SP
+//		sklcd = data["sklcd"].intValue // 技能CD
+//		skill = data["skill"].stringValue // 技能描述
 		// =====
 
 		obtain = data["obtain"].stringValue // 获取方式
 		remark = data["remark"].stringValue // 备注
+
+		if (remark.characters.count > 0) {
+			let startIndex = remark.startIndex
+            let endIndex = remark.startIndex.advancedBy(1)
+            
+            let lastFourDigitsOfPhoneNumber = remark.substringWithRange(Range<String.Index>(start:startIndex,end:endIndex))
+            if(lastFourDigitsOfPhoneNumber == "\n"){
+                remark = remark.substringFromIndex(endIndex)
+
+            }
+		}
 		contributors = data["contributors"].array // 数据提供者
-        server = data["server"].intValue  //新品上架 1日服 2国服
-        exchange = data["exchange"].intValue == 0 ? 3 : data["exchange"].intValue  //交换所 1历代交换所人物 2历代活动人物 3其他
+		server = data["server"].intValue // 新品上架 1日服 2国服
+		exchange = data["exchange"].intValue == 0 ? 3 : data["exchange"].intValue // 交换所 1历代交换所人物 2历代活动人物 3其他
 
 		levelMode = 0
 		originalAtk = atk
@@ -129,10 +141,9 @@ class CharacterItem {
 				for item in collection {
 					array.append(item.stringValue)
 				}
-                
+
 //				return "、".join(array)
-                return array.joinWithSeparator("、")
-            
+				return array.joinWithSeparator("、")
 			} else {
 				return ""
 			}
@@ -167,21 +178,15 @@ class CharacterItem {
 		}
 	}
 
-	var skinString: String {
+	var aspdString: String {
 		get {
-			return safeGetString(["坚硬", "常规", "柔软"], index: skin)
+			return aspd == 0.0 ? "暂缺" : String(aspd)
 		}
 	}
 
 	var genderString: String {
 		get {
 			return safeGetString(["不明", "男", "女"], index: gender)
-		}
-	}
-
-	var skillShortString: String {
-		get {
-			return skill.componentsSeparatedByString(": ").first!
 		}
 	}
 
