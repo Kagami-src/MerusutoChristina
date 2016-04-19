@@ -89,6 +89,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MerusutoChristina/RESideMenu.framework"
   install_framework "Pods-MerusutoChristina/Reachability.framework"
   install_framework "Pods-MerusutoChristina/SDWebImage.framework"
+  install_framework "Pods-MerusutoChristina/SnapKit.framework"
   install_framework "Pods-MerusutoChristina/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -97,5 +98,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MerusutoChristina/RESideMenu.framework"
   install_framework "Pods-MerusutoChristina/Reachability.framework"
   install_framework "Pods-MerusutoChristina/SDWebImage.framework"
+  install_framework "Pods-MerusutoChristina/SnapKit.framework"
   install_framework "Pods-MerusutoChristina/SwiftyJSON.framework"
 fi

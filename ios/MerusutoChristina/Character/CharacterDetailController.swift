@@ -11,276 +11,172 @@ import AVOSCloud
 import SDWebImage
 import MBProgressHUD
 
-class CharacterDetailController: UIViewController {
-	var item: CharacterItem!
+class CharacterDetailController: UIViewController, UIScrollViewDelegate {
 
-	@IBOutlet var scrollView: UIScrollView!
-	@IBOutlet var pageControl: UIPageControl!
-	@IBOutlet var loadingView: UIView!
-	var detailController: CharacterPropertyDetailController?
+	var scrollView: UIScrollView!
+	var contentView: UIView!
 
-	var detailView: UIView!
-	var imageView: UIImageView!
-	var pageViews: [UIView?] = []
+	var imageViewer: ImageViewer!
+	var propertyViewer: PropertyDetailView!
 
-	var minZoomScale: CGFloat?
-	var maxZoomScale: CGFloat?
-	var zoomEnabled = true
+	var pageController: UIPageControl!
+	var pageBeforeRotate: Int!
 
-	var pageBeforeRotate: Int = 0
+	var item: CharacterItem! {
+		didSet {
+
+			print("character didSet")
+
+			let _ = self.view
+
+			propertyViewer.item = item
+
+			imageViewer.imageUrl = getItemUrl()
+
+			setDetailFontSize()
+		}
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		AVAnalytics.event("Open", label: "0 \(item.id)")
 
-		scrollView.frame = CGRectMake(0, 20, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 20)
-		scrollView.contentSize = CGSizeMake(UIScreen.mainScreen().bounds.width * 2, 0)
+		scrollView = UIScrollView(frame: self.view.bounds)
 		scrollView.backgroundColor = UIColor(red: 0.139, green: 0.137, blue: 0.142, alpha: 0.9)
-		scrollView.clipsToBounds = true
+		scrollView.pagingEnabled = true
+		scrollView.delegate = self
+		scrollView.showsVerticalScrollIndicator = false
+		scrollView.showsHorizontalScrollIndicator = false
+		scrollView.bounces = false
+		self.view.addSubview(scrollView)
 
-		self.detailController = storyboard?.instantiateViewControllerWithIdentifier("Character Property Detail View Controller") as? CharacterPropertyDetailController
-		self.detailController!.item = item
-		setDetailFontSize()
+		contentView = UIView(frame: self.view.bounds)
+		scrollView.addSubview(contentView)
 
-		detailView = self.detailController!.view
-		scrollView.addSubview(detailView)
+		imageViewer = ImageViewer(frame: self.view.bounds)
+		contentView.addSubview(imageViewer)
 
-		calculateDetailViewFrame()
+		propertyViewer = getPropertyDetailView()
+		contentView.addSubview(propertyViewer)
 
-		pageViews = [imageView, detailView]
+		pageController = UIPageControl()
+		pageController.numberOfPages = 2
+		pageController.userInteractionEnabled = false
+		self.view.addSubview(pageController)
 
-		forceEnablePaging()
-		loadVisiblePages()
+		setConstraints()
 
-		// 定义MBProgressHUD对象
-		let hud: MBProgressHUD = MBProgressHUD(view: self.view)
-		hud.show(true)
-		hud.labelText = "立绘加载中..."
-		hud.removeFromSuperViewOnHide = true
-		hud.mode = MBProgressHUDMode.Determinate
-		hud.backgroundColor = UIColor.clearColor()
-		hud.color = UIColor.clearColor()
-		hud.userInteractionEnabled = false
-		self.scrollView.addSubview(hud)
+		let gesture = UITapGestureRecognizer(target: self, action: Selector("tap_handler:"))
+		self.view.addGestureRecognizer(gesture)
 
-		let imageUrl = DataManager.getGithubURL("units/original/\(item.id).png")
-		self.imageView = UIImageView()
-		self.imageView.sd_setImageWithURL(imageUrl, placeholderImage: nil, options: SDWebImageOptions.ProgressiveDownload, progress: {
-			(receivedSize: Int, totalSize: Int) -> Void in
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("imageViewer_handler:"), name: IMAGE_SCALE_SCROLLVIEW_ZOOMING, object: nil)
+	}
 
-			// 计算下载进度
-			print("id:\(self.item.id) \(receivedSize)/\(totalSize)")
-			hud.progress = (Float(receivedSize) / Float(totalSize))
-			}, completed: {
-			(image: UIImage!, error: NSError!, type, url: NSURL!) -> Void in
+	func getPropertyDetailView() -> PropertyDetailView {
+		return CharacterPropertyView(frame: self.view.bounds)
+	}
 
-			self.imageView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: image.size)
-			self.scrollView.addSubview(self.imageView)
-			self.scrollView.contentSize = image.size
-			self.imageView.alpha = 0
+	func getItemUrl() -> NSURL {
+		return DataManager.getGithubURL("units/original/\(item.id).png")
+	}
 
-			UIView.animateWithDuration(0.25, animations: { () -> Void in
-				self.imageView.alpha = 1
-			})
+	func setConstraints() {
+		scrollView.snp_updateConstraints { (make) -> Void in
+			make.left.equalTo(self.view)
+			make.right.equalTo(self.view)
+			make.top.equalTo(self.view)
+			make.bottom.equalTo(self.view)
+		}
 
-			hud.hide(true)
+		contentView.snp_updateConstraints { (make) -> Void in
+			make.edges.equalTo(scrollView)
+			make.height.equalTo(scrollView)
+			make.width.equalTo(scrollView).multipliedBy(2)
+		}
 
-			self.calculateImageViewFrame()
-            self.calculateDetailViewFrame()
-		})
+		imageViewer.snp_updateConstraints { (make) -> Void in
+			make.left.equalTo(contentView.snp_left)
+			make.top.equalTo(contentView.snp_top)
+			make.bottom.equalTo(contentView.snp_bottom)
+			make.width.equalTo(contentView).multipliedBy(0.5)
+		}
+
+		propertyViewer.snp_updateConstraints { (make) -> Void in
+			make.left.equalTo(imageViewer.snp_right)
+			make.top.equalTo(imageViewer.snp_top).offset(20)
+			make.bottom.equalTo(imageViewer.snp_bottom).offset(-20)
+			make.width.equalTo(imageViewer.snp_width)
+		}
+
+		pageController.snp_makeConstraints { [unowned self](make) -> Void in
+			make.centerX.equalTo(self.view.snp_centerX)
+			make.bottom.equalTo(self.view.snp_bottom).offset(0)
+			make.width.equalTo(80)
+			make.height.equalTo(20)
+		}
+	}
+
+	func imageViewer_handler(note: NSNotification) {
+		self.scrollView.scrollEnabled = !imageViewer.isZoomImage
 	}
 
 	deinit {
 		print("unit item dealloc")
+
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: IMAGE_SCALE_SCROLLVIEW_ZOOMING, object: nil)
 	}
 
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
+	func tap_handler(gesture: UITapGestureRecognizer) {
 
-		calculateImageViewFrame()
-		calculateDetailViewFrame()
-	}
-
-	func calculateImageViewFrame() {
-
-		let frameSize = scrollView.frame.size
-		let contentSize = imageView.bounds.size
-		let scaleWidth = frameSize.width / contentSize.width
-		let scaleHeight = frameSize.height / contentSize.height
-		minZoomScale = min(scaleWidth, scaleHeight)
-
-		scrollView.minimumZoomScale = minZoomScale!
-		scrollView.zoomScale = minZoomScale!
-
-		forceEnablePaging()
-		centerScrollViewContents()
-	}
-
-	func calculateDetailViewFrame() {
-		var frame = view.frame
-		frame.origin.x = frame.width
-		detailView.frame = frame
-        
-        self.setDetailFontSize()
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 	override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
 
-		pageBeforeRotate = pageControl.currentPage
+		pageBeforeRotate = pageController.currentPage
 
 		UIView.animateWithDuration(0.15, animations: {
-			self.imageView.alpha = 0
-			self.detailView.alpha = 0
+			self.imageViewer.alpha = 0
+			self.propertyViewer.alpha = 0
+			self.pageController.alpha = 0
 		})
-	}
-
-	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
-		print("did:\(UIScreen.mainScreen().bounds)")
-		self.pageControl.currentPage = self.pageBeforeRotate
-		self.scrollView.setContentOffset(CGPointMake(self.scrollView.frame.width * CGFloat(self.pageBeforeRotate), 0), animated: false)
-
-		UIView.animateWithDuration(0.25, animations: {
-			self.imageView.alpha = 1
-			self.detailView.alpha = 1
-		})
-
-		setDetailFontSize()
 	}
 
 	func setDetailFontSize() {
-        
-        let screenWidth:CGFloat = CGFloat(UIScreen.mainScreen().bounds.width)
-		if (UIDevice.currentDevice().orientation == UIDeviceOrientation.Portrait) {
-			self.detailController?.setFontSize(screenWidth / 414.0 * 18.0)
-            
-		}
-		else {
-			self.detailController?.setFontSize(screenWidth / 736 * 17)
-		}
+
+		let screenWidth: CGFloat = getScreenWidth()
+		let screenHeight: CGFloat = getScreenHeight()
+
+		// 不用UIDevice.currentDevice().orientation去判断，是因为会有isFalt的情况出现
+		let isPortrait: Bool = screenWidth < screenHeight
+
+		let fontSize: CGFloat = isPortrait ? screenWidth / 414.0 * 18.0 : screenWidth / 736 * 17.0
+
+		self.propertyViewer.setFontSize(fontSize)
 	}
 
-	func loadVisiblePages() {
-		// First, determine which page is currently visible
-		let pageWidth = scrollView.frame.size.width
-		let page = Int(floor((scrollView.contentOffset.x * 2.0 + pageWidth) / (pageWidth * 2.0)))
+	override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
 
-		// Update the page control
-		pageControl.currentPage = page
-	}
+		self.pageController.currentPage = self.pageBeforeRotate
+		self.scrollView.setContentOffset(CGPointMake(self.scrollView.frame.width * CGFloat(self.pageBeforeRotate), 0), animated: false)
 
-	func forceEnablePaging() {
-		scrollView.pagingEnabled = true
-
-		let frameSize = scrollView.frame.size
-		scrollView.contentSize = CGSizeMake(frameSize.width * CGFloat(pageViews.count), frameSize.height)
-
-		detailView.alpha = 0
 		UIView.animateWithDuration(0.25, animations: {
-			self.pageControl.alpha = 1
-			self.detailView.alpha = 1
+			self.imageViewer.alpha = 1
+			self.propertyViewer.alpha = 1
+			self.pageController.alpha = 1
 		})
+
+		imageViewer.calculateImageViewFrame()
+		setDetailFontSize()
 	}
 
-	func enablePaging() {
-		if !scrollView.pagingEnabled {
-			forceEnablePaging()
-		}
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		imageViewer.calculateImageViewFrame()
 	}
 
-	func disablePaging() {
-		if scrollView.pagingEnabled {
-			scrollView.pagingEnabled = false
-			scrollView.contentSize = imageView.frame.size
-
-			detailView.alpha = 0
-			UIView.animateWithDuration(0.25, animations: {
-				self.pageControl.alpha = 0
-			})
-		}
-	}
-
-	func enableZoom() {
-		if !zoomEnabled {
-			zoomEnabled = true
-
-			scrollView.maximumZoomScale = maxZoomScale!
-			scrollView.minimumZoomScale = minZoomScale!
-		}
-	}
-
-	func disableZoom() {
-		if scrollView.contentOffset.x >= scrollView.frame.size.width && zoomEnabled {
-			zoomEnabled = false
-
-			maxZoomScale = scrollView.maximumZoomScale
-			minZoomScale = scrollView.minimumZoomScale
-			scrollView.maximumZoomScale = 1.0
-			scrollView.minimumZoomScale = 1.0
-		}
-	}
-
-	@IBAction func scrollViewDoubleTapped(recognizer: UITapGestureRecognizer) {
-		let pointInView = recognizer.locationInView(self.imageView)
-
-		var newZoomScale = scrollView.zoomScale * 1.5
-		newZoomScale = min(newZoomScale, scrollView.maximumZoomScale)
-
-		let scrollViewSize = scrollView.bounds.size
-		let w = scrollViewSize.width / newZoomScale
-		let h = scrollViewSize.height / newZoomScale
-		let x = pointInView.x - (w / 2.0)
-		let y = pointInView.y - (h / 2.0)
-
-		let rectToZoomTo = CGRectMake(x, y, w, h)
-		scrollView.zoomToRect(rectToZoomTo, animated: true)
-	}
-
-	func centerScrollViewContents() {
-		let boundsSize = scrollView.frame.size
-		var contentsFrame = imageView.frame
-
-		if contentsFrame.size.width < boundsSize.width {
-			contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
-		} else {
-			contentsFrame.origin.x = 0
-		}
-
-		if contentsFrame.size.height < boundsSize.height {
-			contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
-		} else {
-			contentsFrame.origin.y = 0
-		}
-
-		imageView.frame = contentsFrame
-	}
-
-	func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
-		return imageView
-	}
-
-	func scrollViewDidZoom(scrollView: UIScrollView!) {
-
-		centerScrollViewContents()
-
-		if scrollView.zoomScale == scrollView.minimumZoomScale {
-			enablePaging()
-		} else {
-			disablePaging()
-		}
-	}
-
-	func scrollViewDidScroll(scrollView: UIScrollView!) {
-		// Load the pages that are now on screen
-		loadVisiblePages()
-		if imageView == nil || scrollView.contentOffset.x >= imageView.frame.size.width {
-			disableZoom()
-		} else {
-			enableZoom()
-		}
-	}
-
-	@IBAction func viewTapped() {
-		dismissViewControllerAnimated(true, completion: nil)
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		pageController.currentPage = Int((scrollView.contentOffset.x + scrollView.frame.width / 2) / scrollView.frame.width)
 	}
 }
